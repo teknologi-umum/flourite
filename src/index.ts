@@ -48,7 +48,13 @@ const languages: Record<string, LanguagePattern[]> = {
   Unknown: [],
 };
 
-function getPoints(lineOfCode: string, checkers: LanguagePattern[]) {
+/**
+ * TODO: FILL THIS
+ * @param {String} lineOfCode
+ * @param {LanguagePattern[]} checkers
+ * @returns {Number}
+ */
+function getPoints(lineOfCode: string, checkers: LanguagePattern[]): number {
   const checker: number[] = checkers.map((o) => {
     if (o.pattern.test(lineOfCode)) return o.points;
     return 0;
@@ -66,6 +72,17 @@ export interface StatisticOutput {
   statistics: (string | number)[][];
 }
 
+/**
+ * TODO: FILL THIS
+ * @param {String} snippet The code we're guessing
+ * @param {Options} options Options
+ * @returns {String | StatisticOutput}
+ * @example
+ * ```js
+ * import detectLang from 'package-name';
+ * const detect = detectLang(code);
+ * ```
+ */
 function detectLang(
   snippet: string,
   options: Options = { heuristic: true, statistics: false },
@@ -75,7 +92,7 @@ function detectLang(
     .replace(/\n{2,}/g, '\n')
     .split('\n');
 
-  function nearTop(index: number) {
+  function nearTop(index: number): boolean {
     if (linesOfCode.length <= 10) {
       return true;
     }

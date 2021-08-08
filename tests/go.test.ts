@@ -1,4 +1,15 @@
-package main
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src/index';
+
+test('hello world', () => {
+  assert.equal('Go', detectLang('fmt.Println("Hello world")'));
+});
+
+test('fizz buzz', () => {
+  assert.equal(
+    'Go',
+    detectLang(`package main
  
 import (
 	"fmt" 
@@ -27,4 +38,8 @@ func fizzbuzz(i int) {
 	} else {
 		fmt.Println(i)
 	}
-}
+}`),
+  );
+});
+
+test.run();
