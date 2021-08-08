@@ -1,17 +1,24 @@
 {
-  "name": "lang-detector",
+  "name": "language-detector",
   "version": "1.0.6",
   "description": "A library for detecting the programming language of a code snippet.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "lint": "eslint --fix --ignore-path .gitignore .",
     "format": "prettier --write --ignore-path .gitignore .",
     "prepare": "node prepare.cjs",
-    "test": "c8 uvu tests"
+    "test": "c8 uvu tests",
+    "build:cjs": "esbuild src/index.ts --outfile=dist/index.cjs --format=cjs --bundle",
+    "build:esm": "esbuild src/index.ts --outfile=dist/index.mjs --format=esm --bundle",
+    "build:dts": "tsc --emitDeclarationOnly",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:dts"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ts95/lang-detector"
+    "url": "https://github.com/teknologi-umum/language-detector"
   },
   "keywords": [
     "programming",
@@ -25,11 +32,22 @@
     "identifier"
   ],
   "author": "Toni Sučić",
+  "contributors": [
+    {
+      "name": "Reinaldy Rafli",
+      "email": "aldy505@tutanota.com",
+      "url": "https://github.com/aldy505"
+    },
+    {
+      "name": "elianiva",
+      "url": "https://github.com/elianiva"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ts95/lang-detector/issues"
+    "url": "https://github.com/teknologi-umum/language-detector/issues"
   },
-  "homepage": "https://github.com/ts95/lang-detector",
+  "homepage": "https://github.com/teknologi-umum/language-detector#readme",
   "devDependencies": {
     "@types/node": "^16.4.13",
     "@typescript-eslint/eslint-plugin": "^4.29.0",

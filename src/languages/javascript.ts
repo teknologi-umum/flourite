@@ -1,4 +1,4 @@
-import type { LanguagePattern } from "../index";
+import type { LanguagePattern } from '../index';
 
 export const Javascript: LanguagePattern[] = [
   // undefined keyword
@@ -29,4 +29,4 @@ export const Javascript: LanguagePattern[] = [
   { pattern: /(\w+)( )*\*( )*\w+/, points: -1 },
   // HTML <script> tag
   { pattern: /<(\/)?script( type=('|")text\/javascript('|"))?>/, points: -50 },
-]
+];

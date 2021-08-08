@@ -1,4 +1,4 @@
-import { LanguagePattern } from "../index";
+import { LanguagePattern } from '../index';
 
 export const Ruby: LanguagePattern[] = [
   // require/include
@@ -27,4 +27,4 @@ export const Ruby: LanguagePattern[] = [
   { pattern: /nil/, points: 1 },
   // Scope operator
   { pattern: /[A-Z]\w*::[A-Z]\w*/, points: 1 },
-]
+];

@@ -1,4 +1,4 @@
-import { LanguagePattern } from "../index";
+import { LanguagePattern } from '../index';
 
 export const PHP: LanguagePattern[] = [
   // PHP tag
@@ -29,4 +29,4 @@ export const PHP: LanguagePattern[] = [
   { pattern: /!==/g, points: 1 },
   // C/JS style variable declaration.
   { pattern: /(^|\s)(var|char|long|int|float|double)( )+\w+( )*=?/, points: -1 },
-]
+];

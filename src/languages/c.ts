@@ -1,4 +1,4 @@
-import { LanguagePattern } from "../index";
+import { LanguagePattern } from '../index';
 
 export const C: LanguagePattern[] = [
   // Primitive variable declaration.
@@ -33,4 +33,4 @@ export const C: LanguagePattern[] = [
   { pattern: /'.{2,}'/, points: -1 },
   // JS variable declaration
   { pattern: /var( )+\w+( )*=?/, points: -1 },
-]
+];

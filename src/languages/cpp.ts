@@ -1,4 +1,4 @@
-import { LanguagePattern } from "../index";
+import { LanguagePattern } from '../index';
 
 export const CPP: LanguagePattern[] = [
   // Primitive variable declaration.
@@ -37,4 +37,4 @@ export const CPP: LanguagePattern[] = [
   { pattern: /'.{2,}'/, points: -1 },
   // Java List/ArrayList
   { pattern: /(List<\w+>|ArrayList<\w*>( )*\(.*\))(( )+[\w]+|;)/, points: -1 },
-]
+];

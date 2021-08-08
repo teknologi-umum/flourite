@@ -1,4 +1,4 @@
-import { LanguagePattern } from "../index";
+import { LanguagePattern } from '../index';
 
 export const Go: LanguagePattern[] = [
   // package something
@@ -23,4 +23,4 @@ export const Go: LanguagePattern[] = [
   { pattern: /nil/, points: 1 },
   // Single quote multicharacter string
   { pattern: /'.{2,}'/, points: -1 },
-]
+];

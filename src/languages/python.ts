@@ -1,4 +1,4 @@
-import { LanguagePattern } from "../index";
+import { LanguagePattern } from '../index';
 
 export const Python: LanguagePattern[] = [
   // Function definition
@@ -25,4 +25,4 @@ export const Python: LanguagePattern[] = [
   { pattern: /print((( )*\(.+\))|( )+.+)/, points: 1 },
   // &&/|| operators
   { pattern: /(&{2}|\|{2})/, points: -1 },
-]
+];

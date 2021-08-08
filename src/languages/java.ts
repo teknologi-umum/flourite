@@ -1,4 +1,4 @@
-import { LanguagePattern } from "../index";
+import { LanguagePattern } from '../index';
 
 export const Java: LanguagePattern[] = [
   // System.out.println() etc.
@@ -41,4 +41,4 @@ export const Java: LanguagePattern[] = [
   { pattern: /'.{2,}'/, points: -1 },
   // C style include
   { pattern: /#include( )*(<|")\w+(\.h)?(>|")/, points: -1, nearTop: true },
-]
+];

@@ -1,4 +1,4 @@
-import { LanguagePattern } from "../index";
+import { LanguagePattern } from '../index';
 
 export const HTML: LanguagePattern[] = [
   { pattern: /<!DOCTYPE (html|HTML PUBLIC .+)>/, points: 2, nearTop: true },
@@ -8,4 +8,4 @@ export const HTML: LanguagePattern[] = [
   { pattern: /[a-z\-]+=("|').+("|')/g, points: 2 },
   // PHP tag
   { pattern: /<\?php/, points: -50 },
-]
+];
