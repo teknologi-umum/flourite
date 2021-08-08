@@ -10,7 +10,7 @@ import { Python } from './languages/python';
 import { Ruby } from './languages/ruby';
 
 export interface LanguagePattern {
-  pattern: string | RegExp;
+	pattern: RegExp;
   points: number;
   nearTop?: boolean;
 }
@@ -34,7 +34,7 @@ export interface LanguagePattern {
  * -50 = Bonus penalty points: Only used when two languages are mixed together,
  *  and one has a higher precedence over the other one.
  */
-let languages: Record<string, LanguagePattern[]> = {
+const languages: Record<string, LanguagePattern[]> = {
   C,
   'C++': CPP,
   CSS,
@@ -48,41 +48,36 @@ let languages: Record<string, LanguagePattern[]> = {
   Unknown: [],
 };
 
-function getPoints(language, lineOfCode, checkers) {
-  return _.reduce(
-    _.map(checkers, function (checker) {
-      if (checker.pattern.test(lineOfCode)) {
-        return checker.points;
-      }
-      return 0;
-    }),
-    function (memo, num) {
-      return memo + num;
-    },
-    0,
-  );
+function getPoints(lineOfCode: string, checkers: LanguagePattern[]) {
+	const checker: number[] = checkers.map(o => {
+		if (o.pattern.test(lineOfCode)) return o.points;
+		return 0;
+	})
+	const reduced = checker.reduce((memo, num) => memo + num, 0)
+	return reduced;
 }
 
-function detectLang(snippet, options) {
-  let opts = _.defaults(options || {}, {
-    heuristic: true,
-    statistics: false,
-  });
+export interface Options {
+	heuristic: boolean,
+	statistics: false
+}
 
+
+function detectLang(snippet: string, options: Options = { heuristic: true, statistics: false }) {
   let linesOfCode = snippet
     .replace(/\r\n?/g, '\n')
     .replace(/\n{2,}/g, '\n')
     .split('\n');
 
-  function nearTop(index) {
+	function nearTop(index: number) {
     if (linesOfCode.length <= 10) {
       return true;
     }
     return index < linesOfCode.length / 10;
   }
 
-  if (opts.heuristic && linesOfCode.length > 500) {
-    linesOfCode = linesOfCode.filter(function (lineOfCode, index) {
+	if (options.heuristic && linesOfCode.length > 500) {
+		linesOfCode = linesOfCode.filter((_, index) => {
       if (nearTop(index)) {
         return true;
       }
@@ -90,56 +85,48 @@ function detectLang(snippet, options) {
     });
   }
 
-  let pairs = _.keys(languages).map(function (key) {
+	const pairs = Object.keys(languages).map((key) => {
     return { language: key, checkers: languages[key] };
   });
 
-  let results = _.map(pairs, function (pairs) {
-    let language = pairs.language;
-    let checkers = pairs.checkers;
+	const results = pairs.map((pair) => {
+		const language = pair.language;
+		const checkers = pair.checkers;
 
     if (language === 'Unknown') {
       return { language: 'Unknown', points: 1 };
     }
 
-    let pointsList = linesOfCode.map(function (lineOfCode, index) {
+		const pointsList = linesOfCode.map(function (lineOfCode, index) {
       if (!nearTop(index)) {
-        return getPoints(
-          language,
+				return getPoints(
           lineOfCode,
-          _.reject(checkers, function (checker) {
-            return checker.nearTop;
+					checkers.filter((checker) => {
+						return !checker.nearTop;
           }),
         );
       } else {
-        return getPoints(language, lineOfCode, checkers);
+				return getPoints(lineOfCode, checkers);
       }
     });
 
-    let points = _.reduce(pointsList, function (memo, num) {
-      return memo + num;
-    });
+		const points = pointsList.reduce((memo, num) => memo + num);
 
-    return { language: language, points: points };
+		return { language, points };
   });
 
-  let bestResult = _.max(results, function (result) {
-    return result.points;
-  });
-
-  if (opts.statistics) {
-    let statistics = {};
-    for (let result in results) {
+	const bestResult = results.reduce((a, b) => a.points >= b.points ? a : b, { points: 0, language: '' })
+	if (options.statistics) {
+		const statistics = [];
+		for (const result in results) {
       statistics.push([results[result].language, results[result].points]);
     }
 
-    statistics.sort(function (a, b) {
-      return b[1] - a[1];
-    });
+		statistics.sort((a, b) => Number(b[1]) - Number(a[1]));
     return { detected: bestResult.language, statistics: statistics };
   }
 
   return bestResult.language;
 }
 
-module.exports = detectLang;
+export default detectLang;

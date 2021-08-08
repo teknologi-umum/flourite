@@ -20,5 +20,5 @@
     "allowSyntheticDefaultImports": true,
     "newLine": "lf"
   },
-  "exclude": ["test", "dist"]
+  "exclude": ["tests", "dist"]
 }
