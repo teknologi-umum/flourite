@@ -28,11 +28,11 @@ jobs:
         run: npx eslint --ignore-path .gitignore .
 
       - name: Prettier check
-        run: npx prettier --check .
+        run: npx prettier --check --ignore-path .gitignore .
 
       - name: Test & coverage
         run: npm run test
-        
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
         with:
@@ -40,7 +40,7 @@ jobs:
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
-  
+
       - name: Upload to Codecov
         uses: codecov/codecov-action@v1
         with:
