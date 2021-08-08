@@ -4,7 +4,7 @@ export const Go: LanguagePattern[] = [
   // package something
   { pattern: /package( )+[a-z]+\n/, points: 2, nearTop: true },
   // import
-  { pattern: /(import( )*\(( )*\n)|(import( )+"[a-z0-9\/\.]+")/, points: 2, nearTop: true },
+  { pattern: /(import( )*\(( )*\n)|(import( )+"[a-z0-9/.]+")/, points: 2, nearTop: true },
   // error check
   { pattern: /if.+err( )*!=( )*nil.+{/, points: 2 },
   // Go print
@@ -14,9 +14,9 @@ export const Go: LanguagePattern[] = [
   // variable initialisation
   { pattern: /\w+( )*:=( )*.+[^;\n]/, points: 2 },
   // if/else if
-  { pattern: /(}( )*else( )*)?if[^\(\)]+{/, points: 2 },
+  { pattern: /(}( )*else( )*)?if[^()]+{/, points: 2 },
   // var/const declaration
-  { pattern: /(var|const)( )+\w+( )+[\w\*]+(\n|( )*=|$)/, points: 2 },
+  { pattern: /(var|const)( )+\w+( )+[\w*]+(\n|( )*=|$)/, points: 2 },
   // public access on package
   { pattern: /[a-z]+\.[A-Z]\w*/, points: 1 },
   // nil keyword

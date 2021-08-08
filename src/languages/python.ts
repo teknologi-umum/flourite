@@ -6,7 +6,7 @@ export const Python: LanguagePattern[] = [
   // while loop
   { pattern: /while (.+):/, points: 2 },
   // from library import something
-  { pattern: /from [\w\.]+ import (\w+|\*)/, points: 2 },
+  { pattern: /from [\w.]+ import (\w+|\*)/, points: 2 },
   // class keyword
   { pattern: /class( )*\w+(\(( )*\w+( )*\))?( )*:/, points: 2 },
   // if keyword
@@ -20,7 +20,7 @@ export const Python: LanguagePattern[] = [
   // Python variable declaration.
   { pattern: /\w+( )*=( )*\w+(?!;)(\n|$)/, points: 1 },
   // import something
-  { pattern: /import ([[^\.]\w])+/, points: 1, nearTop: true },
+  { pattern: /import ([[^.]\w])+/, points: 1, nearTop: true },
   // print statement/function
   { pattern: /print((( )*\(.+\))|( )+.+)/, points: 1 },
   // &&/|| operators

@@ -8,7 +8,7 @@ export const PHP: LanguagePattern[] = [
   // use Something\Something;
   { pattern: /use( )+\w+(\\\w+)+( )*;/, points: 2, nearTop: true },
   // arrow
-  { pattern: /\$\w+\->\w+/, points: 2 },
+  { pattern: /\$\w+->\w+/, points: 2 },
   // require/include
   { pattern: /(require|include)(_once)?( )*\(?( )*('|").+\.php('|")( )*\)?( )*;/, points: 2 },
   // echo 'something';
@@ -18,7 +18,7 @@ export const PHP: LanguagePattern[] = [
   // new keyword
   { pattern: /new( )+((\\\w+)+|\w+)(\(.*\))?/, points: 1 },
   // Function definition
-  { pattern: /function(( )+[\$\w]+\(.*\)|( )*\(.*\))/g, points: 1 },
+  { pattern: /function(( )+[$\w]+\(.*\)|( )*\(.*\))/g, points: 1 },
   // (else)if statement
   { pattern: /(else)?if( )+\(.+\)/, points: 1 },
   // scope operator

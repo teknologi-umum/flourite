@@ -8,13 +8,13 @@ export const Javascript: LanguagePattern[] = [
   // Variable declaration
   { pattern: /(var|const|let)( )+\w+( )*=?/, points: 2 },
   // Array/Object declaration
-  { pattern: /(('|").+('|")( )*|\w+):( )*[{\[]/, points: 2 },
+  { pattern: /(('|").+('|")( )*|\w+):( )*[{[]/, points: 2 },
   // === operator
   { pattern: /===/g, points: 1 },
   // !== operator
   { pattern: /!==/g, points: 1 },
   // Function definition
-  { pattern: /function\*?(( )+[\$\w]+( )*\(.*\)|( )*\(.*\))/g, points: 1 },
+  { pattern: /function\*?(( )+[$\w]+( )*\(.*\)|( )*\(.*\))/g, points: 1 },
   // null keyword
   { pattern: /null/g, points: 1 },
   // lambda expression

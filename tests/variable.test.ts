@@ -1,6 +1,6 @@
-import { test } from 'uvu'
-import * as assert from 'uvu/assert'
-import detectLang from '../src/index'
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src/index';
 
 // Test something that isn't a programming language.
 test('should detect Unknown', () => {
@@ -8,8 +8,8 @@ test('should detect Unknown', () => {
 });
 
 // Test a short JavaScript snippet.
-test('should detect JavaScript', () => {
-  assert.equal('JavaScript', detectLang('var javascript = true;'));
+test('should detect Javascript', () => {
+  assert.equal('Javascript', detectLang('var javascript = true;'));
 });
 
 // Test pointer.
@@ -31,3 +31,5 @@ test('should detect Java', () => {
 test('should detect Java', () => {
   assert.equal('Java', detectLang('List<String> things = new ArrayList<>();'));
 });
+
+test.run();

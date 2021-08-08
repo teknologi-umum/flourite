@@ -1,6 +1,6 @@
-import { test } from 'uvu'
-import * as assert from 'uvu/assert'
-import detectLang from '../src/index'
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src/index';
 
 test('should detect Unknown', () => {
   assert.equal('Unknown', detectLang('Hello world!'));
