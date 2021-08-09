@@ -1,4 +1,4 @@
-import { LanguagePattern } from '../index';
+import type { LanguagePattern } from '../types';
 
 export const HTML: LanguagePattern[] = [
   { pattern: /<!DOCTYPE (html|HTML PUBLIC .+)>/, points: 2, nearTop: true },

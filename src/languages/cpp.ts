@@ -1,4 +1,4 @@
-import { LanguagePattern } from '../index';
+import type { LanguagePattern } from '../types';
 
 export const CPP: LanguagePattern[] = [
   // Primitive variable declaration.

@@ -8,12 +8,9 @@ import { Javascript } from './languages/javascript';
 import { PHP } from './languages/php';
 import { Python } from './languages/python';
 import { Ruby } from './languages/ruby';
+import { nearTop, getPoints } from './points';
+import type { LanguagePattern, Options, StatisticOutput } from './types';
 
-export interface LanguagePattern {
-  pattern: RegExp;
-  points: number;
-  nearTop?: boolean;
-}
 /**
  * A checker is an object with the following form:
  *  { pattern: /something/, points: 1 }
@@ -48,29 +45,6 @@ const languages: Record<string, LanguagePattern[]> = {
   Unknown: [],
 };
 
-/**
- * TODO: FILL THIS
- * @param {String} lineOfCode
- * @param {LanguagePattern[]} checkers
- * @returns {Number}
- */
-function getPoints(lineOfCode: string, checkers: LanguagePattern[]): number {
-  const checker: number[] = checkers.map((o) => {
-    if (o.pattern.test(lineOfCode)) return o.points;
-    return 0;
-  });
-  const reduced = checker.reduce((memo, num) => memo + num, 0);
-  return reduced;
-}
-
-export interface Options {
-  heuristic: boolean;
-  statistics: false;
-}
-export interface StatisticOutput {
-  detected: string;
-  statistics: (string | number)[][];
-}
 
 /**
  * TODO: FILL THIS
@@ -92,41 +66,28 @@ function detectLang(
     .replace(/\n{2,}/g, '\n')
     .split('\n');
 
-  function nearTop(index: number): boolean {
-    if (linesOfCode.length <= 10) {
-      return true;
-    }
-    return index < linesOfCode.length / 10;
-  }
-
   if (options.heuristic && linesOfCode.length > 500) {
     linesOfCode = linesOfCode.filter((_, index) => {
-      if (nearTop(index)) {
+      if (nearTop(index, linesOfCode)) {
         return true;
       }
       return index % Math.ceil(linesOfCode.length / 500) === 0;
     });
   }
 
-  const pairs = Object.keys(languages).map((key) => {
-    return { language: key, checkers: languages[key] };
-  });
+  const pairs = Object.keys(languages).map((key) => ({ language: key, checkers: languages[key] }));
 
   const results = pairs.map((pair) => {
     const language = pair.language;
     const checkers = pair.checkers;
 
-    if (language === 'Unknown') {
-      return { language: 'Unknown', points: 1 };
-    }
+    if (language === 'Unknown') return { language: 'Unknown', points: 1 };
 
-    const pointsList = linesOfCode.map(function (lineOfCode, index) {
-      if (!nearTop(index)) {
+    const pointsList = linesOfCode.map((lineOfCode, index) => {
+      if (!nearTop(index, linesOfCode)) {
         return getPoints(
           lineOfCode,
-          checkers.filter((checker) => {
-            return !checker.nearTop;
-          }),
+          checkers.filter((checker) => !checker.nearTop),
         );
       } else {
         return getPoints(lineOfCode, checkers);
@@ -146,7 +107,7 @@ function detectLang(
     }
 
     statistics.sort((a, b) => Number(b[1]) - Number(a[1]));
-    return { detected: bestResult.language, statistics: statistics };
+    return { detected: bestResult.language, statistics };
   }
 
   return bestResult.language;

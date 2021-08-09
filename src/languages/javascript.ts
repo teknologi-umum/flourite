@@ -1,4 +1,4 @@
-import type { LanguagePattern } from '../index';
+import type { LanguagePattern } from '../types';
 
 export const Javascript: LanguagePattern[] = [
   // undefined keyword

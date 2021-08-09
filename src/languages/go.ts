@@ -1,4 +1,4 @@
-import { LanguagePattern } from '../index';
+import type { LanguagePattern } from '../types';
 
 export const Go: LanguagePattern[] = [
   // package something

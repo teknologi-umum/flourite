@@ -1,4 +1,4 @@
-import { LanguagePattern } from '../index';
+import type { LanguagePattern } from '../types';
 
 export const Java: LanguagePattern[] = [
   // System.out.println() etc.
