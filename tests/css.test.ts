@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-  const code = detectLang('.hello-world {\n\tfont-size: 100px;\n}')
+  const code = detectLang('.hello-world {\n\tfont-size: 100px;\n}');
   assert.equal(code, 'CSS');
 });
 
@@ -23,10 +23,8 @@ test('long', () => {
  
  abbr[title] {
    border-bottom: 1px dotted;
- }`)
-  assert.equal(
-    code, 'CSS'
-  );
+ }`);
+  assert.equal(code, 'CSS');
 });
 
 test.run();

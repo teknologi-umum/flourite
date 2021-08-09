@@ -3,12 +3,12 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-	const code = detectLang('fmt.Println("Hello world")')
-	assert.equal(code, 'Go');
+  const code = detectLang('fmt.Println("Hello world")');
+  assert.equal(code, 'Go');
 });
 
 test('fizz buzz', () => {
-	const code = detectLang(`package main
+  const code = detectLang(`package main
  
 	import (
 		"fmt"
@@ -37,14 +37,12 @@ test('fizz buzz', () => {
 		} else {
 			fmt.Println(i)
 		}
-	}`)
-	assert.equal(
-		code, 'Go',
-  );
+	}`);
+  assert.equal(code, 'Go');
 });
 
 test('quick sort', () => {
-	const code = detectLang(`package main
+  const code = detectLang(`package main
  
 	import "fmt"
 	 
@@ -136,12 +134,12 @@ test('quick sort', () => {
 					}
 			}
 			pex(0, len(a)-1)
-	}`)
-	assert.equal(code, 'Go')
-})
+	}`);
+  assert.equal(code, 'Go');
+});
 
 test('http server', () => {
-	const code = detectLang(`package main
+  const code = detectLang(`package main
  
 	import (
 			"io"
@@ -156,8 +154,8 @@ test('http server', () => {
 					log.Fatalln(err)
 			}
 			io.Copy(os.Stdout, r.Body)
-	}`)
-	assert.equal(code, 'Go')
-})
+	}`);
+  assert.equal(code, 'Go');
+});
 
 test.run();

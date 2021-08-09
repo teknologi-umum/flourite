@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-  const code = detectLang('console.log("Hello world!");')
+  const code = detectLang('console.log("Hello world!");');
   assert.equal(code, 'Javascript');
 });
 
@@ -15,10 +15,8 @@ test('fizz buzz', () => {
         return n % 15 === 0 ? 'FizzBuzz' : n % 3 === 0 ? 'Fizz' : n % 5 === 0 ? 'Buzz' : n;
       }),
   );
-  `)
-  assert.equal(
-    code, 'Javascript'
-  );
+  `);
+  assert.equal(code, 'Javascript');
 });
 
 test('quick sort', () => {
@@ -60,9 +58,9 @@ test('quick sort', () => {
     quicksort(0, array.length - 1);
    
     return array;
-  }`)
-  assert.equal(code, 'Javascript')
-})
+  }`);
+  assert.equal(code, 'Javascript');
+});
 
 test('http server', () => {
   const code = detectLang(`const http = require('http');
@@ -83,8 +81,8 @@ test('http server', () => {
    
   }).on("error", (err) => {
     console.log("Error: " + err.message);
-  });`)
-  assert.equal(code, 'Javascript')
-})
+  });`);
+  assert.equal(code, 'Javascript');
+});
 
 test.run();

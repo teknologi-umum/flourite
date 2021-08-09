@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-  const code = detectLang('printf("Hello world!\\n");')
+  const code = detectLang('printf("Hello world!\\n");');
   assert.equal(code, 'C');
 });
 
@@ -29,12 +29,12 @@ test('fizz buzz', () => {
     }
   
     return 0;
-  }`)
+  }`);
   assert.equal(code, 'C');
 });
 
 test('variable declaration', () => {
-  const code = detectLang('int *ptr;')
+  const code = detectLang('int *ptr;');
   assert.equal(code, 'C');
 });
 
@@ -47,9 +47,8 @@ test('file', () => {
     this_idx1->mtime.nanoseconds = nanosecs_idx3;
   
     return 0;
-  }`)
-  assert.equal(code, 'C'
-  );
+  }`);
+  assert.equal(code, 'C');
 });
 
 test('quick sort', () => {
@@ -96,9 +95,9 @@ test('quick sort', () => {
    
     quicksort(A, i);
     quicksort(A + i, len - i);
-  }`)
-  assert.equal(code, 'C')
-})
+  }`);
+  assert.equal(code, 'C');
+});
 
 test('http server', () => {
   const code = detectLang(`#include <stdio.h>
@@ -122,8 +121,8 @@ test('http server', () => {
                   curl_easy_cleanup(curl);
           }
           return EXIT_SUCCESS;
-  }`)
-  assert.equal(code, 'C')
-})
+  }`);
+  assert.equal(code, 'C');
+});
 
 test.run();

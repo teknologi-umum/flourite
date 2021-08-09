@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-  const code = detectLang('<h1>Hello world</h1>')
+  const code = detectLang('<h1>Hello world</h1>');
   assert.equal(code, 'HTML');
 });
 
@@ -18,10 +18,8 @@ test('page', () => {
       <p>This is a tiny HTML page.</p>
     </body>
   </html>
-  `)
-  assert.equal(
-    code, 'HTML',
-  );
+  `);
+  assert.equal(code, 'HTML');
 });
 
 test.run();

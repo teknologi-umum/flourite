@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-  const code = detectLang('echo "Hello world";')
+  const code = detectLang('echo "Hello world";');
   assert.equal(code, 'PHP');
 });
 
@@ -24,10 +24,8 @@ test('fizz buzz', () => {
     }
   
     echo "\n";
-  }`)
-  assert.equal(
-    code, 'PHP'
-  );
+  }`);
+  assert.equal(code, 'PHP');
 });
 
 test('quick sort', () => {
@@ -50,8 +48,8 @@ test('quick sort', () => {
    
   $arr = array(1, 3, 5, 7, 9, 8, 6, 4, 2);
   $arr = quicksort($arr);
-  echo implode(',',$arr);`)
-  assert.equal(code, 'PHP')
-})
+  echo implode(',',$arr);`);
+  assert.equal(code, 'PHP');
+});
 
 test.run();

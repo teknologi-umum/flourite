@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-  const code = detectLang('puts "Hello world"')
+  const code = detectLang('puts "Hello world"');
   assert.equal(code, 'Ruby');
 });
 
@@ -18,11 +18,8 @@ test('fizz buzz', () => {
   else
       puts i
   end
-end`)
-  assert.equal(
-    code,
-    'Ruby'
-  );
+end`);
+  assert.equal(code, 'Ruby');
 });
 
 // FIXME: This detects as Java. It should be Ruby.
@@ -34,17 +31,17 @@ test.skip('quick sort', () => {
     less, greatereq = self[1..-1].partition { |x| x < pivot }
     less.quick_sort + [pivot] + greatereq.quick_sort
   end
-end`)
-  assert.equal(code, 'Ruby')
-})
+end`);
+  assert.equal(code, 'Ruby');
+});
 
 // FIXME: This detected as PHP
 test.skip('http server', () => {
   const code = detectLang(`require 'fileutils'
   require 'open-uri'
    
-  open("http://rosettacode.org/") {|f| FileUtils.copy_stream(f, $stdout)}`)
-  assert.equal(code, 'Ruby')
-})
+  open("http://rosettacode.org/") {|f| FileUtils.copy_stream(f, $stdout)}`);
+  assert.equal(code, 'Ruby');
+});
 
 test.run();

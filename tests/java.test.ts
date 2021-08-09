@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-  const code = detectLang('System.out.println("Hello world!");')
+  const code = detectLang('System.out.println("Hello world!");');
   assert.equal(code, 'Java');
 });
 
@@ -20,19 +20,17 @@ test('fizz buzz', () => {
       }
       System.out.println();
     }
-  }`)
-  assert.equal(
-    code, 'Java',
-  );
+  }`);
+  assert.equal(code, 'Java');
 });
 
 test('getter/setter', () => {
-  const code = detectLang('Person person = people.get(0);')
+  const code = detectLang('Person person = people.get(0);');
   assert.equal(code, 'Java');
 });
 
 test('List/ArrayList', () => {
-  const code = detectLang('List<String> things = new ArrayList<>();')
+  const code = detectLang('List<String> things = new ArrayList<>();');
   assert.equal(code, 'Java');
 });
 
@@ -67,9 +65,9 @@ test('quick sort', () => {
         return less;
     }
 }
- `)
-  assert.equal(code, 'Java')
-})
+ `);
+  assert.equal(code, 'Java');
+});
 
 test('http server', () => {
   const code = detectLang(`import java.net.URI;
@@ -90,8 +88,8 @@ test('http server', () => {
                   .thenAccept(System.out::println)
                   .join();
       }
-  }`)
-  assert.equal(code, 'Java')
-})
+  }`);
+  assert.equal(code, 'Java');
+});
 
 test.run();

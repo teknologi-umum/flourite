@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-  const code = detectLang('cout << "Hello world" << endl;')
+  const code = detectLang('cout << "Hello world" << endl;');
   assert.equal(code, 'C++');
 });
 
@@ -48,10 +48,8 @@ test('fizz buzz', () => {
  { 
    FizzBuzz<100> p;
    return 0;
- }`)
-  assert.equal(
-    code, 'C++'
-  );
+ }`);
+  assert.equal(code, 'C++');
 });
 
 test('quick sort', () => {
@@ -148,9 +146,9 @@ test('quick sort', () => {
    void quicksort(RandomAccessIterator first, RandomAccessIterator last)
   {
     quicksort(first, last, std::less<typename std::iterator_traits<RandomAccessIterator>::value_type>());
-  }`)
-  assert.equal(code, 'C++')
-})
+  }`);
+  assert.equal(code, 'C++');
+});
 
 // FIXME: This detected as C.
 test.skip('http server', () => {
@@ -191,8 +189,8 @@ test.skip('http server', () => {
     } while ( bytes > 0 );
    
     return 0;
-  }`)
-  assert.equal(code, 'C++')
-})
+  }`);
+  assert.equal(code, 'C++');
+});
 
 test.run();
