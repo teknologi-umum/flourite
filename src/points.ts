@@ -1,4 +1,4 @@
-import type { LanguagePattern } from './types'
+import type { LanguagePattern } from './types';
 /**
  * TODO: FILL THIS
  * @param {String} lineOfCode
@@ -16,8 +16,8 @@ export function getPoints(lineOfCode: string, checkers: LanguagePattern[]): numb
 
 /**
  * TODO: FILL THIS
- * @param {Number} index 
- * @param {String[]} linesOfCode 
+ * @param {Number} index
+ * @param {String[]} linesOfCode
  * @returns {Boolean}
  */
 export function nearTop(index: number, linesOfCode: string[]): boolean {

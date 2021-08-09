@@ -45,7 +45,6 @@ const languages: Record<string, LanguagePattern[]> = {
   Unknown: [],
 };
 
-
 /**
  * TODO: FILL THIS
  * @param {String} snippet The code we're guessing
