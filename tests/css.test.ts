@@ -3,13 +3,12 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-  assert.equal('CSS', detectLang('.hello-world {\n\tfont-size: 100px;\n}'));
+  const code = detectLang('.hello-world {\n\tfont-size: 100px;\n}')
+  assert.equal(code, 'CSS');
 });
 
 test('long', () => {
-  assert.equal(
-    'CSS',
-    detectLang(`/**
+  const code = detectLang(`/**
   * Improve readability when focused and also mouse hovered in all browsers.
   */
  
@@ -24,7 +23,9 @@ test('long', () => {
  
  abbr[title] {
    border-bottom: 1px dotted;
- }`),
+ }`)
+  assert.equal(
+    code, 'CSS'
   );
 });
 
