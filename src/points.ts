@@ -1,4 +1,5 @@
 import type { LanguagePattern } from './types';
+
 /**
  * TODO: FILL THIS
  * @param {String} lineOfCode
