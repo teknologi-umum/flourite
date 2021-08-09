@@ -1,4 +1,4 @@
-import ts from '@rollup/plugin-typescript'
+import ts from '@rollup/plugin-typescript';
 
 export default {
   input: 'src/index.ts',
@@ -12,7 +12,5 @@ export default {
       format: 'es',
     },
   ],
-  plugins: [
-    ts(),
-  ],
+  plugins: [ts()],
 };
