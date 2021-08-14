@@ -8,6 +8,7 @@ import { Javascript } from './languages/javascript';
 import { PHP } from './languages/php';
 import { Python } from './languages/python';
 import { Ruby } from './languages/ruby';
+import { Julia } from './languages/julia';
 import { nearTop, getPoints } from './points';
 import type { LanguagePattern, Options, StatisticOutput } from './types';
 
@@ -39,6 +40,7 @@ const languages: Record<string, LanguagePattern[]> = {
   HTML,
   Java,
   Javascript,
+  Julia,
   PHP,
   Python,
   Ruby,

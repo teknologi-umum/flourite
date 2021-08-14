@@ -20,9 +20,9 @@ export const C: LanguagePattern[] = [
   // void keyword
   { pattern: /void/g, points: 1 },
   // (else )if statement
-  { pattern: /(else )?if( )*\(.+\)/, points: 1 },
+  { pattern: /(else )?if\s*\(.+\)\s\{/, points: 1 },
   // while loop
-  { pattern: /while( )+\(.+\)/, points: 1 },
+  { pattern: /while\s\(.+\)\s\{/, points: 1 },
   // printf function
   { pattern: /(printf|puts)( )*\(.+\)/, points: 1 },
   // new Keyword from C++
