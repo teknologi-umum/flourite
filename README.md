@@ -1,73 +1,41 @@
-# Language Detector
+# Flourite - Language detector
 
 A fork from [ts95/lang-detector](https://github.com/ts95/lang-detector), rewritten in Typescript with more language support.
 
-A fast and small library for detecting the programming language of a code snippet.
-Can be used for strings of code spanning multiple thousand lines.
+Detects a programming language from a given string.
 
-This library should only be used if you don't have anything else to go by to determine the language of the code, like a file extension.
-
-## Demo
-
-[Here](https://hosein2398.github.io/lang-detect/) you can see demo of this project.
+- Built-in support for CommonJS and ESM format
+- Built-in Typescript typings
+- No external dependencies
 
 ## Detectable languages
 
-- JavaScript
-- C
-- C++
-- Python
-- Java
-- HTML
-- CSS
-- Ruby
-- Go
-- PHP
+| Languages |            |        |
+| --------- | ---------- | ------ |
+| C         | Javascript | Python |
+| C++       | Java       | Ruby   |
+| HTML      | CSS        | PHP    |
 
 ## Install
 
-```Shell
-npm install lang-detector --save
+```bash
+$ npm install flourite
 ```
 
 ## Usage
 
-```JavaScript
-/**
- * function detectLang(snippet, options) { ... }
- *
- * @snippet {String} The code snippet.
- * @options {Object} (Optional) {
- *   heuristic: {Boolean} Enable heuristic optimisation for better performance. `true` by default.
- *   statistics: {Boolean} Return statistics. `false` by default.
- * }
- * @return {String} (Name of the detected language) or {Object} (Statistics).
- */
-var detectLang = require('lang-detector');
+```js
+import detectLang from 'flourite';
 
-detectLang('List<String> things = new ArrayList<>();')
-    // =>    'Java'
-detectLang('console.log("Hello world");')
-    // =>    'JavaScript'
-detectLang('Hello world.', { statistics: true })
-    /* =>   {
-                "detected": "Unknown",
-                "statistics": {
-                    "JavaScript": 0,
-                    "C": 0,
-                    "C++": 0,
-                    "Python": 0,
-                     ...
-                    "Unknown": 1
-                }
-            }
-     */
+const code = detectLang('console.log("Hello World");'); // => Javascript
 ```
 
-## Unit tests
+## Development
 
-Run `npm test` in the root of the directory to run the tests.
+- Use the Node.js version as defined on the `.nvmrc` file.
+- Run `npm run test:tdd` to initiate a test driven development environment.
+- Run `npm run lint` and `npm run format` before commit a change.
 
 ## License
 
-<a href="https://tldrlegal.com/license/mit-license" target="_blank">MIT</a> © <a href="https://github.com/ts95/" target="_blank">Toni Sučić</a>
+[MIT](./LICENSE)
