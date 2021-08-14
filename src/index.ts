@@ -8,6 +8,7 @@ import { Javascript } from './languages/javascript';
 import { PHP } from './languages/php';
 import { Python } from './languages/python';
 import { Ruby } from './languages/ruby';
+import { SQL } from './languages/sql';
 import { nearTop, getPoints } from './points';
 import type { LanguagePattern, Options, StatisticOutput } from './types';
 
@@ -42,6 +43,7 @@ const languages: Record<string, LanguagePattern[]> = {
   PHP,
   Python,
   Ruby,
+  SQL,
   Unknown: [],
 };
 
