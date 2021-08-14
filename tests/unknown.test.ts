@@ -3,11 +3,11 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('should detect Unknown', () => {
-  assert.equal('Unknown', detectLang('Hello world!'));
+  assert.equal(detectLang('Hello world!'), 'Unknown');
 });
 
 test('should detect Unknown', () => {
-  assert.equal('Unknown', detectLang('ooga booga'));
+  assert.equal(detectLang('ooga booga'), 'Unknown');
 });
 
 test.run();
