@@ -3,9 +3,9 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-  const code = detectLang(`SELECT 'Hello world!' text FROM dual;`)
-  assert.equal(code, 'SQL')
-})
+  const code = detectLang(`SELECT 'Hello world!' text FROM dual;`);
+  assert.equal(code, 'SQL');
+});
 
 test('fizz buzz', () => {
   const code = detectLang(`-- Load some numbers
@@ -31,9 +31,9 @@ test('fizz buzz', () => {
   ORDER BY i;
   -- Tidy up
   DROP TABLE fizzbuzz;
-  DROP TABLE numbers;`)
-  assert.equal(code, 'SQL')
-})
+  DROP TABLE numbers;`);
+  assert.equal(code, 'SQL');
+});
 
 test('date manipulation', () => {
   const code = detectLang(`-- March 7 2009 7:30pm EST
@@ -67,9 +67,9 @@ test('date manipulation', () => {
   )+
   INTERVAL '12' HOUR)
   at TIME zone 'US/Arizona' plus_12_nodst
-  FROM dual;`)
-  assert.equal(code, 'SQL')
-})
+  FROM dual;`);
+  assert.equal(code, 'SQL');
+});
 
 test('merge and aggregate', () => {
   const code = detectLang(`-- drop tables
@@ -130,17 +130,17 @@ test('merge and aggregate', () => {
     p.PATIENT_ID,
     p.LASTNAME
   ORDER BY
-    p.PATIENT_ID;`)
-  assert.equal(code, 'SQL')
-})
+    p.PATIENT_ID;`);
+  assert.equal(code, 'SQL');
+});
 
 test('fibonacci sequence', () => {
   const code = detectLang(`SELECT round ( EXP ( SUM (ln ( ( 1 + SQRT( 5 ) ) / 2)
   ) OVER ( ORDER BY level ) ) / SQRT( 5 ) ) fibo
 FROM dual
-CONNECT BY level <= 10;`)
-  assert.equal(code, 'SQL')
-})
+CONNECT BY level <= 10;`);
+  assert.equal(code, 'SQL');
+});
 
 test('integer comparison', () => {
   const code = detectLang(`SELECT to_char(a)||' is less than '||to_char(b) less_than
@@ -153,8 +153,8 @@ test('integer comparison', () => {
    
   SELECT to_char(a)||' is greater than '||to_char(b) greater_than
   FROM test
-  WHERE a > b;`)
-  assert.equal(code, 'SQL')
-})
+  WHERE a > b;`);
+  assert.equal(code, 'SQL');
+});
 
-test.run()
+test.run();

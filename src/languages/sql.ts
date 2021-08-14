@@ -19,4 +19,4 @@ export const SQL: LanguagePattern[] = [
   { pattern: /(BIT|TINYINT|SMALLINT|MEDIUMINT|INT|INTEGER|BIGINT|DOUBLE)\([0-9]+\)/, points: 1 },
   { pattern: /(TINYBLOB|TINYTEXT|MEDIUMTEXT|MEDIUMBLOB|LONGTEXT|LONGBLOB)/, points: 1 },
   { pattern: /(BOOLEAN|BOOL|DATE|YEAR)/, points: 1 },
-]
+];
