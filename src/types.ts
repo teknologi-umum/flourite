@@ -6,7 +6,7 @@ export interface LanguagePattern {
 
 export interface Options {
   heuristic: boolean;
-  statistics: false;
+  statistics: boolean;
 }
 
 export interface StatisticOutput {
