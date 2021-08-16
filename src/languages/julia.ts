@@ -3,6 +3,7 @@ import type { LanguagePattern } from '../types';
 export const Julia: LanguagePattern[] = [
   // Module import
   { pattern: /(using)\s\w+/, points: 2 },
+  { pattern: /(bare\s)?module/, points: 1},
   // Avoiding Python's import
   { pattern: /from\s.+import\s.+/, points: -50 },
   // Stdout / print line
@@ -18,6 +19,6 @@ export const Julia: LanguagePattern[] = [
   // Struct with <: annotation
   { pattern: /struct\s(.*)\s<:\s/, points: 2 },
   // Data types
-  { pattern: /(Int|Uint)(8|16|32|64|128)/, points: 1 },
+  { pattern: /(::)?(Int|Uint)(8|16|32|64|128)/, points: 1 },
   { pattern: /[0-9]+im/, points: 1 },
 ];

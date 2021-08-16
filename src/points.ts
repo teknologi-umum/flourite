@@ -1,7 +1,7 @@
 import type { LanguagePattern } from './types';
 
 /**
- * TODO: FILL THIS
+ * Get points from a language using regular expressions.
  * @param {String} lineOfCode
  * @param {LanguagePattern[]} checkers
  * @returns {Number}
@@ -16,7 +16,7 @@ export function getPoints(lineOfCode: string, checkers: LanguagePattern[]): numb
 }
 
 /**
- * TODO: FILL THIS
+ * Checks if a given string is near top of the code or not.
  * @param {Number} index
  * @param {String[]} linesOfCode
  * @returns {Boolean}
