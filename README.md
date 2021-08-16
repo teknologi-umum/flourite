@@ -7,6 +7,7 @@ Detects a programming language from a given string.
 - Built-in support for CommonJS and ESM format
 - Built-in Typescript typings
 - No external dependencies
+- 100 test cases and growing!
 
 ## Detectable languages
 
@@ -15,6 +16,7 @@ Detects a programming language from a given string.
 | C         | Javascript | Python |
 | C++       | Java       | Ruby   |
 | HTML      | CSS        | PHP    |
+| SQL       | Julia      | Rust   |
 
 ## Install
 
@@ -28,6 +30,33 @@ $ npm install flourite
 import detectLang from 'flourite';
 
 const code = detectLang('console.log("Hello World");'); // => Javascript
+```
+
+You could supply options to make see numbers of points for a certain language:
+
+```js
+import detectLang from 'flourite';
+
+const code = detectLang('printf("Hello World")', { statistics: true });
+// {
+//   detected: 'C',
+//   statistics: [
+//     [ 'C', 1 ],
+//     [ 'Unknown', 1 ],
+//     [ 'C++', 0 ],
+//     [ 'CSS', 0 ],
+//     [ 'Go', 0 ],
+//     [ 'HTML', 0 ],
+//     [ 'Java', 0 ],
+//     [ 'Javascript', 0 ],
+//     [ 'Julia', 0 ],
+//     [ 'PHP', 0 ],
+//     [ 'Python', 0 ],
+//     [ 'Ruby', 0 ],
+//     [ 'Rust', 0 ],
+//     [ 'SQL', 0 ]
+//   ]
+// }
 ```
 
 ## Development

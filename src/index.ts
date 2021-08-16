@@ -8,6 +8,7 @@ import { Javascript } from './languages/javascript';
 import { PHP } from './languages/php';
 import { Python } from './languages/python';
 import { Ruby } from './languages/ruby';
+import { Julia } from './languages/julia';
 import { Rust } from './languages/rust';
 import { SQL } from './languages/sql';
 import { nearTop, getPoints } from './points';
@@ -41,6 +42,7 @@ const languages: Record<string, LanguagePattern[]> = {
   HTML,
   Java,
   Javascript,
+  Julia,
   PHP,
   Python,
   Ruby,
@@ -64,7 +66,7 @@ const languages: Record<string, LanguagePattern[]> = {
 function detectLang(
   snippet: string,
   options: Options = { heuristic: true, statistics: false },
-): string | StatisticOutput {
+): StatisticOutput | string {
   let linesOfCode = snippet
     .replace(/\r\n?/g, '\n')
     .replace(/\n{2,}/g, '\n')

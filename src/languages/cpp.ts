@@ -2,13 +2,13 @@ import type { LanguagePattern } from '../types';
 
 export const CPP: LanguagePattern[] = [
   // Primitive variable declaration.
-  { pattern: /(char|long|int|float|double)( )+\w+( )*=?/, points: 2 },
+  { pattern: /(char|long|int|float|double)\s+\w+\s*=?/, points: 2 },
   // #include <whatever.h>
-  { pattern: /#include( )*(<|")\w+(\.h)?(>|")/, points: 2, nearTop: true },
+  { pattern: /#include\s*(<|")\w+(\.h)?(>|")/, points: 2, nearTop: true },
   // using namespace something
-  { pattern: /using( )+namespace( )+.+( )*;/, points: 2 },
+  { pattern: /using\s+namespace\s+.+\s*;/, points: 2 },
   // template declaration
-  { pattern: /template( )*<.*>/, points: 2 },
+  { pattern: /template\s*<.*>/, points: 2 },
   // std
   { pattern: /std::\w+/g, points: 2 },
   // cout/cin/endl
@@ -20,21 +20,24 @@ export const CPP: LanguagePattern[] = [
   // new Keyword
   { pattern: /new \w+(\(.*\))?/, points: 1 },
   // #define macro
-  { pattern: /#define( )+.+/, points: 1 },
+  { pattern: /#define\s+.+/, points: 1 },
   // template usage
   { pattern: /\w+<\w+>/, points: 1 },
   // class keyword
-  { pattern: /class( )+\w+/, points: 1 },
+  { pattern: /class\s+\w+/, points: 1 },
   // void keyword
   { pattern: /void/g, points: 1 },
   // (else )if statement
-  { pattern: /(else )?if( )*\(.+\)/, points: 1 },
+  { pattern: /(else )?if\s*\(.+\)/, points: 1 },
   // while loop
-  { pattern: /while( )+\(.+\)/, points: 1 },
+  { pattern: /while\s+\(.+\)/, points: 1 },
   // Scope operator
   { pattern: /\w*::\w+/, points: 1 },
   // Single quote multicharacter string
   { pattern: /'.{2,}'/, points: -1 },
   // Java List/ArrayList
-  { pattern: /(List<\w+>|ArrayList<\w*>( )*\(.*\))(( )+[\w]+|;)/, points: -1 },
+  { pattern: /(List<\w+>|ArrayList<\w*>\s*\(.*\))(\s+[\w]+|;)/, points: -1 },
+  // Avoiding Ruby confusion
+  { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, points: -50 },
+  { pattern: /puts\s+("|').+("|')/, points: -1 },
 ];
