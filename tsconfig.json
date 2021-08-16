@@ -5,6 +5,7 @@
     "target": "es2015",
     "module": "ESNext",
     "declaration": true,
+    "declarationDir": "./dist",
     "types": ["node"],
     "preserveSymlinks": true,
     "isolatedModules": true,
