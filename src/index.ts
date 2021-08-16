@@ -48,15 +48,16 @@ const languages: Record<string, LanguagePattern[]> = {
 };
 
 /**
- * TODO: FILL THIS
+ * Detects a programming language from a given string.
  * @param {String} snippet The code we're guessing
  * @param {Options} options Options
- * @returns {String | StatisticOutput}
+ * @returns {String|StatisticOutput} A String or a StatisticOutput format if `statistics: true`
  * @example
  * ```js
- * import detectLang from 'package-name';
+ * import detectLang from 'flourite';
  * const detect = detectLang(code);
  * ```
+ * @see Supported Languages - https://github.com/teknologi-umum/flourite#detectable-languages
  */
 function detectLang(
   snippet: string,
@@ -114,4 +115,5 @@ function detectLang(
   return bestResult.language;
 }
 
+export type { Options, StatisticOutput };
 export default detectLang;
