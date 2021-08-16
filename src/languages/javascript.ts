@@ -29,4 +29,5 @@ export const Javascript: LanguagePattern[] = [
   { pattern: /(\w+)( )*\*( )*\w+/, points: -1 },
   // HTML <script> tag
   { pattern: /<(\/)?script( type=('|")text\/javascript('|"))?>/, points: -50 },
+  { pattern: /fn\s[A-Za-z0-9<>,]+\(.*\)\s->\s\w+(\s\{|)/, points: -50 },
 ];
