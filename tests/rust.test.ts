@@ -206,9 +206,9 @@ test('bubble sort', () => {
   
       bubble_sort(&mut strings);
       println!("After: {:?}", strings);
-  }`)
-  assert.equal(code, 'Rust')
-})
+  }`);
+  assert.equal(code, 'Rust');
+});
 
 test('heap sort', () => {
   const code = detectLang(`fn main() {
@@ -253,9 +253,9 @@ test('heap sort', () => {
               break;
           }
       }
-  }`)
-  assert.equal(code, 'Rust')
-})
+  }`);
+  assert.equal(code, 'Rust');
+});
 
 test('ludic number', () => {
   const code = detectLang(`const ARRAY_MAX: usize = 25_000;
@@ -356,7 +356,7 @@ test('ludic number', () => {
       }
   }
    `);
-   assert.equal(code, 'Rust')
-})
+  assert.equal(code, 'Rust');
+});
 
 test.run();
