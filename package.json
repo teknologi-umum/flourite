@@ -19,7 +19,7 @@
     "prepare": "husky install",
     "test:unit": "uvu -r esbuild-register tests \".(test|spec).ts\"",
     "test:coverage": "c8 npm run test:unit",
-    "test:tdd": "npm run test:unit; watchlist src/ -- npm run test:unit",
+    "test:tdd": "npm run test:unit; watchlist src tests -- npm run test:unit",
     "test": "npm run test:coverage",
     "build": "rollup -c"
   },
@@ -41,7 +41,6 @@
     "identify",
     "identifier"
   ],
-  "author": "Toni Sučić",
   "contributors": [
     {
       "name": "Reinaldy Rafli",

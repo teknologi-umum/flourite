@@ -33,4 +33,8 @@ export const C: LanguagePattern[] = [
   { pattern: /'.{2,}'/, points: -1 },
   // JS variable declaration
   { pattern: /var( )+\w+( )*=?/, points: -1 },
+  // Avoiding Ruby confusion
+  { pattern: /def( )+\w+( )*(\(.+\))?( )*\n/, points: -50 },
+  { pattern: /puts( )+("|').+("|')/, points: -1 },
+  { pattern: /(public\s*)?class\s*(.*)+(\s)?/, points: -50 },
 ];

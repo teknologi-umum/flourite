@@ -12,7 +12,7 @@ export const Java: LanguagePattern[] = [
   // List/ArrayList
   { pattern: /(List<\w+>|ArrayList<\w*>( )*\(.*\))(( )+[\w]+|;)/, points: 2 },
   // class keyword
-  { pattern: /(public( )*)?class( )*\w+/, points: 2 },
+  { pattern: /(public\s*)?class\s*(.*)+(\s)?\{/, points: 2 },
   // Array declaration.
   { pattern: /(\w+)(\[( )*\])+( )+\w+/, points: 2 },
   // final keyword
@@ -41,4 +41,6 @@ export const Java: LanguagePattern[] = [
   { pattern: /'.{2,}'/, points: -1 },
   // C style include
   { pattern: /#include( )*(<|")\w+(\.h)?(>|")/, points: -1, nearTop: true },
+  // Avoiding Ruby confusion
+  { pattern: /def( )+\w+( )*(\(.+\))?( )*\n/, points: -50 },
 ];

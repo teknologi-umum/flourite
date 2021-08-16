@@ -37,4 +37,7 @@ export const CPP: LanguagePattern[] = [
   { pattern: /'.{2,}'/, points: -1 },
   // Java List/ArrayList
   { pattern: /(List<\w+>|ArrayList<\w*>( )*\(.*\))(( )+[\w]+|;)/, points: -1 },
+  // Avoiding Ruby confusion
+  { pattern: /def( )+\w+( )*(\(.+\))?( )*\n/, points: -50 },
+  { pattern: /puts( )+("|').+("|')/, points: -1 },
 ];
