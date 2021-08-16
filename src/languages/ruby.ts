@@ -2,27 +2,27 @@ import type { LanguagePattern } from '../types';
 
 export const Ruby: LanguagePattern[] = [
   // require/include
-  { pattern: /(require|include)( )+'\w+(\.rb)?'/, points: 2, nearTop: true },
+  { pattern: /(require|include)\s+'\w+(\.rb)?'/, points: 2, nearTop: true },
   // Function definition
-  { pattern: /def( )+\w+( )*(\(.+\))?( )*\n/, points: 2 },
+  { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, points: 2 },
   // Instance variables
   { pattern: /@\w+/, points: 2 },
   // Boolean property
   { pattern: /\.\w+\?/, points: 2 },
   // puts (Ruby print)
-  { pattern: /puts( )+("|').+("|')/, points: 2 },
+  { pattern: /puts\s+("|').+("|')/, points: 2 },
   // Inheriting class
-  { pattern: /class [A-Z]\w*( )*<( )*([A-Z]\w*(::)?)+/, points: 2 },
+  { pattern: /class [A-Z]\w*\s*<\s*([A-Z]\w*(::)?)+/, points: 2 },
   // attr_accessor
-  { pattern: /attr_accessor( )+(:\w+(,( )*)?)+/, points: 2 },
+  { pattern: /attr_accessor\s+(:\w+(,\s*)?)+/, points: 2 },
   // new
-  { pattern: /\w+\.new( )+/, points: 2 },
+  { pattern: /\w+\.new\s+/, points: 2 },
   // elsif keyword
   { pattern: /elsif/, points: 2 },
   // do
-  { pattern: /do( )*\|(\w+(,( )*\w+)?)+\|/, points: 2 },
+  { pattern: /do\s*\|(\w+(,\s*\w+)?)+\|/, points: 2 },
   // for loop
-  { pattern: /for (\w+|\(?\w+,( )*\w+\)?) in (.+)/, points: 1 },
+  { pattern: /for (\w+|\(?\w+,\s*\w+\)?) in (.+)/, points: 1 },
   // nil keyword
   { pattern: /nil/, points: 1 },
   // Scope operator

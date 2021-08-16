@@ -14,7 +14,7 @@ export const Julia: LanguagePattern[] = [
   // It's not Julia if the function ends with {
   { pattern: /function\s\w+\(.*\)\s\{/, points: -50 },
   // It's not Julia either if the while loop has a brackets
-  { pattern: /while( )+\(.+\)/, points: -1 },
+  { pattern: /while\s+\(.+\)/, points: -1 },
   // The end keyword
   { pattern: /end\n?/, points: 1 },
   // Struct with <: annotation
@@ -26,7 +26,7 @@ export const Julia: LanguagePattern[] = [
   { pattern: /\{:\?\}/, points: -50 },
   { pattern: /fn\smain()/, points: -50 },
   // Avoiding Ruby confusion
-  { pattern: /def( )+\w+( )*(\(.+\))?( )*\n/, points: -50 },
-  { pattern: /puts( )+("|').+("|')/, points: -50 },
+  { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, points: -50 },
+  { pattern: /puts\s+("|').+("|')/, points: -50 },
   { pattern: /class\s/, points: -50 },
 ];

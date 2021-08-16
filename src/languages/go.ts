@@ -2,21 +2,21 @@ import type { LanguagePattern } from '../types';
 
 export const Go: LanguagePattern[] = [
   // package something
-  { pattern: /package( )+[a-z]+\n/, points: 2, nearTop: true },
+  { pattern: /package\s+[a-z]+\n/, points: 2, nearTop: true },
   // import
-  { pattern: /(import( )*\(( )*\n)|(import( )+"[a-z0-9/.]+")/, points: 2, nearTop: true },
+  { pattern: /(import\s*\(\s*\n)|(import\s+"[a-z0-9/.]+")/, points: 2, nearTop: true },
   // error check
-  { pattern: /if.+err( )*!=( )*nil.+{/, points: 2 },
+  { pattern: /if.+err\s*!=\s*nil.+{/, points: 2 },
   // Go print
   { pattern: /fmt\.Print(f|ln)?\(.*\)/, points: 2 },
   // function
-  { pattern: /func(( )+\w+( )*)?\(.*\).*{/, points: 2 },
+  { pattern: /func(\s+\w+\s*)?\(.*\).*{/, points: 2 },
   // variable initialisation
-  { pattern: /\w+( )*:=( )*.+[^;\n]/, points: 2 },
+  { pattern: /\w+\s*:=\s*.+[^;\n]/, points: 2 },
   // if/else if
-  { pattern: /(}( )*else( )*)?if[^()]+{/, points: 2 },
+  { pattern: /(}\s*else\s*)?if[^()]+{/, points: 2 },
   // var/const declaration
-  { pattern: /(var|const)( )+\w+( )+[\w*]+(\n|( )*=|$)/, points: 2 },
+  { pattern: /(var|const)\s+\w+\s+[\w*]+(\n|\s*=|$)/, points: 2 },
   // public access on package
   { pattern: /[a-z]+\.[A-Z]\w*/, points: 1 },
   // nil keyword
