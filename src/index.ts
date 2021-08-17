@@ -13,6 +13,7 @@ import { Rust } from './languages/rust';
 import { SQL } from './languages/sql';
 import { nearTop, getPoints } from './points';
 import type { LanguagePattern, Options, StatisticOutput } from './types';
+import { convert } from './shiki';
 
 /**
  * A checker is an object with the following form:
@@ -65,7 +66,7 @@ const languages: Record<string, LanguagePattern[]> = {
  */
 function detectLang(
   snippet: string,
-  options: Options = { heuristic: true, statistics: false },
+  options: Options = { heuristic: true, statistics: false, shiki: false },
 ): StatisticOutput | string {
   let linesOfCode = snippet
     .replace(/\r\n?/g, '\n')
@@ -107,16 +108,18 @@ function detectLang(
 
   const bestResult = results.reduce((a, b) => (a.points >= b.points ? a : b), { points: 0, language: '' });
   if (options.statistics) {
-    const statistics = [];
+    const statistics: Record<string, number> = {};
     for (const result in results) {
-      statistics.push([results[result].language, results[result].points]);
+      statistics[results[result].language] = results[result].points;
     }
 
-    statistics.sort((a, b) => Number(b[1]) - Number(a[1]));
-    return { detected: bestResult.language, statistics };
+    return {
+      detected: options.shiki ? convert(bestResult.language) : bestResult.language,
+      statistics,
+    };
   }
 
-  return bestResult.language;
+  return options.shiki ? convert(bestResult.language) : bestResult.language;
 }
 
 export type { Options, StatisticOutput };

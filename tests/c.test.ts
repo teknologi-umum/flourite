@@ -3,8 +3,8 @@ import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
 
 test('hello world', () => {
-  const code = detectLang('printf("Hello world!\\n");');
-  assert.equal(code, 'C');
+  const code = detectLang('printf("Hello world!\\n");', { shiki: true });
+  assert.equal(code, 'c');
 });
 
 test('fizz buzz', () => {

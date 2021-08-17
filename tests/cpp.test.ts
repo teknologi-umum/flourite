@@ -1,10 +1,27 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
+import type {StatisticOutput} from '../src/types'
 
 test('hello world', () => {
-  const code = detectLang('cout << "Hello world" << endl;');
-  assert.equal(code, 'C++');
+  const code = detectLang('cout << "Hello world" << endl;', { shiki: true, statistics: true, heuristic: true }) as StatisticOutput;
+  assert.equal(code.detected, 'cpp');
+  assert.equal(code.statistics, {
+    C: 0,
+    'C++': 2,
+    CSS: 0,
+    Go: 0,
+    HTML: 0,
+    Java: 0,
+    Javascript: 0,
+    Julia: 1,
+    PHP: 0,
+    Python: 0,
+    Ruby: 0,
+    Rust: 0,
+    SQL: 0,
+    Unknown: 1
+  })
 });
 
 test('fizz buzz', () => {
