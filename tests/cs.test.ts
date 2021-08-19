@@ -1,11 +1,32 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import detectLang from '../src';
+import type { StatisticOutput } from '../src';
 
 test('hello world', () => {
-  const code = detectLang(`using System;
-  Console.WriteLine("Hello world!");`);
-  assert.equal(code, 'C#');
+  const code = detectLang(
+    `using System;
+  Console.WriteLine("Hello world!");`,
+    { shiki: true, statistics: true, heuristic: true },
+  ) as StatisticOutput;
+  assert.equal(code.detected, 'csharp');
+  assert.equal(code.statistics, {
+    C: -99,
+    'C++': -100,
+    'C#': 4,
+    CSS: 0,
+    Go: -99,
+    HTML: 0,
+    Java: -100,
+    Javascript: -100,
+    Julia: 2,
+    PHP: 0,
+    Python: 0,
+    Ruby: 0,
+    Rust: -100,
+    SQL: 0,
+    Unknown: 1,
+  });
 });
 
 test('fizz buzz', () => {
@@ -42,11 +63,6 @@ test('fizz buzz', () => {
           }
       }
   }`);
-  assert.equal(code, 'C#');
-});
-
-test('write file', () => {
-  const code = detectLang(`System.IO.File.WriteAllText("filename.txt", "This file contains a string.");`);
   assert.equal(code, 'C#');
 });
 

@@ -69,7 +69,7 @@ const languages: Record<string, LanguagePattern[]> = {
 function detectLang(
   snippet: string,
   options: Options = { heuristic: true, statistics: false, shiki: false },
-): StatisticOutput | string {
+): StatisticOutput & string {
   let linesOfCode = snippet
     .replace(/\r\n?/g, '\n')
     .replace(/\n{2,}/g, '\n')
@@ -115,12 +115,16 @@ function detectLang(
       statistics[results[result].language] = results[result].points;
     }
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return {
       detected: options.shiki ? convert(bestResult.language) : bestResult.language,
       statistics,
     };
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   return options.shiki ? convert(bestResult.language) : bestResult.language;
 }
 

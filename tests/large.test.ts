@@ -658,8 +658,8 @@ test('large input', () => {
   ) as StatisticOutput;
   assert.equal(code.detected, 'C');
   assert.equal(code.statistics, {
-    C: 178,
-    'C++': 83,
+    C: 172,
+    'C++': 85,
     CSS: 0,
     Go: 0,
     HTML: 0,
@@ -672,7 +672,7 @@ test('large input', () => {
     Rust: 4,
     SQL: 0,
     Unknown: 1,
-    'C#': 0,
+    'C#': 13,
   });
 });
 
