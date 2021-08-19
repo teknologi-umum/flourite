@@ -33,6 +33,9 @@ jobs:
       - name: Test & coverage
         run: npm run test
 
+      - name: Build with Rollup
+        run: npm run build
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
         with:
