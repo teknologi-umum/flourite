@@ -672,7 +672,7 @@ test('large input', () => {
     Rust: 4,
     SQL: 0,
     Unknown: 1,
-    'C#': 0
+    'C#': 0,
   });
 });
 

@@ -1,12 +1,12 @@
-import { test } from "uvu";
-import * as assert from 'uvu/assert'
-import detectLang from "../src";
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src';
 
 test('hello world', () => {
   const code = detectLang(`using System;
-  Console.WriteLine("Hello world!");`)
-  assert.equal(code, 'C#')
-})
+  Console.WriteLine("Hello world!");`);
+  assert.equal(code, 'C#');
+});
 
 test('fizz buzz', () => {
   const code = detectLang(`class Program
@@ -41,14 +41,14 @@ test('fizz buzz', () => {
               }
           }
       }
-  }`)
-  assert.equal(code, 'C#')
-})
+  }`);
+  assert.equal(code, 'C#');
+});
 
 test('write file', () => {
-  const code = detectLang(`System.IO.File.WriteAllText("filename.txt", "This file contains a string.");`)
-  assert.equal(code, 'C#')
-})
+  const code = detectLang(`System.IO.File.WriteAllText("filename.txt", "This file contains a string.");`);
+  assert.equal(code, 'C#');
+});
 
 test('quick sort', () => {
   const code = detectLang(`//
@@ -226,9 +226,9 @@ test('quick sort', () => {
       }
     }
     #endregion
-  }`)
-  assert.equal(code, 'C#')
-})
+  }`);
+  assert.equal(code, 'C#');
+});
 
 test('heap sort', () => {
   const code = detectLang(`using System;
@@ -306,9 +306,9 @@ test('heap sort', () => {
           string[] s = { "-", "D", "a", "33" };
           HeapSort(s, 0, s.Length, StringComparer.CurrentCultureIgnoreCase);
       }
-  }`)
-  assert.equal(code, 'C#')
-})
+  }`);
+  assert.equal(code, 'C#');
+});
 
 test('bubble sort', () => {
   const code = detectLang(`using System;
@@ -354,9 +354,9 @@ test('bubble sort', () => {
               foreach (var t in testList) Console.Write(t + " ");
           }
       }
-  }`)
-  assert.equal(code, 'C#')
-})
+  }`);
+  assert.equal(code, 'C#');
+});
 
 test('merge sort', () => {
   const code = detectLang(`namespace RosettaCode {
@@ -483,9 +483,9 @@ test('merge sort', () => {
       }
     }
     #endregion
-  }`)
-  assert.equal(code, 'C#')
-})
+  }`);
+  assert.equal(code, 'C#');
+});
 
 test('fibonacci sequence', () => {
   const code = detectLang(`public static IEnumerable<long> Fibs(uint x) {
@@ -502,8 +502,8 @@ test('fibonacci sequence', () => {
       }
       return fibs;
   }
- `)
-  assert.equal(code, 'C#')
-})
+ `);
+  assert.equal(code, 'C#');
+});
 
 test.run();

@@ -12,7 +12,11 @@ export const CS: LanguagePattern[] = [
   // Functions
   { pattern: /(public|private|protected|internal)\s/, points: 1 },
   // Variable declaration
-  { pattern: /(const\s)?(sbyte|byte|short|ushort|int|uint|long|ulong|float|double|decimal|bool|char|string)(\[\])?\s(.*)\s=\s/, points: 1},
+  {
+    pattern:
+      /(const\s)?(sbyte|byte|short|ushort|int|uint|long|ulong|float|double|decimal|bool|char|string)(\[\])?\s(.*)\s=\s/,
+    points: 1,
+  },
   // Avoiding Java's String
   { pattern: /(String|extends|throws|@Attribute)/, points: -50 },
-]
+];
