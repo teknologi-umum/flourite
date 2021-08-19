@@ -1,10 +1,14 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import detectLang from '../src/index';
-import type {StatisticOutput} from '../src/types'
+import type { StatisticOutput } from '../src/types';
 
 test('hello world', () => {
-  const code = detectLang('cout << "Hello world" << endl;', { shiki: true, statistics: true, heuristic: true }) as StatisticOutput;
+  const code = detectLang('cout << "Hello world" << endl;', {
+    shiki: true,
+    statistics: true,
+    heuristic: true,
+  }) as StatisticOutput;
   assert.equal(code.detected, 'cpp');
   assert.equal(code.statistics, {
     C: 0,
@@ -20,8 +24,9 @@ test('hello world', () => {
     Ruby: 0,
     Rust: 0,
     SQL: 0,
-    Unknown: 1
-  })
+    Unknown: 1,
+    'C#': 0,
+  });
 });
 
 test('fizz buzz', () => {

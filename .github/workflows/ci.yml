@@ -33,15 +33,13 @@ jobs:
       - name: Test & coverage
         run: npm run test
 
-      # - name: Initialize CodeQL
-      #   uses: github/codeql-action/init@v1
-      #   with:
-      #     languages: javascript
-
-      # - name: Perform CodeQL Analysis
-      #   uses: github/codeql-action/analyze@v1
-
-      - name: Upload to Codecov
-        uses: codecov/codecov-action@v1
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          languages: javascript
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+
+      - name: Send coverage report to Codecov
+        uses: codecov/codecov-action@v2

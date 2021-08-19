@@ -1,5 +1,6 @@
 import { C } from './languages/c';
 import { CPP } from './languages/cpp';
+import { CS } from './languages/cs';
 import { CSS } from './languages/css';
 import { Go } from './languages/go';
 import { HTML } from './languages/html';
@@ -38,6 +39,7 @@ import { convert } from './shiki';
 const languages: Record<string, LanguagePattern[]> = {
   C,
   'C++': CPP,
+  'C#': CS,
   CSS,
   Go,
   HTML,

@@ -671,7 +671,8 @@ test('large input', () => {
     Ruby: 0,
     Rust: 4,
     SQL: 0,
-    Unknown: 1
+    Unknown: 1,
+    'C#': 0
   });
 });
 
