@@ -21,7 +21,8 @@
     "test:coverage": "c8 npm run test:unit",
     "test:tdd": "npm run test:unit; watchlist src tests -- npm run test:unit",
     "test": "npm run test:coverage",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "benchmark": "node -r esbuild-register benchmark/benchmark.ts"
   },
   "files": [
     "dist"
@@ -62,6 +63,7 @@
     "test": "./tests"
   },
   "devDependencies": {
+    "@aldy505/kruonis": "^0.0.1",
     "@types/node": "^16.6.1",
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
