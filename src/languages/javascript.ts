@@ -30,4 +30,7 @@ export const Javascript: LanguagePattern[] = [
   // HTML <script> tag
   { pattern: /<(\/)?script( type=('|")text\/javascript('|"))?>/, points: -50 },
   { pattern: /fn\s[A-Za-z0-9<>,]+\(.*\)\s->\s\w+(\s\{|)/, points: -50 },
+  // Avoiding C# confusion
+  { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, points: -50 },
+  { pattern: /(using\s)?System(\..*)?(;)?/, points: -50 },
 ];

@@ -7,9 +7,10 @@ export interface LanguagePattern {
 export interface Options {
   heuristic?: boolean;
   statistics?: boolean;
+  shiki?: boolean;
 }
 
 export interface StatisticOutput {
   detected: string;
-  statistics: (string | number)[][];
+  statistics: Record<string, number>;
 }

@@ -36,5 +36,14 @@ export const C: LanguagePattern[] = [
   // Avoiding Ruby confusion
   { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, points: -50 },
   { pattern: /puts\s+("|').+("|')/, points: -1 },
-  { pattern: /(public\s*)?class\s*(.*)+(\s)?/, points: -50 },
+  // Avoiding C# confusion
+  { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, points: -50 },
+  { pattern: /(using\s)?System(\..*)?(;)?/, points: -50 },
+  { pattern: /(public\s)?((partial|static|delegate)\s)?(class\s)/, points: -50 },
+  { pattern: /(public|private|protected|internal)/, points: -1 },
+  {
+    pattern:
+      /(new|this\s)?(List|IEnumerable)<(sbyte|byte|short|ushort|int|uint|long|ulong|float|double|decimal|bool|char|string)>/,
+    points: -50,
+  },
 ];

@@ -23,4 +23,8 @@ export const Go: LanguagePattern[] = [
   { pattern: /nil/, points: 1 },
   // Single quote multicharacter string
   { pattern: /'.{2,}'/, points: -1 },
+  // Avoiding C# confusion
+  { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, points: -50 },
+  { pattern: /using\sSystem(\..*)?(;)?/, points: -50 },
+  { pattern: /(public|private|protected|internal)\s/, points: -1 },
 ];
