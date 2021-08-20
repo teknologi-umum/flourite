@@ -5,10 +5,11 @@ import { Go } from './languages/go';
 import { HTML } from './languages/html';
 import { Java } from './languages/java';
 import { Javascript } from './languages/javascript';
+import { Julia } from './languages/julia';
+import { Lua } from './languages/lua';
 import { PHP } from './languages/php';
 import { Python } from './languages/python';
 import { Ruby } from './languages/ruby';
-import { Julia } from './languages/julia';
 import { Rust } from './languages/rust';
 import { SQL } from './languages/sql';
 import { nearTop, getPoints } from './points';
@@ -43,6 +44,7 @@ const languages: Record<string, LanguagePattern[]> = {
   Java,
   Javascript,
   Julia,
+  Lua,
   PHP,
   Python,
   Ruby,

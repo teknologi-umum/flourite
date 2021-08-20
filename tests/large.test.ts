@@ -672,6 +672,7 @@ test('large input', () => {
     ['Ruby', 0],
     ['SQL', 0],
     ['Python', -7],
+    ['Lua', -1914],
   ]);
 });
 
