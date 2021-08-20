@@ -1,5 +1,6 @@
 import { C } from './languages/c';
 import { CPP } from './languages/cpp';
+import { CS } from './languages/cs';
 import { CSS } from './languages/css';
 import { Go } from './languages/go';
 import { HTML } from './languages/html';
@@ -13,6 +14,7 @@ import { Rust } from './languages/rust';
 import { SQL } from './languages/sql';
 import { nearTop, getPoints } from './points';
 import type { LanguagePattern, Options, StatisticOutput } from './types';
+import { convert } from './shiki';
 
 /**
  * A checker is an object with the following form:
@@ -37,6 +39,7 @@ import type { LanguagePattern, Options, StatisticOutput } from './types';
 const languages: Record<string, LanguagePattern[]> = {
   C,
   'C++': CPP,
+  'C#': CS,
   CSS,
   Go,
   HTML,
@@ -65,8 +68,8 @@ const languages: Record<string, LanguagePattern[]> = {
  */
 function detectLang(
   snippet: string,
-  options: Options = { heuristic: true, statistics: false },
-): StatisticOutput | string {
+  options: Options = { heuristic: true, statistics: false, shiki: false },
+): StatisticOutput & string {
   let linesOfCode = snippet
     .replace(/\r\n?/g, '\n')
     .replace(/\n{2,}/g, '\n')
@@ -107,16 +110,22 @@ function detectLang(
 
   const bestResult = results.reduce((a, b) => (a.points >= b.points ? a : b), { points: 0, language: '' });
   if (options.statistics) {
-    const statistics = [];
+    const statistics: Record<string, number> = {};
     for (const result in results) {
-      statistics.push([results[result].language, results[result].points]);
+      statistics[results[result].language] = results[result].points;
     }
 
-    statistics.sort((a, b) => Number(b[1]) - Number(a[1]));
-    return { detected: bestResult.language, statistics };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return {
+      detected: options.shiki ? convert(bestResult.language) : bestResult.language,
+      statistics,
+    };
   }
 
-  return bestResult.language;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  return options.shiki ? convert(bestResult.language) : bestResult.language;
 }
 
 export type { Options, StatisticOutput };

@@ -43,4 +43,9 @@ export const Java: LanguagePattern[] = [
   { pattern: /#include\s*(<|")\w+(\.h)?(>|")/, points: -1, nearTop: true },
   // Avoiding Ruby confusion
   { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, points: -50 },
+  // Avoiding C# confusion
+  { pattern: /\[Attribute\]/, points: -50 },
+  { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, points: -50 },
+  { pattern: /(#region(\s.*)?|#endregion\n)/, points: -50 },
+  { pattern: /using\sSystem(\..*)?(;)?/, points: -50 },
 ];

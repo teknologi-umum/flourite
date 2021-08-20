@@ -20,4 +20,8 @@ export const Rust: LanguagePattern[] = [
   { pattern: /(Ok|Err|Box|ToOwned|Clone)/, points: 1 },
   // Panic!!
   { pattern: /panic!\(.*\)/, points: 2 },
+  // Avoiding clash with C#
+  { pattern: /using\sSystem/, points: -50 },
+  { pattern: /Console\.WriteLine\s*\(/, points: -50 },
+  { pattern: /(public\s)?((partial|static)\s)?class\s/, points: -1 },
 ];

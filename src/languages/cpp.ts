@@ -4,7 +4,7 @@ export const CPP: LanguagePattern[] = [
   // Primitive variable declaration.
   { pattern: /(char|long|int|float|double)\s+\w+\s*=?/, points: 2 },
   // #include <whatever.h>
-  { pattern: /#include\s*(<|")\w+(\.h)?(>|")/, points: 2, nearTop: true },
+  { pattern: /#include\s*(<|")\w+(\.h)?(>|")/, points: 2 },
   // using namespace something
   { pattern: /using\s+namespace\s+.+\s*;/, points: 2 },
   // template declaration
@@ -40,4 +40,8 @@ export const CPP: LanguagePattern[] = [
   // Avoiding Ruby confusion
   { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, points: -50 },
   { pattern: /puts\s+("|').+("|')/, points: -1 },
+  // Avoiding C# confusion
+  { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, points: -50 },
+  { pattern: /(using\s)?System(\..*)?(;)?/, points: -50 },
+  { pattern: /(public|private|protected|internal)\s/, points: -50 },
 ];
