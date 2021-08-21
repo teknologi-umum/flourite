@@ -1,4 +1,4 @@
-import type { LanguagePattern } from './types';
+import type { LanguagePattern, Type } from './types';
 
 /**
  * Get points from a language using regular expressions.
@@ -8,7 +8,12 @@ import type { LanguagePattern } from './types';
  */
 export function getPoints(lineOfCode: string, checkers: LanguagePattern[]): number {
   const checker: number[] = checkers.map((o) => {
-    if (o.pattern.test(lineOfCode)) return o.points;
+    if (o.pattern.test(lineOfCode)) {
+      if (o.points) {
+        return o.points
+      }
+      return parsePoint(o.type)
+    };
     return 0;
   });
   const reduced = checker.reduce((memo, num) => memo + num, 0);
@@ -26,4 +31,38 @@ export function nearTop(index: number, linesOfCode: string[]): boolean {
     return true;
   }
   return index < linesOfCode.length / 10;
+}
+
+function parsePoint(type: Type) {
+  switch (type) {
+    case 'keyword.print':
+    case 'constant.null':
+    case 'meta.import':
+    case 'meta.module':
+      return 5
+    case 'keyword.function':
+      return 4
+    case 'constant.type':
+    case 'constant.string':
+    case 'constant.numeric':
+    case 'constant.boolean':
+    case 'constant.dictionary':
+    case 'constant.array':
+    case 'keyword.variable':
+      return 3
+    case 'section.scope':
+    case 'keyword.other':
+    case 'keyword.operator':
+    case 'keyword.control':
+    case 'keyword':
+      return 2
+    case 'comment.block':
+    case 'comment.line':
+    case 'comment.documentation':
+    case 'macro':
+      return 1
+    case 'not':
+    default:
+      return -50
+  }
 }

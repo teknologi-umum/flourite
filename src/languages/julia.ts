@@ -2,8 +2,8 @@ import type { LanguagePattern } from '../types';
 
 export const Julia: LanguagePattern[] = [
   // Module import
-  { pattern: /(using)\s\w+/, points: 2 },
-  { pattern: /(bare\s)?module/, points: 1 },
+  { pattern: /(using)\s\w+/, points: 2, type: 'meta.import' },
+  { pattern: /(bare\s)?module/, points: 1, type: 'meta.module' },
   // Avoiding Python's import
   { pattern: /from\s.+import\s.+/, points: -50 },
   // Stdout / print line
