@@ -10,10 +10,10 @@ export function getPoints(lineOfCode: string, checkers: LanguagePattern[]): numb
   const checker: number[] = checkers.map((o) => {
     if (o.pattern.test(lineOfCode)) {
       if (o.points) {
-        return o.points
+        return o.points;
       }
-      return parsePoint(o.type)
-    };
+      return parsePoint(o.type);
+    }
     return 0;
   });
   const reduced = checker.reduce((memo, num) => memo + num, 0);
@@ -39,9 +39,9 @@ function parsePoint(type: Type) {
     case 'constant.null':
     case 'meta.import':
     case 'meta.module':
-      return 5
+      return 5;
     case 'keyword.function':
-      return 4
+      return 4;
     case 'constant.type':
     case 'constant.string':
     case 'constant.numeric':
@@ -49,20 +49,20 @@ function parsePoint(type: Type) {
     case 'constant.dictionary':
     case 'constant.array':
     case 'keyword.variable':
-      return 3
+      return 3;
     case 'section.scope':
     case 'keyword.other':
     case 'keyword.operator':
     case 'keyword.control':
     case 'keyword':
-      return 2
+      return 2;
     case 'comment.block':
     case 'comment.line':
     case 'comment.documentation':
     case 'macro':
-      return 1
+      return 1;
     case 'not':
     default:
-      return -50
+      return -50;
   }
 }

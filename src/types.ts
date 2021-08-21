@@ -20,7 +20,7 @@ export type Type =
   | 'keyword.operator' // >, <, -, << not important tbh you could get away with this
   | 'keyword.function' // func pattern() {, function pattern(), fn pattern() {
   | 'macro' // @println, println!
-  | 'not' // not in current language
+  | 'not'; // not in current language
 
 export interface LanguagePattern {
   pattern: RegExp;
