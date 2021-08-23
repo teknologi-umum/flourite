@@ -2,29 +2,29 @@ import type { LanguagePattern } from '../types';
 
 export const Ruby: LanguagePattern[] = [
   // require/include
-  { pattern: /(require|include)\s+'\w+(\.rb)?'/, points: 2, nearTop: true },
+  { pattern: /(require|include)\s+'\w+(\.rb)?'/, type: 'meta.import', nearTop: true },
   // Function definition
-  { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, points: 2 },
+  { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, type: 'keyword.function' },
   // Instance variables
-  { pattern: /@\w+/, points: 2 },
+  { pattern: /@\w+/, type: 'keyword.other' },
   // Boolean property
-  { pattern: /\.\w+\?/, points: 2 },
+  { pattern: /\.\w+\?/, type: 'constant.boolean' },
   // puts (Ruby print)
-  { pattern: /puts\s+("|').+("|')/, points: 2 },
+  { pattern: /puts\s+("|').+("|')/, type: 'keyword.print' },
   // Inheriting class
-  { pattern: /class [A-Z]\w*\s*<\s*([A-Z]\w*(::)?)+/, points: 2 },
+  { pattern: /class [A-Z]\w*\s*<\s*([A-Z]\w*(::)?)+/, type: 'keyword' },
   // attr_accessor
-  { pattern: /attr_accessor\s+(:\w+(,\s*)?)+/, points: 2 },
+  { pattern: /attr_accessor\s+(:\w+(,\s*)?)+/, type: 'keyword.function' },
   // new
-  { pattern: /\w+\.new\s+/, points: 2 },
+  { pattern: /\w+\.new\s+/, type: 'keyword' },
   // elsif keyword
-  { pattern: /elsif/, points: 2 },
+  { pattern: /elsif/, type: 'keyword.control' },
   // do
-  { pattern: /do\s*\|(\w+(,\s*\w+)?)+\|/, points: 2 },
+  { pattern: /do\s*\|(\w+(,\s*\w+)?)+\|/, type: 'keyword.control' },
   // for loop
-  { pattern: /for (\w+|\(?\w+,\s*\w+\)?) in (.+)/, points: 1 },
+  { pattern: /for (\w+|\(?\w+,\s*\w+\)?) in (.+)/, type: 'keyword.control' },
   // nil keyword
-  { pattern: /nil/, points: 1 },
+  { pattern: /nil/, type: 'constant.null' },
   // Scope operator
-  { pattern: /[A-Z]\w*::[A-Z]\w*/, points: 1 },
+  { pattern: /[A-Z]\w*::[A-Z]\w*/, type: 'macro' },
 ];

@@ -12,13 +12,13 @@ test('hello world', () => {
   assert.equal(code.detected, 'cpp');
   assert.equal(code.statistics, {
     C: 0,
-    'C++': 2,
+    'C++': 5,
     CSS: 0,
     Go: 0,
     HTML: 0,
     Java: 0,
     Javascript: 0,
-    Julia: 1,
+    Julia: 2,
     PHP: 0,
     Python: 0,
     Ruby: 0,

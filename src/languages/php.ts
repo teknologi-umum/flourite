@@ -2,31 +2,33 @@ import type { LanguagePattern } from '../types';
 
 export const PHP: LanguagePattern[] = [
   // PHP tag
-  { pattern: /<\?php/, points: 2 },
+  { pattern: /<\?php/, type: 'meta.module' },
   // PHP style variables.
-  { pattern: /\$\w+/, points: 2 },
+  { pattern: /\$\w+/, type: 'keyword.variable' },
   // use Something\Something;
-  { pattern: /use\s+\w+(\\\w+)+\s*;/, points: 2, nearTop: true },
+  { pattern: /use\s+\w+(\\\w+)+\s*;/, type: 'meta.import', nearTop: true },
   // arrow
-  { pattern: /\$\w+->\w+/, points: 2 },
+  { pattern: /\$\w+->\w+/, type: 'keyword' },
   // require/include
-  { pattern: /(require|include)(_once)?\s*\(?\s*('|").+\.php('|")\s*\)?\s*;/, points: 2 },
+  { pattern: /(require|include)(_once)?\s*\(?\s*('|").+\.php('|")\s*\)?\s*;/, type: 'meta.import' },
   // echo 'something';
-  { pattern: /echo\s+('|").+('|")\s*;/, points: 1 },
+  { pattern: /echo\s+('|").+('|")\s*;/, type: 'keyword.print' },
   // NULL constant
-  { pattern: /NULL/, points: 1 },
+  { pattern: /NULL/, type: 'constant.null' },
   // new keyword
-  { pattern: /new\s+((\\\w+)+|\w+)(\(.*\))?/, points: 1 },
+  { pattern: /new\s+((\\\w+)+|\w+)(\(.*\))?/, type: 'keyword' },
   // Function definition
-  { pattern: /function(\s+[$\w]+\(.*\)|\s*\(.*\))/g, points: 1 },
+  { pattern: /function(\s+[$\w]+\(.*\)|\s*\(.*\))/g, type: 'keyword.control' },
   // (else)if statement
-  { pattern: /(else)?if\s+\(.+\)/, points: 1 },
+  { pattern: /(else)?if\s+\(.+\)/, type: 'keyword.control' },
   // scope operator
-  { pattern: /\w+::\w+/, points: 1 },
+  { pattern: /\w+::\w+/, type: 'keyword' },
   // === operator
-  { pattern: /===/g, points: 1 },
+  { pattern: /===/g, type: 'keyword.operator' },
   // !== operator
-  { pattern: /!==/g, points: 1 },
+  { pattern: /!==/g, type: 'keyword.operator' },
   // C/JS style variable declaration.
-  { pattern: /(^|\s)(var|char|long|int|float|double)\s+\w+\s*=?/, points: -1 },
+  { pattern: /(^|\s)(var|char|long|int|float|double)\s+\w+\s*=?/, type: 'not' },
+  // Javascript variable declaration
+  { pattern: /(var|const|let)\s+\w+\s*=?/, type: 'not' },
 ];

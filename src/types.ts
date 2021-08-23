@@ -16,6 +16,7 @@ export type Type =
   | 'keyword.print' // println, echo, console.log(), System.WriteLine()
   | 'keyword.variable' // var, let, const'
   | 'keyword.control' // if, while, for, return, break, continue
+  | 'keyword.visibility' // public, private, protected
   | 'keyword.other' // async, await, crate, extern
   | 'keyword.operator' // >, <, -, << not important tbh you could get away with this
   | 'keyword.function' // func pattern() {, function pattern(), fn pattern() {

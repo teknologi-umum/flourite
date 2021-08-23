@@ -36,11 +36,11 @@ export function nearTop(index: number, linesOfCode: string[]): boolean {
 function parsePoint(type: Type) {
   switch (type) {
     case 'keyword.print':
-    case 'constant.null':
     case 'meta.import':
     case 'meta.module':
       return 5;
     case 'keyword.function':
+    case 'constant.null':
       return 4;
     case 'constant.type':
     case 'constant.string':
@@ -54,6 +54,7 @@ function parsePoint(type: Type) {
     case 'keyword.other':
     case 'keyword.operator':
     case 'keyword.control':
+    case 'keyword.visibility':
     case 'keyword':
       return 2;
     case 'comment.block':
@@ -63,6 +64,6 @@ function parsePoint(type: Type) {
       return 1;
     case 'not':
     default:
-      return -50;
+      return -20;
   }
 }
