@@ -656,23 +656,23 @@ test('large input', () => {
   }`,
     { heuristic: true, statistics: true },
   ) as StatisticOutput;
-  assert.equal(code.detected, 'C');
+  assert.equal(code.detected, 'C++');
   assert.equal(code.statistics, {
-    C: 172,
-    'C++': 85,
+    C: 111,
+    'C++': 160,
+    'C#': 19,
     CSS: 0,
     Go: 0,
     HTML: 0,
-    Java: 4,
-    Javascript: 30,
-    Julia: 12,
-    PHP: 39,
-    Python: -7,
+    Java: -832,
+    Javascript: -452,
+    Julia: 24,
+    PHP: -318,
+    Python: -140,
     Ruby: 0,
     Rust: 4,
     SQL: 0,
     Unknown: 1,
-    'C#': 13,
   });
 });
 

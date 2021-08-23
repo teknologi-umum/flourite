@@ -1,3 +1,4 @@
+import type { LanguagePattern, LanguagePoints, Options, StatisticOutput } from './types';
 import { C } from './languages/c';
 import { CPP } from './languages/cpp';
 import { CS } from './languages/cs';
@@ -13,7 +14,6 @@ import { Julia } from './languages/julia';
 import { Rust } from './languages/rust';
 import { SQL } from './languages/sql';
 import { nearTop, getPoints } from './points';
-import type { LanguagePattern, Options, StatisticOutput } from './types';
 import { convert } from './shiki';
 
 /**
@@ -51,7 +51,6 @@ const languages: Record<string, LanguagePattern[]> = {
   Ruby,
   Rust,
   SQL,
-  Unknown: [],
 };
 
 /**
@@ -61,14 +60,14 @@ const languages: Record<string, LanguagePattern[]> = {
  * @returns {String|StatisticOutput} A String or a StatisticOutput format if `statistics: true`
  * @example
  * ```js
- * import detectLang from 'flourite';
- * const detect = detectLang(code);
+ * import flourite from 'flourite';
+ * const detect = flourite(code);
  * ```
  * @see Supported Languages - https://github.com/teknologi-umum/flourite#detectable-languages
  */
-function detectLang(
+function flourite(
   snippet: string,
-  options: Options = { heuristic: true, statistics: false, shiki: false },
+  options: Options = { heuristic: true, statistics: false, shiki: false, noUnknown: false },
 ): StatisticOutput & string {
   let linesOfCode = snippet
     .replace(/\r\n?/g, '\n')
@@ -86,33 +85,41 @@ function detectLang(
 
   const pairs = Object.keys(languages).map((key) => ({ language: key, checkers: languages[key] }));
 
-  const results = pairs.map((pair) => {
-    const language = pair.language;
-    const checkers = pair.checkers;
+  const results: LanguagePoints[] = [];
+  for (let i = 0; i < pairs.length; i++) {
+    const { language, checkers } = pairs[i];
 
-    if (language === 'Unknown') return { language: 'Unknown', points: 1 };
-
-    const pointsList = linesOfCode.map((lineOfCode, index) => {
-      if (!nearTop(index, linesOfCode)) {
-        return getPoints(
-          lineOfCode,
-          checkers.filter((checker) => !checker.nearTop),
+    const pointsList: number[] = [];
+    for (let j = 0; j < linesOfCode.length; j++) {
+      if (!nearTop(j, linesOfCode)) {
+        pointsList.push(
+          getPoints(
+            linesOfCode[j],
+            checkers.filter((checker) => !checker.nearTop),
+          ),
         );
       } else {
-        return getPoints(lineOfCode, checkers);
+        pointsList.push(getPoints(linesOfCode[j], checkers));
       }
-    });
+    }
 
-    const points = pointsList.reduce((memo, num) => memo + num);
+    let points = 0;
+    for (let k = 0; k < pointsList.length; k++) {
+      points += pointsList[k];
+    }
 
-    return { language, points };
-  });
+    results.push({ language, points });
+  }
+
+  if (!options.noUnknown) {
+    results.push({ language: 'Unknown', points: 1 });
+  }
 
   const bestResult = results.reduce((a, b) => (a.points >= b.points ? a : b), { points: 0, language: '' });
+  const statistics: Record<string, number> = {};
   if (options.statistics) {
-    const statistics: Record<string, number> = {};
-    for (const result in results) {
-      statistics[results[result].language] = results[result].points;
+    for (let i = 0; i < results.length; i++) {
+      statistics[results[i].language] = results[i].points;
     }
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -129,4 +136,4 @@ function detectLang(
 }
 
 export type { Options, StatisticOutput };
-export default detectLang;
+export default flourite;

@@ -24,20 +24,27 @@ Detects a programming language from a given string.
 $ npm install flourite
 ```
 
+or via a CDN (unpkg or jsdelivr)
+
+```html
+<script src="https://unpkg.com/flourite@1.0.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/flourite@1.0.2/dist/index.iife.js"></script>
+```
+
 ## Usage
 
 ```js
-import detectLang from 'flourite';
+import flourite from 'flourite';
 
-const code = detectLang('console.log("Hello World");'); // => Javascript
+const code = flourite('console.log("Hello World");'); // => Javascript
 ```
 
 You could supply options to make see numbers of points for a certain language:
 
 ```js
-import detectLang from 'flourite';
+import flourite from 'flourite';
 
-const code = detectLang('printf("Hello World")', { statistics: true });
+const code = flourite('printf("Hello World")', { statistics: true });
 // {
 //   detected: 'C',
 //   statistics: [

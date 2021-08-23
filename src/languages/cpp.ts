@@ -2,46 +2,46 @@ import type { LanguagePattern } from '../types';
 
 export const CPP: LanguagePattern[] = [
   // Primitive variable declaration.
-  { pattern: /(char|long|int|float|double)\s+\w+\s*=?/, points: 2 },
+  { pattern: /(char|long|int|float|double)\s+\w+\s*=?/, type: 'constant.type' },
   // #include <whatever.h>
-  { pattern: /#include\s*(<|")\w+(\.h)?(>|")/, points: 2 },
+  { pattern: /#include\s*(<|")\w+(\.h)?(>|")/, type: 'meta.import' },
   // using namespace something
-  { pattern: /using\s+namespace\s+.+\s*;/, points: 2 },
+  { pattern: /using\s+namespace\s+.+\s*;/, type: 'keyword' },
   // template declaration
-  { pattern: /template\s*<.*>/, points: 2 },
+  { pattern: /template\s*<.*>/, type: 'keyword' },
   // std
-  { pattern: /std::\w+/g, points: 2 },
+  { pattern: /std::\w+/g, type: 'keyword.other' },
   // cout/cin/endl
-  { pattern: /(cout|cin|endl)/g, points: 2 },
+  { pattern: /(cout|cin|endl)/g, type: 'keyword.print' },
   // Visibility specifiers
-  { pattern: /(public|protected|private):/, points: 2 },
+  { pattern: /(public|protected|private):/, type: 'keyword.visibility' },
   // nullptr
-  { pattern: /nullptr/, points: 2 },
+  { pattern: /nullptr/, type: 'keyword' },
   // new Keyword
-  { pattern: /new \w+(\(.*\))?/, points: 1 },
+  { pattern: /new \w+(\(.*\))?/, type: 'keyword' },
   // #define macro
-  { pattern: /#define\s+.+/, points: 1 },
+  { pattern: /#define\s+.+/, type: 'macro' },
   // template usage
-  { pattern: /\w+<\w+>/, points: 1 },
+  { pattern: /\w+<\w+>/, type: 'keyword.other' },
   // class keyword
-  { pattern: /class\s+\w+/, points: 1 },
+  { pattern: /class\s+\w+/, type: 'keyword' },
   // void keyword
-  { pattern: /void/g, points: 1 },
+  { pattern: /void/g, type: 'keyword' },
   // (else )if statement
-  { pattern: /(else )?if\s*\(.+\)/, points: 1 },
+  { pattern: /(else )?if\s*\(.+\)/, type: 'keyword.control' },
   // while loop
-  { pattern: /while\s+\(.+\)/, points: 1 },
+  { pattern: /while\s+\(.+\)/, type: 'keyword.control' },
   // Scope operator
-  { pattern: /\w*::\w+/, points: 1 },
+  { pattern: /\w*::\w+/, type: 'macro' },
   // Single quote multicharacter string
-  { pattern: /'.{2,}'/, points: -1 },
+  { pattern: /'.{2,}'/, type: 'not' },
   // Java List/ArrayList
-  { pattern: /(List<\w+>|ArrayList<\w*>\s*\(.*\))(\s+[\w]+|;)/, points: -1 },
+  { pattern: /(List<\w+>|ArrayList<\w*>\s*\(.*\))(\s+[\w]+|;)/, type: 'not' },
   // Avoiding Ruby confusion
-  { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, points: -50 },
-  { pattern: /puts\s+("|').+("|')/, points: -1 },
+  { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, type: 'not' },
+  { pattern: /puts\s+("|').+("|')/, type: 'not' },
   // Avoiding C# confusion
-  { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, points: -50 },
-  { pattern: /(using\s)?System(\..*)?(;)?/, points: -50 },
-  { pattern: /(public|private|protected|internal)\s/, points: -50 },
+  { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: 'not' },
+  { pattern: /(using\s)?System(\..*)?(;)?/, type: 'not' },
+  { pattern: /(public|private|protected|internal)\s/, type: 'not' },
 ];

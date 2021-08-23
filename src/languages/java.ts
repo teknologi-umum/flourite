@@ -2,50 +2,50 @@ import type { LanguagePattern } from '../types';
 
 export const Java: LanguagePattern[] = [
   // System.out.println() etc.
-  { pattern: /System\.(in|out)\.\w+/, points: 2 },
+  { pattern: /System\.(in|out)\.\w+/, type: 'keyword.print' },
   // Class variable declarations
-  { pattern: /(private|protected|public)\s*\w+\s*\w+(\s*=\s*[\w])?/, points: 2 },
+  { pattern: /(private|protected|public)\s*\w+\s*\w+(\s*=\s*[\w])?/, type: 'keyword' },
   // Method
-  { pattern: /(private|protected|public)\s*\w+\s*[\w]+\(.+\)/, points: 2 },
+  { pattern: /(private|protected|public)\s*\w+\s*[\w]+\(.+\)/, type: 'keyword' },
   // String class
-  { pattern: /(^|\s)(String)\s+[\w]+\s*=?/, points: 2 },
+  { pattern: /(^|\s)(String)\s+[\w]+\s*=?/, type: 'keyword.other' },
   // List/ArrayList
-  { pattern: /(List<\w+>|ArrayList<\w*>\s*\(.*\))(\s+[\w]+|;)/, points: 2 },
+  { pattern: /(List<\w+>|ArrayList<\w*>\s*\(.*\))(\s+[\w]+|;)/, type: 'keyword.variable' },
   // class keyword
-  { pattern: /(public\s*)?class\s*(.*)+(\s)?\{/, points: 2 },
+  { pattern: /(public\s*)?class\s*(.*)+(\s)?\{/, type: 'keyword' },
   // Array declaration.
-  { pattern: /(\w+)(\[\s*\])+\s+\w+/, points: 2 },
+  { pattern: /(\w+)(\[\s*\])+\s+\w+/, type: 'constant.array' },
   // final keyword
-  { pattern: /final\s*\w+/, points: 2 },
+  { pattern: /final\s*\w+/, type: 'keyword.other' },
   // getter & setter
-  { pattern: /\w+\.(get|set)\(.+\)/, points: 2 },
+  { pattern: /\w+\.(get|set)\(.+\)/, type: 'keyword.other' },
   // new Keyword (Java)
-  { pattern: /new [A-Z]\w*\s*\(.+\)/, points: 2 },
+  { pattern: /new [A-Z]\w*\s*\(.+\)/, type: 'keyword.other' },
   // C style variable declaration.
-  { pattern: /(^|\s)(char|long|int|float|double)\s+[\w]+\s*=?/, points: 1 },
+  { pattern: /(^|\s)(char|long|int|float|double)\s+[\w]+\s*=?/, type: 'constant.type' },
   // extends/implements keywords
-  { pattern: /(extends|implements)/, points: 2, nearTop: true },
+  { pattern: /(extends|implements)/, type: 'meta.module', nearTop: true },
   // null keyword
-  { pattern: /null/g, points: 1 },
+  { pattern: /null/g, type: 'keyword.other' },
   // (else )if statement
-  { pattern: /(else )?if\s*\(.+\)/, points: 1 },
+  { pattern: /(else )?if\s*\(.+\)/, type: 'keyword.control' },
   // while loop
-  { pattern: /while\s+\(.+\)/, points: 1 },
+  { pattern: /while\s+\(.+\)/, type: 'keyword.control' },
   // void keyword
-  { pattern: /void/g, points: 1 },
+  { pattern: /void/g, type: 'keyword.other' },
   // const
-  { pattern: /const\s*\w+/, points: -1 },
+  { pattern: /const\s*\w+/, type: 'not' },
   // pointer
-  { pattern: /(\w+)\s*\*\s*\w+/, points: -1 },
+  { pattern: /(\w+)\s*\*\s*\w+/, type: 'not' },
   // Single quote multicharacter string
-  { pattern: /'.{2,}'/, points: -1 },
+  { pattern: /'.{2,}'/, type: 'not' },
   // C style include
-  { pattern: /#include\s*(<|")\w+(\.h)?(>|")/, points: -1, nearTop: true },
+  { pattern: /#include\s*(<|")\w+(\.h)?(>|")/, type: 'not', nearTop: true },
   // Avoiding Ruby confusion
-  { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, points: -50 },
+  { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, type: 'not' },
   // Avoiding C# confusion
-  { pattern: /\[Attribute\]/, points: -50 },
-  { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, points: -50 },
-  { pattern: /(#region(\s.*)?|#endregion\n)/, points: -50 },
-  { pattern: /using\sSystem(\..*)?(;)?/, points: -50 },
+  { pattern: /\[Attribute\]/, type: 'not' },
+  { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: 'not' },
+  { pattern: /(#region(\s.*)?|#endregion\n)/, type: 'not' },
+  { pattern: /using\sSystem(\..*)?(;)?/, type: 'not' },
 ];

@@ -11,19 +11,19 @@ test('hello world', () => {
   ) as StatisticOutput;
   assert.equal(code.detected, 'csharp');
   assert.equal(code.statistics, {
-    C: -99,
-    'C++': -100,
-    'C#': 4,
+    C: -39,
+    'C++': -40,
+    'C#': 10,
     CSS: 0,
-    Go: -99,
+    Go: -39,
     HTML: 0,
-    Java: -100,
-    Javascript: -100,
-    Julia: 2,
+    Java: -40,
+    Javascript: -40,
+    Julia: 5,
     PHP: 0,
     Python: 0,
     Ruby: 0,
-    Rust: -100,
+    Rust: -40,
     SQL: 0,
     Unknown: 1,
   });

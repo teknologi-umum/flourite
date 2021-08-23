@@ -5,7 +5,7 @@
     "target": "es2015",
     "module": "ESNext",
     "declaration": true,
-    "declarationDir": "./dist",
+    "declarationDir": ".",
     "types": ["node"],
     "preserveSymlinks": true,
     "isolatedModules": true,
@@ -21,5 +21,5 @@
     "allowSyntheticDefaultImports": true,
     "newLine": "lf"
   },
-  "exclude": ["tests", "dist"]
+  "exclude": ["tests", "dist", "benchmark"]
 }
