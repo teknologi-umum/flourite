@@ -25,9 +25,7 @@ export type Type =
 
 export interface LanguagePattern {
   pattern: RegExp;
-  // to maintain backwards compatibility
-  type?: Type;
-  points?: number;
+  type: Type;
   nearTop?: boolean;
 }
 
