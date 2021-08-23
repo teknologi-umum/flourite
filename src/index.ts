@@ -17,26 +17,6 @@ import { SQL } from './languages/sql';
 import { nearTop, getPoints } from './points';
 import { convert } from './shiki';
 
-/**
- * A checker is an object with the following form:
- *  { pattern: /something/, points: 1 }
- * or if the pattern only matches code near the top of a given file:
- *  { pattern: /something/, points: 2, nearTop: true }
- *
- * Key: Language name.
- * Value: Array of checkers.
- *
- * N.B. An array of checkers shouldn't contain more regexes than
- * necessary as it would inhibit performance.
- *
- * Points scale:
- *  2 = Bonus points:   Almost unique to a given language.
- *  1 = Regular point:  Not unique to a given language.
- * -1 = Penalty point:  Does not match a given language.
- * Rare:
- * -50 = Bonus penalty points: Only used when two languages are mixed together,
- *  and one has a higher precedence over the other one.
- */
 const languages: Record<string, LanguagePattern[]> = {
   C,
   'C++': CPP,
