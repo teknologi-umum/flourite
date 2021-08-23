@@ -1,5 +1,7 @@
 # Flourite - Language detector
 
+[![npm](https://img.shields.io/npm/v/flourite?style=for-the-badge)](https://www.npmjs.com/package/flourite) [![npm bundle size](https://img.shields.io/bundlephobia/min/flourite?style=for-the-badge)](https://www.npmjs.com/package/flourite) [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/teknologi-umum/flourite/CI?style=for-the-badge)](https://github.com/teknologi-umum/flourite/actions/workflows/ci.yml) [![Codecov](https://img.shields.io/codecov/c/gh/teknologi-umum/flourite?style=for-the-badge)](https://app.codecov.io/gh/teknologi-umum/flourite) [![LGTM Alerts](https://img.shields.io/lgtm/alerts/github/teknologi-umum/flourite?style=for-the-badge)](https://lgtm.com/projects/g/teknologi-umum/flourite/)
+
 A fork of [ts95/lang-detector](https://github.com/ts95/lang-detector), rewritten in Typescript with more language support.
 
 Detects a programming language from a given string.
@@ -28,8 +30,8 @@ $ npm install flourite
 or via a CDN (unpkg or jsdelivr)
 
 ```html
-<script src="https://unpkg.com/flourite@1.0.2"></script>
-<script src="https://cdn.jsdelivr.net/npm/flourite@1.0.2/dist/index.iife.js"></script>
+<script src="https://unpkg.com/flourite@1.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/flourite@1.1.0/dist/index.iife.js"></script>
 ```
 
 ## Usage
