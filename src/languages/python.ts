@@ -25,4 +25,7 @@ export const Python: LanguagePattern[] = [
   { pattern: /print((\s*\(.+\))|\s+.+)/, type: 'keyword.print' },
   // &&/|| operators
   { pattern: /(&{2}|\|{2})/, type: 'not' },
+  // avoiding lua
+  { pattern: /elseif/, type: 'not' },
+  { pattern: /local\s(function|\w+)?\s=\s/, type: 'not' },
 ];

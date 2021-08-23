@@ -31,4 +31,6 @@ export const PHP: LanguagePattern[] = [
   { pattern: /(^|\s)(var|char|long|int|float|double)\s+\w+\s*=?/, type: 'not' },
   // Javascript variable declaration
   { pattern: /(var|const|let)\s+\w+\s*=?/, type: 'not' },
+  // Avoiding Lua confusion
+  { pattern: /local\s(function|\w+)/, type: 'not' },
 ];
