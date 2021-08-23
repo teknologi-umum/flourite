@@ -664,7 +664,7 @@ test('large input', () => {
     CSS: 0,
     Go: 0,
     HTML: 0,
-    Java: -848,
+    Java: -832,
     Javascript: -452,
     Julia: 24,
     PHP: -318,

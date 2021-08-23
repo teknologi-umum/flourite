@@ -10,7 +10,7 @@ export const C: LanguagePattern[] = [
   // pointer
   { pattern: /(\w+)\s*\*\s*\w+/, type: 'keyword' },
   // Variable declaration and/or initialisation.
-  { pattern: /(\w+)\s+\w+(;|\s*=)/, points: 1 },
+  { pattern: /(\w+)\s+\w+(;|\s*=)/, type: 'macro' },
   // Array declaration.
   { pattern: /(\w+)\s+\w+\[.+\]/, type: 'keyword.other' },
   // #define macro

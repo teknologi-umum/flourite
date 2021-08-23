@@ -22,7 +22,7 @@ export const Java: LanguagePattern[] = [
   // new Keyword (Java)
   { pattern: /new [A-Z]\w*\s*\(.+\)/, type: 'keyword.other' },
   // C style variable declaration.
-  { pattern: /(^|\s)(char|long|int|float|double)\s+[\w]+\s*=?/, points: 1 },
+  { pattern: /(^|\s)(char|long|int|float|double)\s+[\w]+\s*=?/, type: 'constant.type' },
   // extends/implements keywords
   { pattern: /(extends|implements)/, type: 'meta.module', nearTop: true },
   // null keyword

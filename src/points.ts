@@ -8,12 +8,7 @@ import type { LanguagePattern, Type } from './types';
  */
 export function getPoints(lineOfCode: string, checkers: LanguagePattern[]): number {
   const checker: number[] = checkers.map((o) => {
-    if (o.pattern.test(lineOfCode)) {
-      if (o.points) {
-        return o.points;
-      }
-      return parsePoint(o.type);
-    }
+    if (o.pattern.test(lineOfCode)) return parsePoint(o.type);
     return 0;
   });
   const reduced = checker.reduce((memo, num) => memo + num, 0);
