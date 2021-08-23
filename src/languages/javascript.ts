@@ -35,4 +35,6 @@ export const Javascript: LanguagePattern[] = [
   { pattern: /(using\s)?System(\..*)?(;)?/, type: 'not' },
   { pattern: /(func|fn)\s/, type: 'not' },
   { pattern: /(begin|end)\n/, type: 'not' },
+  // Avoiding Lua confusion
+  { pattern: /local\s(function|(\w+)\s=)/, type: 'not'},
 ];

@@ -46,4 +46,6 @@ export const C: LanguagePattern[] = [
       /(new|this\s)?(List|IEnumerable)<(sbyte|byte|short|ushort|int|uint|long|ulong|float|double|decimal|bool|char|string)>/,
     type: 'not',
   },
+  // Avoiding Lua confusion
+  { pattern: /local\s(function|\w+)?/, type: 'not'},
 ];
