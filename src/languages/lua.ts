@@ -17,7 +17,7 @@ export const Lua: LanguagePattern[] = [
       /\s+(and|break|do|else|elseif|end|false|function|if|in|not|or|local|repeat|return|then|true|until|pairs|ipairs|in|yield)/,
     type: 'keyword.other',
   },
-  { pattern: /nil/, type: 'constant.null'},
+  { pattern: /nil/, type: 'constant.null' },
   // length operator
   { pattern: /#([a-zA-Z_{}]+)/, type: 'keyword.operator' },
   // metatables

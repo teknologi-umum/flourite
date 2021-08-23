@@ -274,7 +274,8 @@ test('lsp handler', () => {
       local matches = util.text_document_completion_list_to_complete_items(result, prefix)
       vim.fn.complete(textMatch+1, matches)
     end
-  `);
+  `,
+  );
   assert.equal(code, 'Lua');
 });
 

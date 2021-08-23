@@ -47,5 +47,5 @@ export const C: LanguagePattern[] = [
     type: 'not',
   },
   // Avoiding Lua confusion
-  { pattern: /local\s(function|\w+)?/, type: 'not'},
+  { pattern: /local\s(function|\w+)?/, type: 'not' },
 ];

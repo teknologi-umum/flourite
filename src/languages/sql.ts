@@ -20,6 +20,6 @@ export const SQL: LanguagePattern[] = [
   { pattern: /(TINYBLOB|TINYTEXT|MEDIUMTEXT|MEDIUMBLOB|LONGTEXT|LONGBLOB)/, type: 'constant.type' },
   { pattern: /(BOOLEAN|BOOL|DATE|YEAR)/, type: 'constant.type' },
   // Avoiding Lua
-  { pattern: /local\s(function|\w+)?\s=\s/, type: 'not'},
+  { pattern: /local\s(function|\w+)?\s=\s/, type: 'not' },
   { pattern: /(require|dofile)\((.*)\)/, type: 'not' },
 ];

@@ -27,5 +27,5 @@ export const Python: LanguagePattern[] = [
   { pattern: /(&{2}|\|{2})/, type: 'not' },
   // avoiding lua
   { pattern: /elseif/, type: 'not' },
-  { pattern: /local\s(function|\w+)?\s=\s/, type: 'not'},
+  { pattern: /local\s(function|\w+)?\s=\s/, type: 'not' },
 ];

@@ -30,5 +30,5 @@ export const Julia: LanguagePattern[] = [
   { pattern: /puts\s+("|').+("|')/, type: 'not' },
   { pattern: /class\s/, type: 'not' },
   // Avoiding Lua confusion
-  { pattern: /local\s(function|\w+)/, type: 'not'},
+  { pattern: /local\s(function|\w+)/, type: 'not' },
 ];
