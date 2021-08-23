@@ -11,6 +11,10 @@ export default {
       file: 'dist/index.mjs',
       format: 'es',
     },
+    {
+      file: 'dist/index.iife.js',
+      format: 'iife',
+    },
   ],
   plugins: [ts()],
 };

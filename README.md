@@ -24,6 +24,13 @@ Detects a programming language from a given string.
 $ npm install flourite
 ```
 
+or via a CDN (unpkg or jsdelivr)
+
+```html
+<script src="https://unpkg.com/flourite@1.0.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/flourite@1.0.2/dist/index.iife.js"></script>
+```
+
 ## Usage
 
 ```js
