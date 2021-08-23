@@ -34,17 +34,17 @@ or via a CDN (unpkg or jsdelivr)
 ## Usage
 
 ```js
-import detectLang from 'flourite';
+import flourite from 'flourite';
 
-const code = detectLang('console.log("Hello World");'); // => Javascript
+const code = flourite('console.log("Hello World");'); // => Javascript
 ```
 
 You could supply options to make see numbers of points for a certain language:
 
 ```js
-import detectLang from 'flourite';
+import flourite from 'flourite';
 
-const code = detectLang('printf("Hello World")', { statistics: true });
+const code = flourite('printf("Hello World")', { statistics: true });
 // {
 //   detected: 'C',
 //   statistics: [

@@ -60,12 +60,12 @@ const languages: Record<string, LanguagePattern[]> = {
  * @returns {String|StatisticOutput} A String or a StatisticOutput format if `statistics: true`
  * @example
  * ```js
- * import detectLang from 'flourite';
- * const detect = detectLang(code);
+ * import flourite from 'flourite';
+ * const detect = flourite(code);
  * ```
  * @see Supported Languages - https://github.com/teknologi-umum/flourite#detectable-languages
  */
-function detectLang(
+function flourite(
   snippet: string,
   options: Options = { heuristic: true, statistics: false, shiki: false, noUnknown: false },
 ): StatisticOutput & string {
@@ -136,4 +136,4 @@ function detectLang(
 }
 
 export type { Options, StatisticOutput };
-export default detectLang;
+export default flourite;
