@@ -27,6 +27,7 @@ test('hello world', () => {
     Rust: 0,
     SQL: 0,
     Unknown: 1,
+    YAML: 0,
   });
 });
 
@@ -423,6 +424,239 @@ test('ludic numbers', () => {
       l.findTriplets( 250 );
       cout << "\n\n";
       return system( "pause" );
+  }`);
+  assert.equal(code, 'C++');
+});
+
+test('happy numbers', () => {
+  const code = detectLang(`#include <map>
+  #include <set>
+   
+  bool happy(int number) {
+    static std::map<int, bool> cache;
+   
+    std::set<int> cycle;
+    while (number != 1 && !cycle.count(number)) {
+      if (cache.count(number)) {
+        number = cache[number] ? 1 : 0;
+        break;
+      }
+      cycle.insert(number);
+      int newnumber = 0;
+      while (number > 0) {
+        int digit = number % 10;
+        newnumber += digit * digit;
+        number /= 10;
+      }
+      number = newnumber;
+    }
+    bool happiness = number == 1;
+    for (std::set<int>::const_iterator it = cycle.begin();
+         it != cycle.end(); it++)
+      cache[*it] = happiness;
+    return happiness;
+  }
+   
+  #include <iostream>
+   
+  int main() {
+    for (int i = 1; i < 50; i++)
+      if (happy(i))
+        std::cout << i << std::endl;
+    return 0;
+  }`);
+  assert.equal(code, 'C++');
+});
+
+test('gamma function', () => {
+  const code = detectLang(`#include <math.h>
+  #include <numbers>
+  #include <stdio.h>
+  #include <vector>
+   
+  // Calculate the coefficients used by Spouge's approximation (based on the C
+  // implemetation)
+  std::vector<double> CalculateCoefficients(int numCoeff)
+  {
+      std::vector<double> c(numCoeff);
+      double k1_factrl = 1.0;
+      c[0] = sqrt(2.0 * std::numbers::pi);
+      for(size_t k=1; k < numCoeff; k++)
+      {
+          c[k] = exp(numCoeff-k) * pow(numCoeff-k, k-0.5) / k1_factrl;
+          k1_factrl *= -(double)k;
+      }
+      return c;
+  }
+   
+  // The Spouge approximation
+  double Gamma(const std::vector<double>& coeffs, double x)
+  {
+          const size_t numCoeff = coeffs.size();
+          double accm = coeffs[0];
+          for(size_t k=1; k < numCoeff; k++)
+          {
+              accm += coeffs[k] / ( x + k );
+          }
+          accm *= exp(-(x+numCoeff)) * pow(x+numCoeff, x+0.5);
+          return accm/x;
+  }
+   
+  int main()
+  {
+      // estimate the gamma function with 1, 4, and 10 coefficients
+      const auto coeff1 = CalculateCoefficients(1);
+      const auto coeff4 = CalculateCoefficients(4);
+      const auto coeff10 = CalculateCoefficients(10);
+   
+      const auto inputs = std::vector<double>{
+          0.001, 0.01, 0.1, 0.5, 1.0,
+          1.461632145, // minimum of the gamma function
+          2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 50, 100, 
+          150 // causes overflow for this implemetation
+          };
+   
+      printf("%16s%16s%16s%16s%16s\n", "gamma( x ) =", "Spouge 1", "Spouge 4", "Spouge 10", "built-in");
+      for(auto x : inputs) 
+      {
+          printf("gamma(%7.3f) = %16.10g %16.10g %16.10g %16.10g\n", 
+              x,
+              Gamma(coeff1, x),
+              Gamma(coeff4, x), 
+              Gamma(coeff10, x), 
+              std::tgamma(x)); // built-in gamma function
+      }
+  }
+   `);
+  assert.equal(code, 'C++');
+});
+
+test('fivenum', () => {
+  const code = detectLang(`#include <algorithm>
+  #include <iostream>
+  #include <ostream>
+  #include <vector>
+   
+  /////////////////////////////////////////////////////////////////////////////
+  // The following is taken from https://cpplove.blogspot.com/2012/07/printing-tuples.html
+   
+  // Define a type which holds an unsigned integer value 
+  template<std::size_t> struct int_ {};
+   
+  template <class Tuple, size_t Pos>
+  std::ostream& print_tuple(std::ostream& out, const Tuple& t, int_<Pos>) {
+      out << std::get< std::tuple_size<Tuple>::value - Pos >(t) << ", ";
+      return print_tuple(out, t, int_<Pos - 1>());
+  }
+   
+  template <class Tuple>
+  std::ostream& print_tuple(std::ostream& out, const Tuple& t, int_<1>) {
+      return out << std::get<std::tuple_size<Tuple>::value - 1>(t);
+  }
+   
+  template <class... Args>
+  std::ostream& operator<<(std::ostream& out, const std::tuple<Args...>& t) {
+      out << '(';
+      print_tuple(out, t, int_<sizeof...(Args)>());
+      return out << ')';
+  }
+   
+  /////////////////////////////////////////////////////////////////////////////
+   
+  template <class RI>
+  double median(RI beg, RI end) {
+      if (beg == end) throw std::runtime_error("Range cannot be empty");
+      auto len = end - beg;
+      auto m = len / 2;
+      if (len % 2 == 1) {
+          return *(beg + m);
+      }
+   
+      return (beg[m - 1] + beg[m]) / 2.0;
+  }
+   
+  template <class C>
+  auto fivenum(C& c) {
+      std::sort(c.begin(), c.end());
+   
+      auto cbeg = c.cbegin();
+      auto cend = c.cend();
+   
+      auto len = cend - cbeg;
+      auto m = len / 2;
+      auto lower = (len % 2 == 1) ? m : m - 1;
+      double r2 = median(cbeg, cbeg + lower + 1);
+      double r3 = median(cbeg, cend);
+      double r4 = median(cbeg + lower + 1, cend);
+   
+      return std::make_tuple(*cbeg, r2, r3, r4, *(cend - 1));
+  }
+   
+  int main() {
+      using namespace std;
+      vector<vector<double>> cs = {
+          { 15.0, 6.0, 42.0, 41.0, 7.0, 36.0, 49.0, 40.0, 39.0, 47.0, 43.0 },
+          { 36.0, 40.0, 7.0, 39.0, 41.0, 15.0 },
+          {
+              0.14082834,  0.09748790,  1.73131507,  0.87636009, -1.95059594,  0.73438555,
+             -0.03035726,  1.46675970, -0.74621349, -0.72588772,  0.63905160,  0.61501527,
+             -0.98983780, -1.00447874, -0.62759469,  0.66206163,  1.04312009, -0.10305385,
+              0.75775634,  0.32566578
+          }
+      };
+   
+      for (auto & c : cs) {
+          cout << fivenum(c) << endl;
+      }
+   
+      return 0;
+  }`);
+  assert.equal(code, 'C++');
+});
+
+test('y combinator', () => {
+  const code = detectLang(`#include <iostream>
+  #include <functional>
+   
+  template <typename F>
+  struct RecursiveFunc {
+    std::function<F(RecursiveFunc)> o;
+  };
+   
+  template <typename A, typename B>
+  std::function<B(A)> Y (std::function<std::function<B(A)>(std::function<B(A)>)> f) {
+    RecursiveFunc<std::function<B(A)>> r = {
+      std::function<std::function<B(A)>(RecursiveFunc<std::function<B(A)>>)>([f](RecursiveFunc<std::function<B(A)>> w) {
+        return f(std::function<B(A)>([w](A x) {
+          return w.o(w)(x);
+        }));
+      })
+    };
+    return r.o(r);
+  }
+   
+  typedef std::function<int(int)> Func;
+  typedef std::function<Func(Func)> FuncFunc;
+  FuncFunc almost_fac = [](Func f) {
+    return Func([f](int n) {
+      if (n <= 1) return 1;
+      return n * f(n - 1);
+    });
+  };
+   
+  FuncFunc almost_fib = [](Func f) {
+    return Func([f](int n) {
+       if (n <= 2) return 1;
+      return  f(n - 1) + f(n - 2);
+    });
+  };
+   
+  int main() {
+    auto fib = Y(almost_fib);
+    auto fac = Y(almost_fac);
+    std::cout << "fib(10) = " << fib(10) << std::endl;
+    std::cout << "fac(10) = " << fac(10) << std::endl;
+    return 0;
   }`);
   assert.equal(code, 'C++');
 });

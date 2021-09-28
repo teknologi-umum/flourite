@@ -435,4 +435,121 @@ test('ludic numbers', () => {
   assert.equal(code, 'Go');
 });
 
+test('gamma function', () => {
+  const code = detectLang(`package main
+ 
+	import (
+			"fmt"
+			"math"
+	)
+	 
+	func main() {
+			fmt.Println("    x               math.Gamma                 Lanczos7")
+			for _, x := range []float64{-.5, .1, .5, 1, 1.5, 2, 3, 10, 140, 170} {
+					fmt.Printf("%5.1f %24.16g %24.16g\n", x, math.Gamma(x), lanczos7(x))
+			}
+	}
+	 
+	func lanczos7(z float64) float64 {
+			t := z + 6.5
+			x := .99999999999980993 +
+					676.5203681218851/z -
+					1259.1392167224028/(z+1) +
+					771.32342877765313/(z+2) -
+					176.61502916214059/(z+3) +
+					12.507343278686905/(z+4) -
+					.13857109526572012/(z+5) +
+					9.9843695780195716e-6/(z+6) +
+					1.5056327351493116e-7/(z+7)
+			return math.Sqrt2 * math.SqrtPi * math.Pow(t, z-.5) * math.Exp(-t) * x
+	}`);
+  assert.equal(code, 'Go');
+});
+
+test('fivenum', () => {
+  const code = detectLang(`package main
+ 
+	import (
+			"fmt"
+			"math"
+			"sort"
+	)
+	 
+	func fivenum(a []float64) (n5 [5]float64) {
+			sort.Float64s(a)
+			n := float64(len(a))
+			n4 := float64((len(a)+3)/2) / 2
+			d := []float64{1, n4, (n + 1) / 2, n + 1 - n4, n}
+			for e, de := range d {
+					floor := int(de - 1)
+					ceil := int(math.Ceil(de - 1))
+					n5[e] = .5 * (a[floor] + a[ceil])
+			}
+			return
+	}
+	 
+	var (
+			x1 = []float64{36, 40, 7, 39, 41, 15}
+			x2 = []float64{15, 6, 42, 41, 7, 36, 49, 40, 39, 47, 43}
+			x3 = []float64{
+					0.14082834, 0.09748790, 1.73131507, 0.87636009, -1.95059594,
+					0.73438555, -0.03035726, 1.46675970, -0.74621349, -0.72588772,
+					0.63905160, 0.61501527, -0.98983780, -1.00447874, -0.62759469,
+					0.66206163, 1.04312009, -0.10305385, 0.75775634, 0.32566578,
+			}
+	)
+	 
+	func main() {
+			fmt.Println(fivenum(x1))
+			fmt.Println(fivenum(x2))
+			fmt.Println(fivenum(x3))
+	}`);
+  assert.equal(code, 'Go');
+});
+
+test('y combinator', () => {
+  const code = detectLang(`package main
+ 
+	import "fmt"
+	 
+	type Func func(int) int
+	type FuncFunc func(Func) Func
+	type RecursiveFunc func (RecursiveFunc) Func
+	 
+	func main() {
+		fac := Y(almost_fac)
+		fib := Y(almost_fib)
+		fmt.Println("fac(10) = ", fac(10))
+		fmt.Println("fib(10) = ", fib(10))
+	}
+	 
+	func Y(f FuncFunc) Func {
+		g := func(r RecursiveFunc) Func {
+			return f(func(x int) int {
+				return r(r)(x)
+			})
+		}
+		return g(g)
+	}
+	 
+	func almost_fac(f Func) Func {
+		return func(x int) int {
+			if x <= 1 {
+				return 1
+			}
+			return x * f(x-1)
+		}
+	}
+	 
+	func almost_fib(f Func) Func {
+		return func(x int) int {
+			if x <= 2 {
+				return 1
+			}
+			return f(x-1)+f(x-2)
+		}
+	}`);
+  assert.equal(code, 'Go');
+});
+
 test.run();
