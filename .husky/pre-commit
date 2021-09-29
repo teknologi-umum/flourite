@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run lint && npm run format
+npx eslint --ignore-path .gitignore . && npx prettier --check --ignore-path .gitignore .

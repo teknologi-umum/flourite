@@ -23,7 +23,9 @@ benchmark
 
 benchmark
   .on('onTestEnd', (benchmark: Benchmark, test: Test) => {
+    // eslint-disable-next-line no-console
     console.log('Test name: ' + test.name);
+    // eslint-disable-next-line no-console
     console.log('Test stats: ' + JSON.stringify(test.getStats(), null, 2));
   })
   .run();

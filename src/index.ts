@@ -14,6 +14,7 @@ import { Python } from './languages/python';
 import { Ruby } from './languages/ruby';
 import { Rust } from './languages/rust';
 import { SQL } from './languages/sql';
+import { YAML } from './languages/yaml';
 import { nearTop, getPoints } from './points';
 import { convert } from './shiki';
 
@@ -33,6 +34,7 @@ const languages: Record<string, LanguagePattern[]> = {
   Ruby,
   Rust,
   SQL,
+  YAML,
 };
 
 /**

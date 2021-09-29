@@ -183,4 +183,122 @@ test('ludic numbers', () => {
   assert.equal(code, 'Python');
 });
 
+test('gamma function', () => {
+  const code = detectLang(`'''Gamma function'''
+ 
+	from functools import reduce
+	 
+	 
+	# gamma_ :: [Float] -> Float -> Float
+	def gamma_(tbl):
+			'''Gamma function.'''
+			def go(x):
+					y = float(x) - 1.0
+					return 1.0 / reduce(
+							lambda a, x: a * y + x,
+							tbl[-2::-1],
+							tbl[-1]
+					)
+			return lambda x: go(x)
+	 
+	 
+	# TBL :: [Float]
+	TBL = [
+			1.00000000000000000000, 0.57721566490153286061,
+			-0.65587807152025388108, -0.04200263503409523553,
+			0.16653861138229148950, -0.04219773455554433675,
+			-0.00962197152787697356, 0.00721894324666309954,
+			-0.00116516759185906511, -0.00021524167411495097,
+			0.00012805028238811619, -0.00002013485478078824,
+			-0.00000125049348214267, 0.00000113302723198170,
+			-0.00000020563384169776, 0.00000000611609510448,
+			0.00000000500200764447, -0.00000000118127457049,
+			0.00000000010434267117, 0.00000000000778226344,
+			-0.00000000000369680562, 0.00000000000051003703,
+			-0.00000000000002058326, -0.00000000000000534812,
+			0.00000000000000122678, -0.00000000000000011813,
+			0.00000000000000000119, 0.00000000000000000141,
+			-0.00000000000000000023, 0.00000000000000000002
+	]
+	 
+	 
+	# TEST ----------------------------------------------------
+	# main :: IO()
+	def main():
+			'''Gamma function over a range of values.'''
+	 
+			gamma = gamma_(TBL)
+			print(
+					fTable(' i -> gamma(i/3):\n')(repr)(lambda x: "%0.7e" % x)(
+							lambda x: gamma(x / 3.0)
+					)(enumFromTo(1)(10))
+			)
+	 
+	 
+	# GENERIC -------------------------------------------------
+	 
+	# enumFromTo :: (Int, Int) -> [Int]
+	def enumFromTo(m):
+			'''Integer enumeration from m to n.'''
+			return lambda n: list(range(m, 1 + n))
+	 
+	 
+	# FORMATTING -------------------------------------------------
+	 
+	# fTable :: String -> (a -> String) ->
+	#                     (b -> String) -> (a -> b) -> [a] -> String
+	def fTable(s):
+			'''Heading -> x display function -> fx display function ->
+											 f -> xs -> tabular string.
+			'''
+			def go(xShow, fxShow, f, xs):
+					ys = [xShow(x) for x in xs]
+					w = max(map(len, ys))
+					return s + '\n' + '\n'.join(map(
+							lambda x, y: y.rjust(w, ' ') + ' -> ' + fxShow(f(x)),
+							xs, ys
+					))
+			return lambda xShow: lambda fxShow: lambda f: lambda xs: go(
+					xShow, fxShow, f, xs
+			)
+	 
+	 
+	# MAIN ---
+	if __name__ == '__main__':
+			main()`);
+  assert.equal(code, 'Python');
+});
+
+test('fivenum', () => {
+  const code = detectLang(`from __future__ import division
+	import math
+	import sys
+	 
+	def fivenum(array):
+			n = len(array)
+			if n == 0:
+					print("you entered an empty array.")
+					sys.exit()
+			x = sorted(array)
+	 
+			n4 = math.floor((n+3.0)/2.0)/2.0
+			d = [1, n4, (n+1)/2, n+1-n4, n]
+			sum_array = []
+	 
+			for e in range(5):
+					floor = int(math.floor(d[e] - 1))
+					ceil = int(math.ceil(d[e] - 1))
+					sum_array.append(0.5 * (x[floor] + x[ceil]))
+	 
+			return sum_array
+	 
+	x = [0.14082834, 0.09748790, 1.73131507, 0.87636009, -1.95059594, 0.73438555, -0.03035726, 1.46675970,
+	-0.74621349, -0.72588772, 0.63905160, 0.61501527, -0.98983780, -1.00447874, -0.62759469, 0.66206163,
+	1.04312009, -0.10305385, 0.75775634, 0.32566578]
+	 
+	y = fivenum(x)
+	print(y)`);
+  assert.equal(code, 'Python');
+});
+
 test.run();

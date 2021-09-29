@@ -11,5 +11,13 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint"],
-  "rules": {}
+  "rules": {
+    "no-console": "warn",
+    "no-empty-function": "error",
+    "no-implicit-coercion": "error",
+    "no-var": "error",
+    "template-curly-spacing": ["error", "never"],
+    "prefer-spread": "warn",
+    "prefer-const": "error"
+  }
 }
