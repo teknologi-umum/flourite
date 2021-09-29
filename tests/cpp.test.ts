@@ -21,6 +21,7 @@ test('hello world', () => {
     Javascript: 0,
     Julia: 2,
     Lua: 2,
+    Pascal: 0,
     PHP: 0,
     Python: 0,
     Ruby: 0,

@@ -9,6 +9,7 @@ import { Java } from './languages/java';
 import { Javascript } from './languages/javascript';
 import { Julia } from './languages/julia';
 import { Lua } from './languages/lua';
+import { Pascal } from './languages/pascal';
 import { PHP } from './languages/php';
 import { Python } from './languages/python';
 import { Ruby } from './languages/ruby';
@@ -29,6 +30,7 @@ const languages: Record<string, LanguagePattern[]> = {
   Javascript,
   Julia,
   Lua,
+  Pascal,
   PHP,
   Python,
   Ruby,
