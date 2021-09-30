@@ -668,6 +668,7 @@ test('large input', () => {
     Javascript: -452,
     Julia: 24,
     Lua: -1820,
+    Pascal: 0,
     PHP: -318,
     Python: -140,
     Ruby: 0,
