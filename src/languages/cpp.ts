@@ -44,4 +44,11 @@ export const CPP: LanguagePattern[] = [
   { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: 'not' },
   { pattern: /(using\s)?System(\..*)?(;)?/, type: 'not' },
   { pattern: /(public|private|protected|internal)\s/, type: 'not' },
+  // Avoiding Kotlin confusion
+  { pattern: /fun main\((.*)?\) {/, type: 'not' },
+  {
+    pattern: /(inline|private|public|protected|override|operator(\s+))?fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+)({|=)/,
+    type: 'not',
+  },
+  { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: 'not' },
 ];

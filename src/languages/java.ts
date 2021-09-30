@@ -48,4 +48,8 @@ export const Java: LanguagePattern[] = [
   { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: 'not' },
   { pattern: /(#region(\s.*)?|#endregion\n)/, type: 'not' },
   { pattern: /using\sSystem(\..*)?(;)?/, type: 'not' },
+  // Avoiding Kotlin confusion
+  { pattern: /fun main\((.*)?\) {/, type: 'not' },
+  { pattern: /(inline(\s+))?fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+)({|=)/, type: 'not' },
+  { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: 'not' },
 ];

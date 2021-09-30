@@ -8,6 +8,7 @@ import { HTML } from './languages/html';
 import { Java } from './languages/java';
 import { Javascript } from './languages/javascript';
 import { Julia } from './languages/julia';
+import { Kotlin } from './languages/kotlin';
 import { Lua } from './languages/lua';
 import { Pascal } from './languages/pascal';
 import { PHP } from './languages/php';
@@ -29,6 +30,7 @@ const languages: Record<string, LanguagePattern[]> = {
   Java,
   Javascript,
   Julia,
+  Kotlin,
   Lua,
   Pascal,
   PHP,

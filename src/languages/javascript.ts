@@ -37,4 +37,8 @@ export const Javascript: LanguagePattern[] = [
   { pattern: /(begin|end)\n/, type: 'not' },
   // Avoiding Lua confusion
   { pattern: /local\s(function|(\w+)\s=)/, type: 'not' },
+  // Avoiding Kotlin confusion
+  { pattern: /fun main\((.*)?\) {/, type: 'not' },
+  { pattern: /(inline(\s+))?fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+)({|=)/, type: 'not' },
+  { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: 'not' },
 ];

@@ -31,4 +31,7 @@ export const Julia: LanguagePattern[] = [
   { pattern: /class\s/, type: 'not' },
   // Avoiding Lua confusion
   { pattern: /local\s(function|\w+)/, type: 'not' },
+  // Avoiding Kotlin confusion
+  { pattern: /fun main\((.*)?\) {/, type: 'not' },
+  { pattern: /fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+){/, type: 'not' },
 ];

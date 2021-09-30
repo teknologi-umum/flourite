@@ -20,6 +20,7 @@ test('hello world', () => {
     Java: -40,
     Javascript: -40,
     Julia: 5,
+    Kotlin: 0,
     Lua: -20,
     Pascal: 0,
     PHP: 0,

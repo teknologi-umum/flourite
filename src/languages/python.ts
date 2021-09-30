@@ -28,4 +28,8 @@ export const Python: LanguagePattern[] = [
   // avoiding lua
   { pattern: /elseif/, type: 'not' },
   { pattern: /local\s(function|\w+)?\s=\s/, type: 'not' },
+  // Avoiding Kotlin confusion
+  { pattern: /fun main\((.*)?\) {/, type: 'not' },
+  { pattern: /(inline(\s+))?fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+)({|=)/, type: 'not' },
+  { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: 'not' },
 ];
