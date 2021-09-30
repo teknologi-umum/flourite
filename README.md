@@ -9,17 +9,17 @@ Detects a programming language from a given string.
 - Built-in support for CommonJS and ESM format
 - Built-in Typescript typings
 - No external dependencies
-- 100 test cases and growing!
+- 150 test cases and growing!
 
 ## Detectable languages
 
-| Languages |            |        |
-| --------- | ---------- | ------ |
-| C         | HTML       | PHP    |
-| C++       | Java       | Python |
-| C#        | Javascript | Ruby   |
-| CSS       | Julia      | Rust   |
-| Go        | Lua        | SQL    |
+| Languages |            |        |      |
+| --------- | ---------- | ------ | ---- |
+| C         | HTML       | Lua    | Rust |
+| C++       | Java       | Pascal | SQL  |
+| C#        | Javascript | PHP    | YAML |
+| CSS       | Julia      | Python |      |
+| Go        | Kotlin     | Ruby   |      |
 
 ## Install
 
@@ -30,8 +30,8 @@ $ npm install flourite
 or via a CDN (unpkg or jsdelivr)
 
 ```html
-<script src="https://unpkg.com/flourite@1.1.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/flourite@1.1.0/dist/index.iife.js"></script>
+<script src="https://unpkg.com/flourite@1.1.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/flourite@1.1.1/dist/index.iife.js"></script>
 ```
 
 ## Usage
@@ -60,13 +60,16 @@ const code = flourite('printf("Hello World")', { statistics: true });
 //   Java: 0,
 //   Javascript: 0,
 //   Julia: 0,
+//   Kotlin: 0,
 //   Lua: -20,
+//   Pascal: 0,
 //   PHP: 0,
 //   Python: 0,
 //   Ruby: 0,
 //   Rust: 0,
 //   SQL: 0,
-//   Unknown: 1
+//   Unknown: 1,
+//   YAML: 0
 // }
 ```
 

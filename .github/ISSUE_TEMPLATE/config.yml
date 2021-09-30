@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Ask a question
+    url: https://github.com/teknologi-umum/flourite/discussions
+    about: Please use the following link to ask a question.
+  - name: Saweria
+    url: https://saweria.co/teknologiumum
+    about: Love Teknologi Umum? Consider supporting us via Saweria.
