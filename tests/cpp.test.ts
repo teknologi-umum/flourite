@@ -12,6 +12,7 @@ test('hello world', () => {
   assert.equal(code.detected, 'cpp');
   assert.equal(code.statistics, {
     C: 0,
+    Clojure: 0,
     'C++': 5,
     CSS: 0,
     'C#': 0,
