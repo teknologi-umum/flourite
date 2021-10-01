@@ -1,5 +1,6 @@
 import type { LanguagePattern, LanguagePoints, Options, StatisticOutput } from './types';
 import { C } from './languages/c';
+import { Clojure } from './languages/clojure';
 import { CPP } from './languages/cpp';
 import { CS } from './languages/cs';
 import { CSS } from './languages/css';
@@ -22,6 +23,7 @@ import { convert } from './shiki';
 
 const languages: Record<string, LanguagePattern[]> = {
   C,
+  Clojure,
   'C++': CPP,
   'C#': CS,
   CSS,

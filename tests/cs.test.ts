@@ -12,6 +12,7 @@ test('hello world', () => {
   assert.equal(code.detected, 'csharp');
   assert.equal(code.statistics, {
     C: -39,
+    Clojure: 0,
     'C++': -40,
     'C#': 10,
     CSS: 0,

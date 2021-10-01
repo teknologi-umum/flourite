@@ -659,6 +659,7 @@ test('large input', () => {
   assert.equal(code.detected, 'C++');
   assert.equal(code.statistics, {
     C: 111,
+    Clojure: 0,
     'C++': 160,
     'C#': 19,
     CSS: 0,
