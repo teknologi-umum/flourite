@@ -126,7 +126,7 @@ Have fun!
 - Run `npm run test:tdd` to initiate a test driven development environment.
 - Run `npm run lint` and `npm run format` before commit a change.
 
-For more details, see [CONTRIBUTING](./CONTRIBUTING.md)
+For more details and explanation on how things work, see [CONTRIBUTING](./CONTRIBUTING.md)
 
 ## License
 
