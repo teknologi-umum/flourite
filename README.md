@@ -15,11 +15,11 @@ Detects a programming language from a given string.
 
 | Languages |            |        |      |
 | --------- | ---------- | ------ | ---- |
-| C         | HTML       | Lua    | Rust |
-| C++       | Java       | Pascal | SQL  |
-| C#        | Javascript | PHP    | YAML |
+| C         | Go         | Kotlin | Ruby |
+| C++       | HTML       | Lua    | Rust |
+| C#        | Java       | Pascal | SQL  |
+| Clojure   | Javascript | PHP    | YAML |
 | CSS       | Julia      | Python |      |
-| Go        | Kotlin     | Ruby   |      |
 
 ## Install
 
@@ -52,6 +52,7 @@ const code = flourite('printf("Hello World")', { statistics: true });
 // code.detected = 'C'
 // code.statistics = {
 //   C: 5,
+//   Clojure: 0,
 //   'C++': 0,
 //   'C#': 0,
 //   CSS: 0,
