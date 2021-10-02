@@ -30,8 +30,8 @@ $ npm install flourite
 or via a CDN (unpkg or jsdelivr)
 
 ```html
-<script src="https://unpkg.com/flourite@1.1.1"></script>
-<script src="https://cdn.jsdelivr.net/npm/flourite@1.1.1/dist/index.iife.js"></script>
+<script src="https://unpkg.com/flourite@1.1.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/flourite@1.1.2/dist/index.iife.js"></script>
 ```
 
 ## Usage
