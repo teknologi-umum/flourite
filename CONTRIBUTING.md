@@ -6,6 +6,36 @@ Contributing means anything from reporting bugs, ideas, suggestion, code fix, ev
 
 Bear in mind to keep your contributions under the [Code of Conduct](./github/CODE_OF_CONDUCT.md) for the community.
 
+## Brief explanation about the project
+
+### A background story
+
+This project was created because the need of a programming language guesser for [Graphene](https://github.com/teknologi-umum/graphene), our own build-from-scratch [Carbon](https://carbon.now.sh) clone without the need of headless browser that does accept a POST request for our [Telegram Bot](https://github.com/teknologi-umum/bot).
+
+We only found [Guesslang](https://github.com/yoeo/guesslang) to be a solution for that. But it's on Python and we can't afford to do a network call (even internally) to Python because of the server's resource limitations.
+
+Not so long after, we found [ts95/lang-detector](https://github.com/ts95/lang-detector) which guess a programming language by scanning each lines and testing it with regular expressions. But the problem is, it's written on Javascript with only CommonJS support, and it only supports a few languages.
+
+Because what we need is somewhat bigger than to simply make a Pull Request to the repository, we think that it would be better for us to just rewrite it to Typescript and add more language support.
+
+Then here we are. Around 75 commits later, this is our own version for the language detector.
+
+### How it works
+
+1. Scans the input string line by line. A line is always delimited by `\n`.
+2. For each languages defined on the `src/languages` directory, it will run a regular expression line by line, which returns a point for that language.
+3. If `options.statistic` is set to `true`, it will return an object of the language detected and the statistic for which it was run.
+4. If `options.statistic` is set to `false`, it will only return the language detected as a string.
+
+### A few considerations
+
+- We know and fully aware of by using regular expressions, if we are trying to add more and more languages, the library would be slower. There is one solution to make regular expressions faster, that is by using [Oniguruma](https://github.com/kkos/oniguruma). But, the drawback is that we have to ditch browser support because the Node.js binding requires C++ bindings in which browsers are not supported.
+- To compensate the point above, the regular expressions implementation for each language should be made as minimum and as effective as possible. There are no rules on the maximum regular expression for each language, but I would say, if you could do less and still get the job done, it would be great.
+- About the browser support, I just think that it would be nice. Because we don't rely on any Node.js standard library, why don't we ship it to browsers? You can try it yourself [here](https://flourite.pages.dev/).
+- I am considering to remove the multiple main function output, and just return the object, so the `options.statistics` would always be true regardless. It should not have a problem for users because at this point of time (start of October 2021), I don't think many many are using Flourite yet.
+
+Until this point, you should be able to understand how the library works behind the scene. If you have any questions of if you're uncertain about some point, please open up an [issue](https://github.com/teknologi-umum/flourite/issues).
+
 ## Bug report, ideas, and suggestion
 
 The [issues](https://github.com/teknologi-umum/flourite/issues) page is a great way to communicate to us. Other than that, we have a [Telegram group](https://t.me/teknologi_umum) that you can discuss your ideas into. If you're not an Indonesian speaker, it's 100% fine to talk in English there.
@@ -48,8 +78,10 @@ You are encouraged to use [Conventional Commit](https://www.conventionalcommits.
 
 All changes should be covered by tests. Please put a test case in the appropriate file on `tests` directory.
 
+Test cases could be found wherever you like. Most of our test cases are from [Rosetta Code](https://rosettacode.org/wiki/Category:Programming_Languages). You could also browse Github repositories and add some code in which the repository are licensed under MIT as the test cases.
+
 ```
-npm run test
+$ npm run test
 ```
 
 ### Directory structure
