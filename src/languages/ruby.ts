@@ -20,7 +20,7 @@ export const Ruby: LanguagePattern[] = [
   // elsif keyword
   { pattern: /elsif/, type: 'keyword.control' },
   // do
-  { pattern: /(do\s*\|(\w+(,\s*\w+)?)+\|)/, type: 'keyword.control' },
+  { pattern: /do\s*[|]\w+(,\s*\w+)*[|]/, type: 'keyword.control' },
   // for loop
   { pattern: /for (\w+|\(?\w+,\s*\w+\)?) in (.+)/, type: 'keyword.control' },
   // nil keyword
