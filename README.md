@@ -42,6 +42,10 @@ import flourite from 'flourite';
 const code = flourite('console.log("Hello World");'); // => Javascript
 ```
 
+### Video Usage
+
+![flourite](https://user-images.githubusercontent.com/71202864/135783154-eb077ae4-51b9-47c1-bb52-4c66e643179d.gif)
+
 You could supply options to make see numbers of points for a certain language:
 
 ```js
