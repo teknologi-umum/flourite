@@ -16,6 +16,7 @@ test('hello world', () => {
     'C++': -40,
     'C#': 10,
     CSS: 0,
+    Dockerfile: 0,
     Go: -39,
     HTML: 0,
     Java: -40,

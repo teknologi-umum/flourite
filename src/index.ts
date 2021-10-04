@@ -4,6 +4,7 @@ import { Clojure } from './languages/clojure';
 import { CPP } from './languages/cpp';
 import { CS } from './languages/cs';
 import { CSS } from './languages/css';
+import { Dockerfile } from './languages/dockerfile';
 import { Go } from './languages/go';
 import { HTML } from './languages/html';
 import { Java } from './languages/java';
@@ -27,6 +28,7 @@ const languages: Record<string, LanguagePattern[]> = {
   'C++': CPP,
   'C#': CS,
   CSS,
+  Dockerfile,
   Go,
   HTML,
   Java,
