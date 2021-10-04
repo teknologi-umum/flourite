@@ -119,6 +119,8 @@ If you're new to open source, we really recommend reading a few articles about c
 
 Then you can start by reading our [contribution](https://github.com/teknologi-umum/flourite#i-want-to-contribute-what-can-i-do) part and guidelines.
 
+Two things that you can do for sure: Create a new language support and improve the regular expression performance on current supported languages.
+
 Have fun!
 
 ## Contributing
