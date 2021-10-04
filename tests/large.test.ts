@@ -663,6 +663,7 @@ test('large input', () => {
     'C++': 160,
     'C#': 19,
     CSS: 0,
+    Dockerfile: 0,
     Go: 0,
     HTML: 0,
     Java: -832,
@@ -675,7 +676,7 @@ test('large input', () => {
     Python: -140,
     Ruby: 0,
     Rust: 4,
-    SQL: 0,
+    SQL: 24,
     Unknown: 1,
     YAML: 4,
   });
