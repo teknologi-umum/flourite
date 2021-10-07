@@ -16,7 +16,7 @@ EXPOSE 8080
 
 CMD ["npm", "start"]`);
 
-  assert.equal(code, 'Dockerfile');
+  assert.equal(code.language, 'Dockerfile');
 });
 
 test('botnet', () => {
@@ -45,7 +45,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "BotNet.dll"]`);
 
-  assert.equal(code, 'Dockerfile');
+  assert.equal(code.language, 'Dockerfile');
 });
 
 test('casperjs dockerfile', () => {
@@ -91,7 +91,7 @@ ENTRYPOINT ["casperjs"]
 CMD ["--help"]
 `);
 
-  assert.equal(code, 'Dockerfile');
+  assert.equal(code.language, 'Dockerfile');
 });
 
 test('kafka dockerfile', () => {
@@ -141,7 +141,7 @@ VOLUME ["/kafka"]
 # Use "exec" form so that it runs as PID 1 (useful for graceful shutdown)
 CMD ["start-kafka.sh"]`);
 
-  assert.equal(code, 'Dockerfile');
+  assert.equal(code.language, 'Dockerfile');
 });
 
 test.run();

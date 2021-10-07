@@ -6,7 +6,7 @@ test('hello world', () => {
   const code = detectLang(`fun main(args: Array<String>) {
     println("Goodbye, World!")
 }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('fizz buzz', () => {
@@ -38,7 +38,7 @@ test('fizz buzz', () => {
             println(i)
     }
 }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('guess the number', () => {
@@ -50,7 +50,7 @@ test('guess the number', () => {
     do { print(" Your guess : ") } while (n != readLine())
     println("\\nWell guessed!")
   }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('date manipulation', () => {
@@ -71,7 +71,7 @@ test('date manipulation', () => {
       cal.timeZone = TimeZone.getTimeZone("MST")
       println(fmt.format(cal))
   }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('humble numbers', () => {
@@ -115,7 +115,7 @@ fun main() {
         }
     }
 }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('attractive number', () => {
@@ -171,7 +171,7 @@ test('attractive number', () => {
       }
       println()
   }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('bubble sort', () => {
@@ -191,7 +191,7 @@ test('bubble sort', () => {
           }
       } while (changed)
   }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('heap sort', () => {
@@ -241,7 +241,7 @@ fun main(args: Array<String>) {
         println(a.joinToString(", "))
     }
 }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('merge sort', () => {
@@ -295,7 +295,7 @@ fun main(args: Array<String>) {
     println("Unsorted: $numbers")
     println("Sorted: \${mergeSort(numbers)}")
 }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('palindrome', () => {
@@ -328,7 +328,7 @@ test('palindrome', () => {
           println("'$candidate' is \${if (isInexactPalindrome(candidate)) "an" else "not an"} inexact palindrome")
       }
   }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('floyd warshall', () => {
@@ -388,7 +388,7 @@ fun main(args: Array<String>) {
     val nVertices = 4
     FloydWarshall.doCalcs(weights, nVertices)
 }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('most frequent k chair distance', () => {
@@ -444,7 +444,7 @@ fun main(args: Array<String>) {
   s2 = s1.reversed()
   mostFreqKSDF(s1, s2, 2, 100)
 }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test('bankers algorithm', () => {
@@ -515,7 +515,7 @@ test('bankers algorithm', () => {
         println("\\nAvailable Vector: \${avl.joinToString(" ")}")
     }
 }`);
-  assert.equal(code, 'Kotlin');
+  assert.equal(code.language, 'Kotlin');
 });
 
 test.run();

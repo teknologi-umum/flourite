@@ -9,17 +9,17 @@ Detects a programming language from a given string.
 - Built-in support for CommonJS and ESM format
 - Built-in Typescript typings
 - No external dependencies
-- 150 test cases and growing!
+- 200 test cases and growing!
 
 ## Detectable languages
 
-| Languages |            |        |      |
-| --------- | ---------- | ------ | ---- |
-| C         | Go         | Kotlin | Ruby |
-| C++       | HTML       | Lua    | Rust |
-| C#        | Java       | Pascal | SQL  |
-| Clojure   | Javascript | PHP    | YAML |
-| CSS       | Julia      | Python |      |
+| Languages |            |        |        |
+| --------- | ---------- | ------ | ------ |
+| C         | Dockerfile | Julia  | Python |
+| C++       | Go         | Kotlin | Ruby   |
+| C#        | HTML       | Lua    | Rust   |
+| Clojure   | Java       | Pascal | SQL    |
+| CSS       | Javascript | PHP    | Yaml   |
 
 ## Install
 
@@ -39,45 +39,44 @@ or via a CDN (unpkg or jsdelivr)
 ```js
 import flourite from 'flourite';
 
-const code = flourite('console.log("Hello World");'); // => Javascript
-```
+const code = flourite('printf("Hello World");');
 
-You could supply options to make see numbers of points for a certain language:
-
-```js
-import flourite from 'flourite';
-
-const code = flourite('printf("Hello World")', { statistics: true });
-
-// code.detected = 'C'
-// code.statistics = {
-//   C: 5,
-//   Clojure: 0,
-//   'C++': 0,
-//   'C#': 0,
-//   CSS: 0,
-//   Go: 0,
-//   HTML: 0,
-//   Java: 0,
-//   Javascript: 0,
-//   Julia: 0,
-//   Kotlin: 0,
-//   Lua: -20,
-//   Pascal: 0,
-//   PHP: 0,
-//   Python: 0,
-//   Ruby: 0,
-//   Rust: 0,
-//   SQL: 0,
-//   Unknown: 1,
-//   YAML: 0
+// {
+//   language: 'C',
+//   statistics: {
+//     C: 5,
+//     Clojure: 0,
+//     'C++': 0,
+//     'C#': 0,
+//     CSS: 0,
+//     Dockerfile: 0,
+//     Go: 0,
+//     HTML: 0,
+//     Java: 0,
+//     Javascript: 0,
+//     Julia: 0,
+//     Kotlin: 0,
+//     Lua: -20,
+//     Pascal: 0,
+//     PHP: 0,
+//     Python: 0,
+//     Ruby: 0,
+//     Rust: 0,
+//     SQL: 0,
+//     YAML: 0,
+//     Unknown: 1
+//   },
+//   linesOfCode: 1
 // }
 ```
 
 Or if you want to integrate it with [Shiki](https://github.com/shikijs/shiki), you could pass:
 
 ```js
-const code = flourite('Console.WriteLine("Hello world!");', { shiki: true }); // => csharp
+flourite('Console.WriteLine("Hello world!");', { shiki: true }).language;
+// => csharp
+flourite('fn partition<T,F>(v: &mut [T], f: &F) -> usize ', { shiki: true }).language;
+// => rust
 ```
 
 If you want to handle `Unknown` value, you could pass:
@@ -90,24 +89,22 @@ const code = flourite("SELECT 'Hello world!' text FROM dual;", { noUnknown: true
 
 ```typescript
 import flourite from 'flourite';
-import type { Options, StatisticOutput } from 'flourite';
+import type { Options } from 'flourite';
 
 const flouriteOptions: Options = {
   heuristic: true,
-  statistics: true,
 };
 
-const code = flourite('print!({:?}, &v);', flouriteOptions) as StatisticOutput;
+const code = flourite('print!({:?}, &v);', flouriteOptions);
 ```
 
 ### Available Options
 
-| Key        | Type      | Default | Description                                                                                      |
-| ---------- | --------- | ------- | ------------------------------------------------------------------------------------------------ |
-| heuristic  | `boolean` | `true`  | Checks for codes on the top of the given input. Only checks when the lines of code is above 500. |
-| statistics | `boolean` | `false` | If `true`, will return the statistics of all the guessed language.                               |
-| shiki      | `boolean` | `false` | Straightforward compatibility with Shiki's language specification type                           |
-| noUnknown  | `boolean` | `false` | If `true`, will not output `Unknown` on detected and statistics result                           |
+| Key       | Type      | Default | Description                                                                                      |
+| --------- | --------- | ------- | ------------------------------------------------------------------------------------------------ | --- |
+| heuristic | `boolean` | `true`  | Checks for codes on the top of the given input. Only checks when the lines of code is above 500. |     |
+| shiki     | `boolean` | `false` | Straightforward compatibility with Shiki's language specification type                           |
+| noUnknown | `boolean` | `false` | If `true`, will not output `Unknown` on detected and statistics result                           |
 
 ## I'm here for Hacktoberfest, what can I do?
 

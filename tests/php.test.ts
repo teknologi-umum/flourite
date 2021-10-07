@@ -4,7 +4,7 @@ import detectLang from '../src/index';
 
 test('hello world', () => {
   const code = detectLang('echo "Hello world";');
-  assert.equal(code, 'PHP');
+  assert.equal(code.language, 'PHP');
 });
 
 test('fizz buzz', () => {
@@ -25,7 +25,7 @@ test('fizz buzz', () => {
   
     echo "\n";
   }`);
-  assert.equal(code, 'PHP');
+  assert.equal(code.language, 'PHP');
 });
 
 test('sql based authentication', () => {
@@ -99,7 +99,7 @@ test('sql based authentication', () => {
     // Return the record ID
     return $row['userid'];
   }`);
-  assert.equal(code, 'PHP');
+  assert.equal(code.language, 'PHP');
 });
 
 test('quick sort', () => {
@@ -123,7 +123,7 @@ test('quick sort', () => {
   $arr = array(1, 3, 5, 7, 9, 8, 6, 4, 2);
   $arr = quicksort($arr);
   echo implode(',',$arr);`);
-  assert.equal(code, 'PHP');
+  assert.equal(code.language, 'PHP');
 });
 
 test('bubble sort', () => {
@@ -140,7 +140,7 @@ test('bubble sort', () => {
     }
     return $array;
   }`);
-  assert.equal(code, 'PHP');
+  assert.equal(code.language, 'PHP');
 });
 
 test('merge sort', () => {
@@ -179,7 +179,7 @@ test('merge sort', () => {
   $arr = array( 1, 5, 2, 7, 3, 9, 4, 6, 8);
   $arr = mergesort($arr);
   echo implode(',',$arr);`);
-  assert.equal(code, 'PHP');
+  assert.equal(code.language, 'PHP');
 });
 
 test('bogo sort', () => {
@@ -195,7 +195,7 @@ test('bogo sort', () => {
               return FALSE;
       return TRUE;
   }`);
-  assert.equal(code, 'PHP');
+  assert.equal(code.language, 'PHP');
 });
 
 test('floyd warshall algorithm', () => {
@@ -222,7 +222,7 @@ test('floyd warshall algorithm', () => {
    
   print_r($graph);
   ?>`);
-  assert.equal(code, 'PHP');
+  assert.equal(code.language, 'PHP');
 });
 
 test.run();
