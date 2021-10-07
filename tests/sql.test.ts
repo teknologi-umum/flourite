@@ -4,7 +4,7 @@ import detectLang from '../src/index';
 
 test('hello world', () => {
   const code = detectLang(`SELECT 'Hello world!' text FROM dual;`);
-  assert.equal(code, 'SQL');
+  assert.equal(code.language, 'SQL');
 });
 
 test('fizz buzz', () => {
@@ -32,7 +32,7 @@ test('fizz buzz', () => {
   -- Tidy up
   DROP TABLE fizzbuzz;
   DROP TABLE numbers;`);
-  assert.equal(code, 'SQL');
+  assert.equal(code.language, 'SQL');
 });
 
 test('date manipulation', () => {
@@ -68,7 +68,7 @@ test('date manipulation', () => {
   INTERVAL '12' HOUR)
   at TIME zone 'US/Arizona' plus_12_nodst
   FROM dual;`);
-  assert.equal(code, 'SQL');
+  assert.equal(code.language, 'SQL');
 });
 
 test('merge and aggregate', () => {
@@ -131,7 +131,7 @@ test('merge and aggregate', () => {
     p.LASTNAME
   ORDER BY
     p.PATIENT_ID;`);
-  assert.equal(code, 'SQL');
+  assert.equal(code.language, 'SQL');
 });
 
 test('fibonacci sequence', () => {
@@ -139,7 +139,7 @@ test('fibonacci sequence', () => {
   ) OVER ( ORDER BY level ) ) / SQRT( 5 ) ) fibo
 FROM dual
 CONNECT BY level <= 10;`);
-  assert.equal(code, 'SQL');
+  assert.equal(code.language, 'SQL');
 });
 
 test('integer comparison', () => {
@@ -154,7 +154,7 @@ test('integer comparison', () => {
   SELECT to_char(a)||' is greater than '||to_char(b) greater_than
   FROM test
   WHERE a > b;`);
-  assert.equal(code, 'SQL');
+  assert.equal(code.language, 'SQL');
 });
 
 test.run();

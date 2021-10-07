@@ -4,7 +4,7 @@ import detectLang from '../src/index';
 
 test('hello world', () => {
   const code = detectLang('<h1>Hello world</h1>');
-  assert.equal(code, 'HTML');
+  assert.equal(code.language, 'HTML');
 });
 
 test('page', () => {
@@ -19,7 +19,7 @@ test('page', () => {
     </body>
   </html>
   `);
-  assert.equal(code, 'HTML');
+  assert.equal(code.language, 'HTML');
 });
 
 test('animation - html+js', () => {
@@ -47,7 +47,7 @@ test('animation - html+js', () => {
   </head> <body onload="animate('target')">
     <pre id="target">Hello World! </pre>
   </body> </html>`);
-  assert.equal(code, 'HTML');
+  assert.equal(code.language, 'HTML');
 });
 
 test('quine - html+css', () => {
@@ -80,12 +80,12 @@ test('quine - html+css', () => {
   </head>
   <body></body>
   </html>`);
-  assert.equal(code, 'HTML');
+  assert.equal(code.language, 'HTML');
 });
 
 test('comments', () => {
   const code = detectLang(`<!-- a comment -->`);
-  assert.equal(code, 'HTML');
+  assert.equal(code.language, 'HTML');
 });
 
 test.run();

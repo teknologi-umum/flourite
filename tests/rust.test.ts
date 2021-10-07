@@ -6,7 +6,7 @@ test('hello world', () => {
   const code = detectLang(`fn main() {
     print!("Hello world!");
  }`);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test('fizz buzz', () => {
@@ -20,7 +20,7 @@ test('fizz buzz', () => {
         }
     }
 }`);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test('quick sort', () => {
@@ -77,7 +77,7 @@ test('quick sort', () => {
       v.swap(store_index, len - 1);
       store_index
   }`);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test('http', () => {
@@ -96,7 +96,7 @@ test('http', () => {
       println!("{}", body);
   }
    `);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test('fibonacci sequence', () => {
@@ -109,7 +109,7 @@ test('fibonacci sequence', () => {
     }
     fib_tail_iter(nth, 0, 1)
   }`);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test('palindrome detection', () => {
@@ -138,7 +138,7 @@ test('palindrome detection', () => {
           "The quick brown fox"
       );
   }`);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test('file input', () => {
@@ -170,7 +170,7 @@ test('file input', () => {
       writeln!(&mut io::stderr(), "ERROR: {}", msg).expect("Could not write to stdout");
       process::exit(code);
   }`);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test('bubble sort', () => {
@@ -207,7 +207,7 @@ test('bubble sort', () => {
       bubble_sort(&mut strings);
       println!("After: {:?}", strings);
   }`);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test('heap sort', () => {
@@ -254,7 +254,7 @@ test('heap sort', () => {
           }
       }
   }`);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test('ludic number', () => {
@@ -356,7 +356,7 @@ test('ludic number', () => {
       }
   }
    `);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test('floyd warshall algorithm', () => {
@@ -573,7 +573,7 @@ test('floyd warshall algorithm', () => {
       // Fixup the vertex name (as we use zero-based indices)
       print_results(&weights, paths.as_ref(), |index| index + 1);
   }`);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test('fivenum', () => {
@@ -649,7 +649,7 @@ test('fivenum', () => {
             println!("  Maximum: {}", result.maximum);
         }
     }`);
-  assert.equal(code, 'Rust');
+  assert.equal(code.language, 'Rust');
 });
 
 test.run();
