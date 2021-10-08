@@ -4,7 +4,7 @@ import detectLang from '../src/index';
 
 test('hello world', () => {
   const code = detectLang('print "Hello world!"');
-  assert.equal(code, 'Python');
+  assert.equal(code.language, 'Python');
 });
 
 test('fizz buzz', () => {
@@ -22,12 +22,12 @@ test('fizz buzz', () => {
 		return str(n)
  
 print "\n".join(fizzbuzz(n) for n in xrange(0, 100))`);
-  assert.equal(code, 'Python');
+  assert.equal(code.language, 'Python');
 });
 
 test('variable declaration', () => {
   const code = detectLang('i = 1');
-  assert.equal(code, 'Python');
+  assert.equal(code.language, 'Python');
 });
 
 test('quick sort', () => {
@@ -52,7 +52,7 @@ test('quick sort', () => {
 
 a = [4, 65, 2, -31, 0, 99, 83, 782, 1]
 a = quickSort(a)`);
-  assert.equal(code, 'Python');
+  assert.equal(code.language, 'Python');
 });
 
 test('bubble sort', () => {
@@ -82,7 +82,7 @@ if __name__ == "__main__":
  assert testcase != testset  # we've shuffled it
  bubble_sort(testcase)
  assert testcase == testset  # we've unshuffled it back into a copy`);
-  assert.equal(code, 'Python');
+  assert.equal(code.language, 'Python');
 });
 
 test('heap sort', () => {
@@ -110,7 +110,7 @@ def siftdown(lst, start, end):
       root = child
     else:
       break`);
-  assert.equal(code, 'Python');
+  assert.equal(code.language, 'Python');
 });
 
 test('http server', () => {
@@ -121,7 +121,7 @@ test('http server', () => {
 	# Alternatively, you can use connect(), followed by the putrequest, putheader and endheaders functions.
 	result = conn.getresponse()
 	r1 = result.read() # This retrieves the entire contents.  `);
-  assert.equal(code, 'Python');
+  assert.equal(code.language, 'Python');
 });
 
 test('floyd warshall algorithm', () => {
@@ -154,7 +154,7 @@ test('floyd warshall algorithm', () => {
 		
 		if __name__ == '__main__':
 				floyd_warshall(4, [[1, 3, -2], [2, 1, 4], [2, 3, 3], [3, 4, 2], [4, 2, -1]])`);
-  assert.equal(code, 'Python');
+  assert.equal(code.language, 'Python');
 });
 
 test('ludic numbers', () => {
@@ -180,7 +180,7 @@ test('ludic numbers', () => {
 						if x+6 < n and x+2 in ludics and x+6 in ludics]
 	print('\nThere are %i triplets less than %i:\n  %r'
 			% (len(triplets), n, triplets))`);
-  assert.equal(code, 'Python');
+  assert.equal(code.language, 'Python');
 });
 
 test('gamma function', () => {
@@ -266,7 +266,7 @@ test('gamma function', () => {
 	# MAIN ---
 	if __name__ == '__main__':
 			main()`);
-  assert.equal(code, 'Python');
+  assert.equal(code.language, 'Python');
 });
 
 test('fivenum', () => {
@@ -298,7 +298,7 @@ test('fivenum', () => {
 	 
 	y = fivenum(x)
 	print(y)`);
-  assert.equal(code, 'Python');
+  assert.equal(code.language, 'Python');
 });
 
 test.run();

@@ -4,7 +4,7 @@ import detectLang from '../src/index';
 
 test('hello world', () => {
   const code = detectLang('.hello-world {\n\tfont-size: 100px;\n}');
-  assert.equal(code, 'CSS');
+  assert.equal(code.language, 'CSS');
 });
 
 test('long', () => {
@@ -24,7 +24,7 @@ test('long', () => {
  abbr[title] {
    border-bottom: 1px dotted;
  }`);
-  assert.equal(code, 'CSS');
+  assert.equal(code.language, 'CSS');
 });
 
 test.run();

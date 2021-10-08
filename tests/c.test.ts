@@ -4,7 +4,7 @@ import detectLang from '../src/index';
 
 test('hello world', () => {
   const code = detectLang('printf("Hello world!\\n");', { shiki: true });
-  assert.equal(code, 'c');
+  assert.equal(code.language, 'c');
 });
 
 test('fizz buzz', () => {
@@ -30,12 +30,12 @@ test('fizz buzz', () => {
   
     return 0;
   }`);
-  assert.equal(code, 'C');
+  assert.equal(code.language, 'C');
 });
 
 test('variable declaration', () => {
   const code = detectLang('int *ptr;');
-  assert.equal(code, 'C');
+  assert.equal(code.language, 'C');
 });
 
 test('file', () => {
@@ -48,7 +48,7 @@ test('file', () => {
   
     return 0;
   }`);
-  assert.equal(code, 'C');
+  assert.equal(code.language, 'C');
 });
 
 test('quick sort', () => {
@@ -96,7 +96,7 @@ test('quick sort', () => {
     quicksort(A, i);
     quicksort(A + i, len - i);
   }`);
-  assert.equal(code, 'C');
+  assert.equal(code.language, 'C');
 });
 
 test('http server', () => {
@@ -122,7 +122,7 @@ test('http server', () => {
           }
           return EXIT_SUCCESS;
   }`);
-  assert.equal(code, 'C');
+  assert.equal(code.language, 'C');
 });
 
 test('fibonacci sequence', () => {
@@ -135,7 +135,7 @@ test('fibonacci sequence', () => {
       }
       return fnext;	
   }`);
-  assert.equal(code, 'C');
+  assert.equal(code.language, 'C');
 });
 
 test('bubble sort', () => {
@@ -168,7 +168,7 @@ test('bubble sort', () => {
           printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
       return 0;
   }`);
-  assert.equal(code, 'C');
+  assert.equal(code.language, 'C');
 });
 
 test('heap sort', () => {
@@ -222,7 +222,7 @@ test('heap sort', () => {
           printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
       return 0;
   }`);
-  assert.equal(code, 'C');
+  assert.equal(code.language, 'C');
 });
 
 test('tree sort on a linked list', () => {
@@ -337,7 +337,7 @@ test('tree sort on a linked list', () => {
       list_destroy(&list);
       return 0;
   }`);
-  assert.equal(code, 'C');
+  assert.equal(code.language, 'C');
 });
 
 test('floyd warshall algorithm', () => {
@@ -416,7 +416,7 @@ test('floyd warshall algorithm', () => {
           floydWarshall(loadGraph(argV[1]));
       return 0;
   }`);
-  assert.equal(code, 'C');
+  assert.equal(code.language, 'C');
 });
 
 test('ludic numbers', () => {
@@ -491,7 +491,7 @@ test('ludic numbers', () => {
       free(x);
       return 0;
   }`);
-  assert.equal(code, 'C');
+  assert.equal(code.language, 'C');
 });
 
 test.run();

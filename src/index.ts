@@ -1,4 +1,4 @@
-import type { LanguagePattern, LanguagePoints, Options, StatisticOutput } from './types';
+import type { LanguagePattern, LanguagePoints, Options, DetectedLanguage } from './types';
 import { C } from './languages/c';
 import { Clojure } from './languages/clojure';
 import { CPP } from './languages/cpp';
@@ -51,7 +51,7 @@ const languages: Record<string, LanguagePattern[]> = {
  * Detects a programming language from a given string.
  * @param {String} snippet The code we're guessing
  * @param {Options} options Options
- * @returns {String|StatisticOutput} A String or a StatisticOutput format if `statistics: true`
+ * @returns {DetectedLanguage} An object of DetectedLanguage
  * @example
  * ```js
  * import flourite from 'flourite';
@@ -61,8 +61,8 @@ const languages: Record<string, LanguagePattern[]> = {
  */
 function flourite(
   snippet: string,
-  options: Options = { heuristic: true, statistics: false, shiki: false, noUnknown: false },
-): StatisticOutput & string {
+  options: Options = { heuristic: true, shiki: false, noUnknown: false },
+): DetectedLanguage {
   let linesOfCode = snippet
     .replace(/\r\n?/g, '\n')
     .replace(/\n{2,}/g, '\n')
@@ -111,23 +111,17 @@ function flourite(
 
   const bestResult = results.reduce((a, b) => (a.points >= b.points ? a : b), { points: 0, language: '' });
   const statistics: Record<string, number> = {};
-  if (options.statistics) {
-    for (let i = 0; i < results.length; i++) {
-      statistics[results[i].language] = results[i].points;
-    }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return {
-      detected: options.shiki ? convert(bestResult.language) : bestResult.language,
-      statistics,
-    };
+  for (let i = 0; i < results.length; i++) {
+    statistics[results[i].language] = results[i].points;
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return options.shiki ? convert(bestResult.language) : bestResult.language;
+  return {
+    language: options.shiki ? convert(bestResult.language) : bestResult.language,
+    statistics,
+    linesOfCode: linesOfCode.length,
+  };
 }
 
-export type { Options, StatisticOutput };
+export type { Options, DetectedLanguage };
 export default flourite;

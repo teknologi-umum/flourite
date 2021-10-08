@@ -31,15 +31,16 @@ export interface LanguagePattern {
 
 export interface Options {
   heuristic?: boolean;
-  statistics?: boolean;
   shiki?: boolean;
   noUnknown?: boolean;
 }
 
-export interface StatisticOutput {
-  detected: string;
+export interface DetectedLanguage {
+  language: string;
   statistics: Record<string, number>;
+  linesOfCode: number;
 }
+
 export interface LanguagePoints {
   language: string;
   points: number;

@@ -4,7 +4,7 @@ import detectLang from '../src/index';
 
 test('hello world', () => {
   const code = detectLang('puts "Hello world"');
-  assert.equal(code, 'Ruby');
+  assert.equal(code.language, 'Ruby');
 });
 
 test('fizz buzz', () => {
@@ -19,7 +19,7 @@ test('fizz buzz', () => {
       puts i
   end
 end`);
-  assert.equal(code, 'Ruby');
+  assert.equal(code.language, 'Ruby');
 });
 
 // FIXME: This detects as Java. It should be Ruby.
@@ -32,7 +32,7 @@ test.skip('quick sort', () => {
     less.quick_sort + [pivot] + greatereq.quick_sort
   end
 end`);
-  assert.equal(code, 'Ruby');
+  assert.equal(code.language, 'Ruby');
 });
 
 test('bubble sort', () => {
@@ -59,7 +59,7 @@ test('bubble sort', () => {
   ary = [3, 78, 4, 23, 6, 8, 6]
   ary.bubblesort1!
   p ary`);
-  assert.equal(code, 'Ruby');
+  assert.equal(code.language, 'Ruby');
 });
 
 // FIXME: Detected as Python
@@ -98,7 +98,7 @@ test.skip('heap sort', () => {
       end
     end
   end`);
-  assert.equal(code, 'Ruby');
+  assert.equal(code.language, 'Ruby');
 });
 
 // FIXME: This detected as PHP
@@ -107,7 +107,7 @@ test.skip('http server', () => {
   require 'open-uri'
    
   open("http://rosettacode.org/") {|f| FileUtils.copy_stream(f, $stdout)}`);
-  assert.equal(code, 'Ruby');
+  assert.equal(code.language, 'Ruby');
 });
 
 test('floyd warshall algorithm', () => {
@@ -146,7 +146,7 @@ test('floyd warshall algorithm', () => {
   n = 4
   edge = [[1, 3, -2], [2, 1, 4], [2, 3, 3], [3, 4, 2], [4, 2, -1]]
   floyd_warshall(n, edge)`);
-  assert.equal(code, 'Ruby');
+  assert.equal(code.language, 'Ruby');
 });
 
 test('ludic numbers', () => {
@@ -171,7 +171,7 @@ test('ludic numbers', () => {
   ludics = ludic(250).to_a
   puts "Ludic triples below 250:",
       ludics.select{|x| ludics.include?(x+2) and ludics.include?(x+6)}.map{|x| [x, x+2, x+6]}.to_s`);
-  assert.equal(code, 'Ruby');
+  assert.equal(code.language, 'Ruby');
 });
 
 test('fivenum', () => {
@@ -202,7 +202,7 @@ test_array = [0.14082834, 0.09748790, 1.73131507, 0.87636009, -1.95059594,
 tukey_array = fivenum(test_array)
 p tukey_array
  `);
-  assert.equal(code, 'Ruby');
+  assert.equal(code.language, 'Ruby');
 });
 
 test.run();

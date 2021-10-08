@@ -1,15 +1,14 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import detectLang from '../src';
-import type { StatisticOutput } from '../src';
 
 test('hello world', () => {
   const code = detectLang(
     `using System;
   Console.WriteLine("Hello world!");`,
-    { shiki: true, statistics: true, heuristic: true },
-  ) as StatisticOutput;
-  assert.equal(code.detected, 'csharp');
+    { shiki: true, heuristic: true },
+  );
+  assert.equal(code.language, 'csharp');
   assert.equal(code.statistics, {
     C: -39,
     Clojure: 0,
@@ -34,6 +33,7 @@ test('hello world', () => {
     YAML: 0,
     Markdown: 0,
   });
+  assert.equal(code.linesOfCode, 2);
 });
 
 test('fizz buzz', () => {
@@ -70,7 +70,7 @@ test('fizz buzz', () => {
           }
       }
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('quick sort', () => {
@@ -250,7 +250,7 @@ test('quick sort', () => {
     }
     #endregion
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('heap sort', () => {
@@ -330,7 +330,7 @@ test('heap sort', () => {
           HeapSort(s, 0, s.Length, StringComparer.CurrentCultureIgnoreCase);
       }
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('bubble sort', () => {
@@ -378,7 +378,7 @@ test('bubble sort', () => {
           }
       }
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('merge sort', () => {
@@ -507,7 +507,7 @@ test('merge sort', () => {
     }
     #endregion
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('fibonacci sequence', () => {
@@ -526,7 +526,7 @@ test('fibonacci sequence', () => {
       return fibs;
   }
  `);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('happy numbers', () => {
@@ -579,7 +579,7 @@ test('happy numbers', () => {
           }
       }
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('gamma function', () => {
@@ -611,7 +611,7 @@ test('gamma function', () => {
     }
   }
    `);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('fivenum', () => {
@@ -679,7 +679,7 @@ test('fivenum', () => {
           }
       }
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('y combinator', () => {
@@ -706,7 +706,7 @@ test('y combinator', () => {
       }
   }
    `);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test.run();
