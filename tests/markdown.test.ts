@@ -152,7 +152,7 @@ test.skip('example 1', () => {
   ### Fixed
   - \`[](<foo<bar>)\` is no longer a valid link.
   - \`[](url (xxx())\` is no longer a valid link.
-  - \`[](url\ xxx)\` is no longer a valid link.
+  - \`[](url xxx)\` is no longer a valid link.
   - Fix performance issues when parsing links (#732, #734), backticks, (#733, #736),
     emphases (#735), and autolinks (#737).
   - Allow newline in \`<? ... ?>\` in an inline context.
@@ -537,7 +537,7 @@ test.skip('example 1', () => {
   - Rewritten links normalizer to solve different edge cases (use \`mdurl\`
     package), #29.
   - Moved link title entities replace out of renderer.
-  - Fixed escaped entities in links (\`foo\&amp;/bar\`).
+  - Fixed escaped entities in links (\`foo&amp;/bar\`).
   - Improved smartquotes logic, #61.
   
   
@@ -563,7 +563,7 @@ test.skip('example 1', () => {
   ### Fixed
   - Fixed hang on long vertical list of links. Appeared in 3.0.5. See #54 for
     details. Thanks to @fengmk2 for report!
-  - Table lines now can have escaped pipe char \`\|\` (#5).
+  - Table lines now can have escaped pipe char \`|\` (#5).
   
   
   ## [3.0.5] - 2015-02-06
