@@ -15,6 +15,10 @@ export const Markdown: LanguagePattern[] = [
   { pattern: /!\[.+\]\(.+\)/, type: 'macro', nearTop: true },
   // links
   { pattern: /\[.+\]\(.+\)/, type: 'macro', nearTop: true },
+  // links 2
+  { pattern: /\[.+\]\[.+\]/, type: 'macro', nearTop: true },
+  // links 3
+  { pattern: /\[.+\]:\s?<?http/, type: 'macro', nearTop: true },
   // blockquotes
   { pattern: /^(> .*)+/, type: 'macro', nearTop: true },
   // inline code
