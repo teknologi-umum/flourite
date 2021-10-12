@@ -16,6 +16,7 @@ test('hello world', () => {
     'C#': 10,
     CSS: 0,
     Dockerfile: 0,
+    Elixir: 0,
     Go: -39,
     HTML: 0,
     Java: -40,
@@ -23,6 +24,7 @@ test('hello world', () => {
     Julia: 5,
     Kotlin: 0,
     Lua: -20,
+    Markdown: 0,
     Pascal: 0,
     PHP: 0,
     Python: 0,
@@ -31,7 +33,6 @@ test('hello world', () => {
     SQL: 0,
     Unknown: 1,
     YAML: 0,
-    Markdown: 0,
   });
   assert.equal(code.linesOfCode, 2);
 });

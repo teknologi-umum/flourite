@@ -5,6 +5,7 @@ import { CPP } from './languages/cpp';
 import { CS } from './languages/cs';
 import { CSS } from './languages/css';
 import { Dockerfile } from './languages/dockerfile';
+import { Elixir } from './languages/elixir';
 import { Go } from './languages/go';
 import { HTML } from './languages/html';
 import { Java } from './languages/java';
@@ -30,6 +31,7 @@ const languages: Record<string, LanguagePattern[]> = {
   'C#': CS,
   CSS,
   Dockerfile,
+  Elixir,
   Go,
   HTML,
   Java,

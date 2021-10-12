@@ -13,13 +13,13 @@ Detects a programming language from a given string.
 
 ## Detectable languages
 
-| Languages |            |        |        |
-| --------- | ---------- | ------ | ------ |
-| C         | Dockerfile | Julia  | Python |
-| C++       | Go         | Kotlin | Ruby   |
-| C#        | HTML       | Lua    | Rust   |
-| Clojure   | Java       | Pascal | SQL    |
-| CSS       | Javascript | PHP    | Yaml   |
+| Languages |            |            |        |      |
+| --------- | ---------- | ---------- | ------ | ---- |
+| C         | Dockerfile | Javascript | Pascal | SQL  |
+| C++       | Elixir     | Julia      | PHP    | YAML |
+| C#        | Go         | Kotlin     | Python |      |
+| Clojure   | HTML       | Lua        | Ruby   |      |
+| CSS       | Java       | Markdown   | Rust   |      |
 
 ## Install
 
@@ -39,32 +39,34 @@ or via a CDN (unpkg or jsdelivr)
 ```js
 import flourite from 'flourite';
 
-const code = flourite('printf("Hello World");');
+const code = flourite('cout << "Hello world" << endl;');
 
 // {
-//   language: 'C',
+//   language: 'C++',
 //   statistics: {
-//     C: 5,
+//     C: 0,
 //     Clojure: 0,
-//     'C++': 0,
-//     'C#': 0,
+//     'C++': 5,
 //     CSS: 0,
+//     'C#': 0,
 //     Dockerfile: 0,
+//     Elixir: 0,
 //     Go: 0,
 //     HTML: 0,
 //     Java: 0,
 //     Javascript: 0,
-//     Julia: 0,
+//     Julia: 2,
 //     Kotlin: 0,
-//     Lua: -20,
+//     Lua: 2,
+//     Markdown: 0,
 //     Pascal: 0,
 //     PHP: 0,
 //     Python: 0,
 //     Ruby: 0,
 //     Rust: 0,
 //     SQL: 0,
+//     Unknown: 1,
 //     YAML: 0,
-//     Unknown: 1
 //   },
 //   linesOfCode: 1
 // }
