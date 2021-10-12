@@ -103,8 +103,8 @@ const code = flourite('print!({:?}, &v);', flouriteOptions);
 ### Available Options
 
 | Key       | Type      | Default | Description                                                                                      |
-| --------- | --------- | ------- | ------------------------------------------------------------------------------------------------ | --- |
-| heuristic | `boolean` | `true`  | Checks for codes on the top of the given input. Only checks when the lines of code is above 500. |     |
+| --------- | --------- | ------- | ------------------------------------------------------------------------------------------------ |
+| heuristic | `boolean` | `true`  | Checks for codes on the top of the given input. Only checks when the lines of code is above 500. |
 | shiki     | `boolean` | `false` | Straightforward compatibility with Shiki's language specification type                           |
 | noUnknown | `boolean` | `false` | If `true`, will not output `Unknown` on detected and statistics result                           |
 
