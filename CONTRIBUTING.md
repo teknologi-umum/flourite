@@ -24,15 +24,13 @@ Then here we are. Around 75 commits later, this is our own version for the langu
 
 1. Scans the input string line by line. A line is always delimited by `\n`.
 2. For each languages defined on the `src/languages` directory, it will run a regular expression line by line, which returns a point for that language.
-3. If `options.statistic` is set to `true`, it will return an object of the language detected and the statistic for which it was run.
-4. If `options.statistic` is set to `false`, it will only return the language detected as a string.
+3. It will returns an object consisting of the keys: `language` - the detected languages, `statistics` - points for each languages, and `linesOfCode` - lines of code scanned.
 
 ### A few considerations
 
 - We know and fully aware of by using regular expressions, if we are trying to add more and more languages, the library would be slower. There is one solution to make regular expressions faster, that is by using [Oniguruma](https://github.com/kkos/oniguruma). But, the drawback is that we have to ditch browser support because the Node.js binding requires C++ bindings in which browsers are not supported.
 - To compensate the point above, the regular expressions implementation for each language should be made as minimum and as effective as possible. There are no rules on the maximum regular expression for each language, but I would say, if you could do less and still get the job done, it would be great.
 - About the browser support, I just think that it would be nice. Because we don't rely on any Node.js standard library, why don't we ship it to browsers? You can try it yourself [here](https://flourite.pages.dev/).
-- I am considering to remove the multiple main function output, and just return the object, so the `options.statistics` would always be true regardless. It should not have a problem for users because at this point of time (start of October 2021), I don't think many many are using Flourite yet.
 
 Until this point, you should be able to understand how the library works behind the scene. If you have any questions of if you're uncertain about some point, please open up an [issue](https://github.com/teknologi-umum/flourite/issues).
 
