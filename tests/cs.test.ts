@@ -31,6 +31,7 @@ test('hello world', () => {
     SQL: 0,
     Unknown: 1,
     YAML: 0,
+    Markdown: 0,
   });
   assert.equal(code.linesOfCode, 2);
 });

@@ -679,6 +679,7 @@ test('large input', () => {
     SQL: 24,
     Unknown: 1,
     YAML: 4,
+    Markdown: 9,
   });
   assert.equal(code.linesOfCode, 356);
 });
