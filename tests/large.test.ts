@@ -664,6 +664,7 @@ test('large input', () => {
     'C#': 19,
     CSS: 0,
     Dockerfile: 0,
+    Elixir: 0,
     Go: 0,
     HTML: 0,
     Java: -832,
@@ -671,6 +672,7 @@ test('large input', () => {
     Julia: 24,
     Kotlin: 0,
     Lua: -1820,
+    Markdown: 0,
     Pascal: 0,
     PHP: -318,
     Python: -140,
@@ -679,7 +681,6 @@ test('large input', () => {
     SQL: 24,
     Unknown: 1,
     YAML: 4,
-    Markdown: 9,
   });
   assert.equal(code.linesOfCode, 356);
 });
