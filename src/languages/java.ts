@@ -12,7 +12,7 @@ export const Java: LanguagePattern[] = [
   // List/ArrayList
   { pattern: /(List<\w+>|ArrayList<\w*>\s*\(.*\))(\s+[\w]+|;)/, type: 'keyword.variable' },
   // class keyword
-  { pattern: /(public\s*)?class.*?\{/, type: 'keyword' },
+  { pattern: /(public\s*)?class\b.*?\{/, type: 'keyword' },
   // Array declaration.
   { pattern: /(\w+)(\[\s*\])+\s+\w+/, type: 'constant.array' },
   // final keyword
