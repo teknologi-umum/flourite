@@ -3,6 +3,8 @@ import type { LanguagePattern } from '../types';
 export const Javascript: LanguagePattern[] = [
   // undefined keyword
   { pattern: /undefined/g, type: 'keyword' },
+  // window keyword
+  { pattern: /window\./g, type: 'keyword' },
   // console.log('ayy lmao')
   { pattern: /console\.log\s*\(/, type: 'keyword.print' },
   // Variable declaration
@@ -15,6 +17,8 @@ export const Javascript: LanguagePattern[] = [
   { pattern: /!==/g, type: 'keyword.operator' },
   // Function definition
   { pattern: /function\*?(\s+[$\w]+\s*\(.*\)|\s*\(.*\))/g, type: 'keyword.function' },
+  // arrow function
+  { pattern: /\(* => {/g, type: 'keyword.function' },
   // null keyword
   { pattern: /null/g, type: 'constant.null' },
   // lambda expression

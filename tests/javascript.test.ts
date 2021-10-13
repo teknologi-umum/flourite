@@ -272,4 +272,31 @@ test('fivenum', () => {
   assert.equal(code.language, 'Javascript');
 });
 
+test('arrow function', () => {
+  const code = detectLang(`(argument => {`);
+  assert.equal(code.language, 'Javascript');
+});
+
+test('Svelte', () => {
+  const code = detectLang(`
+	onMount(() => {
+		const onNavigationStart = () => {
+			nprogress.start()
+		}
+
+		const onNavigationEnd = () => {
+			nprogress.done()
+		}
+
+		window.addEventListener('sveltekit:navigation-start', onNavigationStart)
+		window.addEventListener('sveltekit:navigation-end', onNavigationEnd)
+
+		return () => {
+			window.removeEventListener('sveltekit:navigation-start', onNavigationStart)
+			window.removeEventListener('sveltekit:navigation-end', onNavigationEnd)
+		}
+	})`);
+  assert.equal(code.language, 'Javascript');
+});
+
 test.run();
