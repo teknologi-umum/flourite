@@ -670,6 +670,7 @@ test('large input', () => {
     Java: -832,
     Javascript: -452,
     Julia: 24,
+    JSON: 0,
     Kotlin: 0,
     Lua: -1820,
     Markdown: 0,

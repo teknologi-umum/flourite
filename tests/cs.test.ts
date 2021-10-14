@@ -22,6 +22,7 @@ test('hello world', () => {
     Java: -40,
     Javascript: -40,
     Julia: 5,
+    JSON: 0,
     Kotlin: 0,
     Lua: -20,
     Markdown: 0,

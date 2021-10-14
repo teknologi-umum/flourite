@@ -11,6 +11,7 @@ import { HTML } from './languages/html';
 import { Java } from './languages/java';
 import { Javascript } from './languages/javascript';
 import { Julia } from './languages/julia';
+import { JSON } from './languages/json';
 import { Kotlin } from './languages/kotlin';
 import { Lua } from './languages/lua';
 import { Markdown } from './languages/markdown';
@@ -37,6 +38,7 @@ const languages: Record<string, LanguagePattern[]> = {
   Java,
   Javascript,
   Julia,
+  JSON,
   Kotlin,
   Lua,
   Markdown,
