@@ -43,6 +43,7 @@ export const CPP: LanguagePattern[] = [
   // Avoiding C# confusion
   { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: 'not' },
   { pattern: /(using\s)?System(\..*)?(;)?/, type: 'not' },
+  { pattern: /namespace\s(.*)(\.(.*))?(\s{)?/, type: 'not' },
   { pattern: /(public|private|protected|internal)\s/, type: 'not' },
   // Avoiding Kotlin confusion
   { pattern: /fun main\((.*)?\) {/, type: 'not' },

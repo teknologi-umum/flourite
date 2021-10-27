@@ -44,6 +44,7 @@ export const Java: LanguagePattern[] = [
   // Avoiding Ruby confusion
   { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, type: 'not' },
   // Avoiding C# confusion
+  { pattern: /namespace\s(.*)(\.(.*))?(\s{)?/, type: 'not' },
   { pattern: /\[Attribute\]/, type: 'not' },
   { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: 'not' },
   { pattern: /(#region(\s.*)?|#endregion\n)/, type: 'not' },
