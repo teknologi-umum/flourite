@@ -518,4 +518,158 @@ test('bankers algorithm', () => {
   assert.equal(code.language, 'Kotlin');
 });
 
+test('average loop length', () => {
+  const code = detectLang(`const val NMAX  = 20
+    const val TESTS = 1000000
+    val rand = java.util.Random()
+     
+    fun avg(n: Int): Double {
+        var sum = 0
+        for (t in 0 until TESTS) {
+            val v = BooleanArray(NMAX)
+            var x = 0
+            while (!v[x]) {
+                v[x] = true
+                sum++
+                x = rand.nextInt(n)
+            }
+        }
+        return sum.toDouble() / TESTS
+    }
+     
+    fun ana(n: Int): Double {
+        val nn = n.toDouble()
+        var term = 1.0
+        var sum = 1.0
+        for (i in n - 1 downTo 1) {
+            term *= i / nn
+            sum += term
+        }
+        return sum
+    }
+     
+    fun main(args: Array<String>) {
+        println(" N    average    analytical    (error)")
+        println("===  =========  ============  =========")
+        for (n in 1..NMAX) {
+            val a = avg(n)
+            val b = ana(n)
+            println(String.format("%3d   %6.4f   %10.4f      (%4.2f%%)", n, a, b, Math.abs(a - b) / b * 100.0))
+        }
+    }`);
+  assert.equal(code.language, 'Kotlin');
+});
+
+test('gamma function', () => {
+  const code = detectLang(`fun gammaStirling(x: Double): Double = Math.sqrt(2.0 * Math.PI / x) * Math.pow(x / Math.E, x)
+ 
+    fun gammaLanczos(x: Double): Double {
+        var xx = x
+        val p = doubleArrayOf(
+            0.99999999999980993, 
+          676.5203681218851,
+        -1259.1392167224028,			     	  
+          771.32342877765313,
+         -176.61502916214059,
+           12.507343278686905,
+           -0.13857109526572012,
+            9.9843695780195716e-6,
+            1.5056327351493116e-7
+        )
+        val g = 7
+        if (xx < 0.5) return Math.PI / (Math.sin(Math.PI * xx) * gammaLanczos(1.0 - xx))
+        xx--
+        var a = p[0]
+        val t = xx + g + 0.5
+        for (i in 1 until p.size) a += p[i] / (xx + i)
+        return Math.sqrt(2.0 * Math.PI) * Math.pow(t, xx + 0.5) * Math.exp(-t) * a
+    }
+     
+    fun main(args: Array<String>) {
+        println(" x\tStirling\t\tLanczos\n")
+        for (i in 1 .. 20) {
+            val d = i / 10.0
+            print("%4.2f\t".format(d))
+            print("%17.15f\t".format(gammaStirling(d)))
+            println("%17.15f".format(gammaLanczos(d)))
+        }
+    }`);
+  assert.equal(code.language, 'Kotlin');
+});
+
+test('number calculation function', () => {
+  const code = detectLang(`fun main(args: Array<String>) {
+
+        var sum: Int = 0
+        var input: String
+    
+        do {
+            print("Enter an integer: ")
+            input = readLine()!!
+            sum += input.toInt()
+    
+        } while (input != "0")
+    
+        println("sum = $sum")
+    }`);
+  assert.equal(code.language, 'Kotlin');
+});
+
+test('simple while loop implementation', () => {
+  const code = detectLang(`fun main(args: Array) {
+        var i: Int = 1
+        while(true){
+            println(i)
+            i=i+1
+            if(i>4)
+                break;
+        }
+    }`);
+  assert.equal(code.language, 'Kotlin');
+});
+
+test('largest among 3 numbers programme', () => {
+  const code = detectLang(`fun main(args: Array<String>) {
+
+        val n1 = 3
+        val n2 = 5
+        val n3 = -2
+    
+        val max = if (n1 > n2) {
+            if (n1 > n3)
+                n1
+            else
+                n3
+        } else {
+            if (n2 > n3)
+                n2
+            else
+                n3
+        }
+    
+        println("max = $max")
+    }`);
+  assert.equal(code.language, 'Kotlin');
+});
+
+test('bubble sort function', () => {
+  const code = detectLang(`import java.util.Comparator
+ 
+    fun <T> bubbleSort(a: Array<T>, c: Comparator<T>) {
+        var changed: Boolean
+        do {
+            changed = false
+            for (i in 0..a.size - 2) {
+                if (c.compare(a[i], a[i + 1]) > 0) {
+                    val tmp = a[i]
+                    a[i] = a[i + 1]
+                    a[i + 1] = tmp
+                    changed = true
+                }
+            }
+        } while (changed)
+    }`);
+  assert.equal(code.language, 'Kotlin');
+});
+
 test.run();

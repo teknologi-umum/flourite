@@ -20,7 +20,6 @@ export type Type =
   | 'keyword.other' // async, await, crate, extern
   | 'keyword.operator' // >, <, -, << not important tbh you could get away with this
   | 'keyword.function' // func pattern() {, function pattern(), fn pattern() {
-  | 'keyword.input' // System.in(), Console.ReadLine(), input()
   | 'macro' // @println, println!
   | 'not'; // not in current language
 
