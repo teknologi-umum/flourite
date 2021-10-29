@@ -7,6 +7,10 @@ export const Kotlin: LanguagePattern[] = [
     type: 'keyword.function',
   },
   { pattern: /println\((.*)\)(\n|;)/, type: 'keyword.print' },
+  // (else )if statement
+  { pattern: /(else )?if\s*\(.+\)/, type: 'keyword.control' },
+  // while loop
+  { pattern: /while\s+\(.+\)/, type: 'keyword.control' },
   // Variables
   { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: 'keyword.variable' },
   { pattern: /^(\s+)?(inner|open|data)(\s+)class/, type: 'keyword' },
