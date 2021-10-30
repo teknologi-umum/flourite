@@ -40,6 +40,7 @@ export const CPP: LanguagePattern[] = [
   // Avoiding Ruby confusion
   { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, type: 'not' },
   { pattern: /puts\s+("|').+("|')/, type: 'not' },
+  { pattern: /\bmodule\s\S/, type: 'not' },
   // Avoiding C# confusion
   { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: 'not' },
   { pattern: /(using\s)?System(\..*)?(;)?/, type: 'not' },

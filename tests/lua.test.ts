@@ -357,4 +357,39 @@ end`);
   assert.equal(code.language, 'Lua');
 });
 
+test('modules detection', () => {
+  const code = detectLang(`module("mymath", package.seeall)
+
+  function mymath.add(a,b)
+     print(a+b)
+  end
+  
+  function mymath.sub(a,b)
+     print(a-b)
+  end
+  
+  function mymath.mul(a,b)
+     print(a*b)
+  end
+  
+  function mymath.div(a,b)
+     print(a/b)
+  end`);
+
+  assert.equal(code.language, 'Lua');
+});
+
+test('craete user defined modules', () => {
+  const code = detectLang(`module("mymodule", package.seeall)
+
+  function foo() -- create it as if it's a global function
+      print("Hello World!")
+  end
+  
+  require "mymodule"
+  mymodule.foo()`);
+
+  assert.equal(code.language, 'Lua');
+});
+
 test.run();

@@ -37,4 +37,6 @@ export const CS: LanguagePattern[] = [
   // Avoiding Java confusion
   { pattern: /(extends|throws|@Attribute)/, type: 'not' },
   { pattern: /System\.(in|out)\.\w+/, type: 'not' },
+  // Avoiding Ruby confusion
+  { pattern: /\bmodule\s\S/, type: 'not' },
 ];

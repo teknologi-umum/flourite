@@ -205,4 +205,62 @@ p tukey_array
   assert.equal(code.language, 'Ruby');
 });
 
+test('ruby conflicts with other language', () => {
+  const code = detectLang(`module XYZ
+  class A
+  end
+  class B < A
+  end
+  end`);
+  assert.equal(code.language, 'Ruby');
+});
+
+test('testing BEGIN and END', () => {
+  const code = detectLang(`#!/usr/bin/ruby
+
+  puts "This is main Ruby Program"
+  
+  END {
+     puts "Terminating Ruby Program"
+  }
+  BEGIN {
+     puts "Initializing Ruby Program"
+  }`);
+  assert.equal(code.language, 'Ruby');
+});
+
+test('testing BEGIN and END other test case', () => {
+  const code = detectLang(`# Ruby Program of BEGIN and END Block
+
+  # BEGIN block
+  BEGIN {
+  
+  a = 4
+  b = 3
+  c = a + b
+      
+  # BEGIN block code
+  puts "This is BEGIN block code"
+  puts c
+  
+  }
+    
+  # END block
+  END {
+  
+  a = 4
+  b = 3
+  c = a * b
+      
+  # END block code
+  puts "This is END block code"
+  puts c
+  }
+    
+  # Code will execute before END block
+  puts "Main Block"
+  `);
+  assert.equal(code.language, 'Ruby');
+});
+
 test.run();
