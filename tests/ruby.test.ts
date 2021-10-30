@@ -205,7 +205,7 @@ p tukey_array
   assert.equal(code.language, 'Ruby');
 });
 
-test('ludic numbers', () => {
+test('ruby conflicts with other language', () => {
   const code = detectLang(`module XYZ
   class A
   end

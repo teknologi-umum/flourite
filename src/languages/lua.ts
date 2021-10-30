@@ -44,7 +44,7 @@ export const Lua: LanguagePattern[] = [
   // rest arguments
   { pattern: /\.\.\./, type: 'keyword.other' },
   // module usage
-  { pattern: /\bmodule\(.*\)/, type: 'keyword.other' },
+  { pattern: /\bmodule\s*\(.*\)/, type: 'keyword.other' },
 
   // invalid comments
   { pattern: /(\/\/|\/\*)/, type: 'not' },
