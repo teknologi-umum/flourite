@@ -19,8 +19,13 @@ export const Ruby: LanguagePattern[] = [
   { pattern: /\w+\.new\s+/, type: 'keyword' },
   // elsif keyword
   { pattern: /elsif/, type: 'keyword.control' },
+  // module
+  { pattern: /\bmodule\s\S/, type: 'keyword.other' },
+  // BEGIN and END
+  { pattern: /\bBEGIN\s\{.*\}/, type: 'keyword.other' },
+  { pattern: /\bEND\s\{.*\}/, type: 'keyword.other' },
   // do
-  { pattern: /(do\s*\|(\w+(,\s*\w+)?)+\|)/, type: 'keyword.control' },
+  { pattern: /do\s*[|]\w+(,\s*\w+)*[|]/, type: 'keyword.control' },
   // for loop
   { pattern: /for (\w+|\(?\w+,\s*\w+\)?) in (.+)/, type: 'keyword.control' },
   // nil keyword

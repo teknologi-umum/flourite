@@ -3,6 +3,7 @@ import type { LanguagePattern } from '../types';
 export const CS: LanguagePattern[] = [
   { pattern: /using\sSystem(\..*)?(;)?/, type: 'meta.import' },
   { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: 'keyword.print' },
+  { pattern: /Console\.ReadLine\(\)/, type: 'keyword.other' },
   { pattern: /(public\s)?((partial|static|delegate)\s)?class\s/, type: 'keyword' },
   // Modifiers
   { pattern: /(extern|override|sealed|readonly|virtual|volatile)/, type: 'keyword.other' },
@@ -11,6 +12,12 @@ export const CS: LanguagePattern[] = [
   { pattern: /(#region(\s.*)?|#endregion\n)/, type: 'section.scope' },
   // Functions
   { pattern: /(public|private|protected|internal)\s/, type: 'keyword.visibility' },
+  // class keyword
+  { pattern: /\bclass\s+\w+/, type: 'keyword' },
+  // (else )if statement
+  { pattern: /(else )?if\s*\(.+\)/, type: 'keyword.control' },
+  // while loop
+  { pattern: /\bwhile\s+\(.+\)/, type: 'keyword.control' },
   // Variable declaration
   {
     pattern:
@@ -30,4 +37,6 @@ export const CS: LanguagePattern[] = [
   // Avoiding Java confusion
   { pattern: /(extends|throws|@Attribute)/, type: 'not' },
   { pattern: /System\.(in|out)\.\w+/, type: 'not' },
+  // Avoiding Ruby confusion
+  { pattern: /\bmodule\s\S/, type: 'not' },
 ];

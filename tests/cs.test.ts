@@ -1,28 +1,31 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import detectLang from '../src';
-import type { StatisticOutput } from '../src';
 
 test('hello world', () => {
   const code = detectLang(
     `using System;
   Console.WriteLine("Hello world!");`,
-    { shiki: true, statistics: true, heuristic: true },
-  ) as StatisticOutput;
-  assert.equal(code.detected, 'csharp');
+    { shiki: true, heuristic: true },
+  );
+  assert.equal(code.language, 'csharp');
   assert.equal(code.statistics, {
     C: -39,
     Clojure: 0,
     'C++': -40,
     'C#': 10,
     CSS: 0,
+    Dockerfile: 0,
+    Elixir: 0,
     Go: -39,
     HTML: 0,
     Java: -40,
     Javascript: -40,
     Julia: 5,
+    JSON: 0,
     Kotlin: 0,
     Lua: -20,
+    Markdown: 0,
     Pascal: 0,
     PHP: 0,
     Python: 0,
@@ -32,6 +35,7 @@ test('hello world', () => {
     Unknown: 1,
     YAML: 0,
   });
+  assert.equal(code.linesOfCode, 2);
 });
 
 test('fizz buzz', () => {
@@ -68,7 +72,7 @@ test('fizz buzz', () => {
           }
       }
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('quick sort', () => {
@@ -248,7 +252,7 @@ test('quick sort', () => {
     }
     #endregion
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('heap sort', () => {
@@ -328,7 +332,7 @@ test('heap sort', () => {
           HeapSort(s, 0, s.Length, StringComparer.CurrentCultureIgnoreCase);
       }
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('bubble sort', () => {
@@ -376,7 +380,7 @@ test('bubble sort', () => {
           }
       }
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('merge sort', () => {
@@ -505,7 +509,7 @@ test('merge sort', () => {
     }
     #endregion
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('fibonacci sequence', () => {
@@ -524,7 +528,7 @@ test('fibonacci sequence', () => {
       return fibs;
   }
  `);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('happy numbers', () => {
@@ -577,7 +581,7 @@ test('happy numbers', () => {
           }
       }
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('gamma function', () => {
@@ -609,7 +613,7 @@ test('gamma function', () => {
     }
   }
    `);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('fivenum', () => {
@@ -677,7 +681,7 @@ test('fivenum', () => {
           }
       }
   }`);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
 });
 
 test('y combinator', () => {
@@ -704,7 +708,60 @@ test('y combinator', () => {
       }
   }
    `);
-  assert.equal(code, 'C#');
+  assert.equal(code.language, 'C#');
+});
+
+test('quick sort example with java conflict', () => {
+  const code = detectLang(`namespace ConsoleApplication13
+  {
+      class Program
+      {
+          static void Main(string[] args)
+          {
+              int[] a = { 5, 3, 6, 4, 2, 9, 1, 8, 7 };
+              QuickSort(a);
+          }
+  
+          static void QuickSort(int[] a)
+          {
+              QuickSort(a, 0, a.Length - 1);
+          }
+  
+          static void QuickSort(int[] a, int start, int end)
+          {
+              if (start >= end)
+              {
+                  return;
+              }
+  
+              int num = a[start];
+  
+              int i = start, j = end;
+  
+              while (i < j)
+              {
+                  while (i < j && a[j] > num)
+                  {
+                      j--;
+                  }
+  
+                  a[i] = a[j];
+  
+                  while (i < j && a[i] < num)
+                  {
+                      i++;
+                  }
+  
+                  a[j] = a[i];
+              }
+  
+              a[i] = num;
+              QuickSort(a, start, i - 1);
+              QuickSort(a, i + 1, end);
+          }
+      }
+  }`);
+  assert.equal(code.language, 'C#');
 });
 
 test.run();

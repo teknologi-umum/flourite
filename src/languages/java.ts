@@ -12,7 +12,7 @@ export const Java: LanguagePattern[] = [
   // List/ArrayList
   { pattern: /(List<\w+>|ArrayList<\w*>\s*\(.*\))(\s+[\w]+|;)/, type: 'keyword.variable' },
   // class keyword
-  { pattern: /(public\s*)?class\s*(.*)+(\s)?\{/, type: 'keyword' },
+  { pattern: /(public\s*)?class\b.*?\{/, type: 'keyword' },
   // Array declaration.
   { pattern: /(\w+)(\[\s*\])+\s+\w+/, type: 'constant.array' },
   // final keyword
@@ -44,6 +44,7 @@ export const Java: LanguagePattern[] = [
   // Avoiding Ruby confusion
   { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, type: 'not' },
   // Avoiding C# confusion
+  { pattern: /\bnamespace\s.*(\s{)?/, type: 'not' },
   { pattern: /\[Attribute\]/, type: 'not' },
   { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: 'not' },
   { pattern: /(#region(\s.*)?|#endregion\n)/, type: 'not' },

@@ -46,6 +46,8 @@ export const Lua: LanguagePattern[] = [
   { pattern: /--(\[\[)?.*/, type: 'comment.line' },
   // rest arguments
   { pattern: /\.\.\./, type: 'keyword.other' },
+  // module usage
+  { pattern: /\bmodule\s*\(.*\)/, type: 'keyword.other' },
 
   // invalid comments
   { pattern: /(\/\/|\/\*)/, type: 'not' },
@@ -61,6 +63,7 @@ export const Lua: LanguagePattern[] = [
   { pattern: /(SELECT|FROM|INSERT|ALTER)/, type: 'not' },
   // avoid confusion with Ruby
   { pattern: /(puts)/, type: 'not' },
+  { pattern: /\bmodule\s\S/, type: 'not' },
   // avoid confusion Julia
   { pattern: /(([a-zA-Z0-9]+)::([a-zA-Z0-9]+)|using|(.*)!\(.*\)|(\|\|))/, type: 'not' },
 ];

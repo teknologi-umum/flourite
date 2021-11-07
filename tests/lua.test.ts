@@ -8,19 +8,19 @@ test('local definition', () => {
     local some_var = 12
     local table = {1, 2, "foo"} `,
   );
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('array-like tables', () => {
   const code = detectLang(`{1212, "foo", 'bar', true, false, nil}`);
 
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('map-like tables', () => {
   const code = detectLang(`{foo = "bar", [0] = false, ["true"] = 1212}`);
 
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('metatable definition', () => {
@@ -30,7 +30,7 @@ test('metatable definition', () => {
     __add = function(x, y) return x + y end
   })`);
 
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('functiopn call', () => {
@@ -46,7 +46,7 @@ test('functiopn call', () => {
     foo{...}
   `);
 
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('http', () => {
@@ -58,7 +58,7 @@ test('http', () => {
       print(page)`,
   );
 
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('fizzbuzz', () => {
@@ -76,7 +76,7 @@ test('fizzbuzz', () => {
       end`,
   );
 
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('fibonacci sequence', () => {
@@ -84,7 +84,7 @@ test('fibonacci sequence', () => {
   function fibs(n) 
     return n < 2 and n or fibs(n - 1) + fibs(n - 2) 
   end`);
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('quicksort', () => {
@@ -111,7 +111,7 @@ test('quicksort', () => {
   --example
   print(unpack(quicksort{5, 2, 7, 3, 4, 7, 1}))`);
 
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('floyd warshall', () => {
@@ -181,7 +181,7 @@ test('floyd warshall', () => {
   numVertices = 4
   floydWarshall(weights, numVertices)`);
 
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('bubble sort', () => {
@@ -206,7 +206,7 @@ test('bubble sort', () => {
       print(j)
   end`);
 
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('ludic numbers', () => {
@@ -257,7 +257,7 @@ test('ludic numbers', () => {
   show("2000th to 2005th:", inRange)
   show("Triplets:", triplets)`);
 
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('lsp handler', () => {
@@ -276,7 +276,7 @@ test('lsp handler', () => {
     end
   `,
   );
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('yes, this is a valid lua code', () => {
@@ -298,7 +298,7 @@ test('yes, this is a valid lua code', () => {
 }`,
   );
 
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
 });
 
 test('fivenum', () => {
@@ -354,7 +354,42 @@ x1 = {
 for i,x in ipairs(x1) do
   print(fivenum(x))
 end`);
-  assert.equal(code, 'Lua');
+  assert.equal(code.language, 'Lua');
+});
+
+test('modules detection', () => {
+  const code = detectLang(`module("mymath", package.seeall)
+
+  function mymath.add(a,b)
+     print(a+b)
+  end
+  
+  function mymath.sub(a,b)
+     print(a-b)
+  end
+  
+  function mymath.mul(a,b)
+     print(a*b)
+  end
+  
+  function mymath.div(a,b)
+     print(a/b)
+  end`);
+
+  assert.equal(code.language, 'Lua');
+});
+
+test('craete user defined modules', () => {
+  const code = detectLang(`module("mymodule", package.seeall)
+
+  function foo() -- create it as if it's a global function
+      print("Hello World!")
+  end
+  
+  require "mymodule"
+  mymodule.foo()`);
+
+  assert.equal(code.language, 'Lua');
 });
 
 test.run();

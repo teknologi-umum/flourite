@@ -1,6 +1,6 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
-import detectLang, { StatisticOutput } from '../src';
+import detectLang from '../src';
 
 test('large input', () => {
   // This is the code of argon2
@@ -654,31 +654,36 @@ test('large input', () => {
   
       return ARGON2_OK;
   }`,
-    { heuristic: true, statistics: true },
-  ) as StatisticOutput;
-  assert.equal(code.detected, 'C++');
+    { heuristic: true },
+  );
+  assert.equal(code.language, 'C++');
   assert.equal(code.statistics, {
     C: 111,
     Clojure: 0,
     'C++': 160,
-    'C#': 19,
+    'C#': 85,
     CSS: 0,
+    Dockerfile: 0,
+    Elixir: 0,
     Go: 0,
     HTML: 0,
     Java: -832,
     Javascript: -452,
     Julia: 24,
-    Kotlin: 0,
+    JSON: 0,
+    Kotlin: 66,
     Lua: -1823,
+    Markdown: 0,
     Pascal: 0,
     PHP: -318,
     Python: -140,
     Ruby: 0,
     Rust: 4,
-    SQL: 0,
+    SQL: 24,
     Unknown: 1,
     YAML: 4,
   });
+  assert.equal(code.linesOfCode, 356);
 });
 
 test.run();

@@ -4,7 +4,7 @@ import detectLang from '../src/index';
 
 test('hello world', () => {
   const code = detectLang('System.out.println("Hello world!");');
-  assert.equal(code, 'Java');
+  assert.equal(code.language, 'Java');
 });
 
 test('fizz buzz', () => {
@@ -21,17 +21,17 @@ test('fizz buzz', () => {
       System.out.println();
     }
   }`);
-  assert.equal(code, 'Java');
+  assert.equal(code.language, 'Java');
 });
 
 test('getter/setter', () => {
   const code = detectLang('Person person = people.get(0);');
-  assert.equal(code, 'Java');
+  assert.equal(code.language, 'Java');
 });
 
 test('List/ArrayList', () => {
   const code = detectLang('List<String> things = new ArrayList<>();');
-  assert.equal(code, 'Java');
+  assert.equal(code.language, 'Java');
 });
 
 test('quick sort', () => {
@@ -66,7 +66,7 @@ test('quick sort', () => {
     }
   }
   `);
-  assert.equal(code, 'Java');
+  assert.equal(code.language, 'Java');
 });
 
 test('bubble sort', () => {
@@ -84,7 +84,7 @@ test('bubble sort', () => {
         }
     } while (changed);
   }`);
-  assert.equal(code, 'Java');
+  assert.equal(code.language, 'Java');
 });
 
 test('http server', () => {
@@ -107,7 +107,7 @@ test('http server', () => {
                   .join();
       }
   }`);
-  assert.equal(code, 'Java');
+  assert.equal(code.language, 'Java');
 });
 
 test('floyd warshall algorithm', () => {
@@ -169,7 +169,7 @@ test('floyd warshall algorithm', () => {
           }
       }
   }`);
-  assert.equal(code, 'Java');
+  assert.equal(code.language, 'Java');
 });
 
 test('ludic numbers', () => {
@@ -218,7 +218,7 @@ test('ludic numbers', () => {
       System.out.println("Triplets up to 250: " + getTriplets(ludicUpTo(250)));
     }
   }`);
-  assert.equal(code, 'Java');
+  assert.equal(code.language, 'Java');
 });
 
 test('fivenum', () => {
@@ -264,7 +264,7 @@ test('fivenum', () => {
           for (double[] x : xl) System.out.printf("%s\n\n", Arrays.toString(fivenum(x)));
       }
   }`);
-  assert.equal(code, 'Java');
+  assert.equal(code.language, 'Java');
 });
 
 test.run();
