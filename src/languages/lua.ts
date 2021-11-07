@@ -27,9 +27,12 @@ export const Lua: LanguagePattern[] = [
   // method invocation
   { pattern: /(\(.+\)|([a-zA-Z_]+)):([a-zA-Z_])\(.*\)/, type: 'keyword.other' },
   // array-like table
-  { pattern: /{\s*(\S+)((,|;)\s*\S+)*\s*}/, type: 'constant.array' },
+  { pattern: /{\s*[^\s;,]+([;,]\s*[^\s;,]+)*,?\s*}/, type: 'constant.array' },
   // map-like table
-  { pattern: /{\s*(\S+\s*=\s*\S+)((,|;)\s*\S+\s*=\s*\S+)*\s*}/, type: 'constant.dictionary' },
+  {
+    pattern: /{\s*([^\s;,=]+\s*=\s*[^\s;,=]+)(\s*[;,=]\s*[^\s;,=]+\s*=\s*[^\s;,=]+)*\s*,?\s*}/,
+    type: 'constant.dictionary',
+  },
   // builtin math methods
   { pattern: /math\.(.*)\([0-9]*\)/, type: 'macro' },
   // builtin table methods
