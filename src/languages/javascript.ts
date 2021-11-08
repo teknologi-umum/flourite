@@ -16,7 +16,7 @@ export const Javascript: LanguagePattern[] = [
   // !== operator
   { pattern: /!==/g, type: 'keyword.operator' },
   // Function definition
-  { pattern: /function\*?(\s+[$\w]+\s*\(.*\)|\s*\(.*\))/g, type: 'keyword.function' },
+  { pattern: /function\*?\s*([A-Za-z$_][\w$]*)?\s*[(][^:;()]*[)]\s*{/g, type: 'keyword.function' },
   // arrow function
   { pattern: /\(* => {/g, type: 'keyword.function' },
   // null keyword
