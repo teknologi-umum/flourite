@@ -1,13 +1,13 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src";
 
-test('hello world', () => {
+test("hello world", () => {
   const code = detectLang(`IO.puts :stderr, "Goodbye, World!"`);
-  assert.equal(code.language, 'Elixir');
+  assert.equal(code.language, "Elixir");
 });
 
-test('fizz buzz', () => {
+test("fizz buzz", () => {
   const code = detectLang(`defmodule FizzBuzz do
   def fizzbuzz(n) when rem(n, 15) == 0, do: "FizzBuzz"
   def fizzbuzz(n) when rem(n,  5) == 0, do: "Buzz"
@@ -16,10 +16,10 @@ test('fizz buzz', () => {
 end
  
 Enum.each(1..100, &IO.puts FizzBuzz.fizzbuzz &1)`);
-  assert.equal(code.language, 'Elixir');
+  assert.equal(code.language, "Elixir");
 });
 
-test('anagrams', () => {
+test("anagrams", () => {
   const code = detectLang(`defmodule Anagrams do
   def find(file) do
     File.read!(file)
@@ -36,10 +36,10 @@ test('anagrams', () => {
 end
  
 Anagrams.find("unixdict.txt")`);
-  assert.equal(code.language, 'Elixir');
+  assert.equal(code.language, "Elixir");
 });
 
-test('bubble sort', () => {
+test("bubble sort", () => {
   const code = detectLang(`defmodule Sort do
   def bsort(list) when is_list(list) do
     t = bsort_iter(list)
@@ -51,10 +51,10 @@ test('bubble sort', () => {
   def bsort_iter([x, y | t]), do: [x | bsort_iter([y | t])]
   def bsort_iter(list), do: list
 end`);
-  assert.equal(code.language, 'Elixir');
+  assert.equal(code.language, "Elixir");
 });
 
-test('heap sort', () => {
+test("heap sort", () => {
   const code = detectLang(`defmodule Sort do
   def heapSort(list) do
     len = length(list)
@@ -92,10 +92,10 @@ test('heap sort', () => {
 end
  
 (for _ <- 1..20, do: :rand.uniform(20)) |> IO.inspect |> Sort.heapSort |> IO.inspect`);
-  assert.equal(code.language, 'Elixir');
+  assert.equal(code.language, "Elixir");
 });
 
-test('merge sort', () => {
+test("merge sort", () => {
   const code = detectLang(`defmodule Sort do
   def merge_sort(list) when length(list) <= 1, do: list
   def merge_sort(list) do
@@ -103,10 +103,10 @@ test('merge sort', () => {
     :lists.merge( merge_sort(left), merge_sort(right))
   end
 end`);
-  assert.equal(code.language, 'Elixir');
+  assert.equal(code.language, "Elixir");
 });
 
-test('quick sort', () => {
+test("quick sort", () => {
   const code = detectLang(`defmodule Sort do
   def qsort([]), do: []
   def qsort([h | t]) do
@@ -114,10 +114,10 @@ test('quick sort', () => {
     qsort(lesser) ++ [h] ++ qsort(greater)
   end
 end`);
-  assert.equal(code.language, 'Elixir');
+  assert.equal(code.language, "Elixir");
 });
 
-test('ludic numbers', () => {
+test("ludic numbers", () => {
   const code = detectLang(`defmodule Ludic do
   def numbers(n \\ 100000) do
     [h|t] = Enum.to_list(1..n)
@@ -141,10 +141,10 @@ test('ludic numbers', () => {
 end
  
 Ludic.task`);
-  assert.equal(code.language, 'Elixir');
+  assert.equal(code.language, "Elixir");
 });
 
-test('happy numbers', () => {
+test("happy numbers", () => {
   const code = detectLang(`defmodule Happy do
   def task(num) do
     Process.put({:happy, 1}, true)
@@ -172,10 +172,10 @@ test('happy numbers', () => {
 end
  
 IO.inspect Happy.task(8)`);
-  assert.equal(code.language, 'Elixir');
+  assert.equal(code.language, "Elixir");
 });
 
-test('floyd warshall', () => {
+test("floyd warshall", () => {
   const code = detectLang(`defmodule Floyd_Warshall do
   def main(n, edge) do
     {dist, next} = setup(n, edge)
@@ -220,7 +220,7 @@ end
  
 edge = [{1, 3, -2}, {2, 1, 4}, {2, 3, 3}, {3, 4, 2}, {4, 2, -1}]
 Floyd_Warshall.main(4, edge)`);
-  assert.equal(code.language, 'Elixir');
+  assert.equal(code.language, "Elixir");
 });
 
 test.run();

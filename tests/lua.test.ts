@@ -1,39 +1,39 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src/index';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src/index";
 
-test('local definition', () => {
+test("local definition", () => {
   const code = detectLang(
     `local foo = "bar"
     local some_var = 12
-    local table = {1, 2, "foo"} `,
+    local table = {1, 2, "foo"} `
   );
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('array-like tables', () => {
+test("array-like tables", () => {
   const code = detectLang(`{1212, "foo", 'bar', true, false, nil}`);
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('map-like tables', () => {
+test("map-like tables", () => {
   const code = detectLang(`{foo = "bar", [0] = false, ["true"] = 1212}`);
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('metatable definition', () => {
+test("metatable definition", () => {
   const code = detectLang(`local foo = setmetatable({}, {
     __index = function(x, y) return y end
     __newindex = function(x, y) rawset(x, y) end
     __add = function(x, y) return x + y end
   })`);
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('functiopn call', () => {
+test("functiopn call", () => {
   const code = detectLang(`
     foo("bar")
     foo "bar"
@@ -46,22 +46,22 @@ test('functiopn call', () => {
     foo{...}
   `);
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('http', () => {
+test("http", () => {
   const code = detectLang(
     `for i = 1, 100 do
       local http = require("socket.http")
       local url = require("socket.url")
       local page = http.request('http://www.google.com/m/search?q=' .. url.escape("lua"))
-      print(page)`,
+      print(page)`
   );
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('fizzbuzz', () => {
+test("fizzbuzz", () => {
   const code = detectLang(
     `for i = 1, 100 do
         if i % 15 == 0 then
@@ -73,21 +73,22 @@ test('fizzbuzz', () => {
         else
           print(i)
         end
-      end`,
+      end`
   );
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('fibonacci sequence', () => {
-  const code = detectLang(`--calculates the nth fibonacci number. Breaks for negative or non-integer n.
+test("fibonacci sequence", () => {
+  const code =
+    detectLang(`--calculates the nth fibonacci number. Breaks for negative or non-integer n.
   function fibs(n) 
     return n < 2 and n or fibs(n - 1) + fibs(n - 2) 
   end`);
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('quicksort', () => {
+test("quicksort", () => {
   const code = detectLang(`--in-place quicksort
   function quicksort(t, start, endi)
     start, endi = start or 1, endi or #t
@@ -111,10 +112,10 @@ test('quicksort', () => {
   --example
   print(unpack(quicksort{5, 2, 7, 3, 4, 7, 1}))`);
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('floyd warshall', () => {
+test("floyd warshall", () => {
   const code = detectLang(`function printResult(dist, nxt)
     print("pair     dist    path")
     for i=0, #nxt do
@@ -181,10 +182,10 @@ test('floyd warshall', () => {
   numVertices = 4
   floydWarshall(weights, numVertices)`);
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('bubble sort', () => {
+test("bubble sort", () => {
   const code = detectLang(`function bubbleSort(A)
     local itemCount=#A
     local hasChanged
@@ -206,10 +207,10 @@ test('bubble sort', () => {
       print(j)
   end`);
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('ludic numbers', () => {
+test("ludic numbers", () => {
   const code = detectLang(`-- Return table of ludic numbers below limit
   function ludics (limit)
       local ludList, numList, index = {1}, {}
@@ -257,10 +258,10 @@ test('ludic numbers', () => {
   show("2000th to 2005th:", inRange)
   show("Triplets:", triplets)`);
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('lsp handler', () => {
+test("lsp handler", () => {
   const code = detectLang(
     `--see: https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_completion
     M['textDocument/completion'] = function(_, _, result)
@@ -274,12 +275,12 @@ test('lsp handler', () => {
       local matches = util.text_document_completion_list_to_complete_items(result, prefix)
       vim.fn.complete(textMatch+1, matches)
     end
-  `,
+  `
   );
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('yes, this is a valid lua code', () => {
+test("yes, this is a valid lua code", () => {
   const code = detectLang(
     `local elements = u.namelist()
 
@@ -295,13 +296,13 @@ test('yes, this is a valid lua code', () => {
 [[fooooooo]] {
   ["false"] = true;
   [0] = false;
-}`,
+}`
   );
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('fivenum', () => {
+test("fivenum", () => {
   const code = detectLang(`function slice(tbl, low, high)
   local copy = {}
 
@@ -354,10 +355,10 @@ x1 = {
 for i,x in ipairs(x1) do
   print(fivenum(x))
 end`);
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('modules detection', () => {
+test("modules detection", () => {
   const code = detectLang(`module("mymath", package.seeall)
 
   function mymath.add(a,b)
@@ -376,10 +377,10 @@ test('modules detection', () => {
      print(a/b)
   end`);
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
-test('craete user defined modules', () => {
+test("craete user defined modules", () => {
   const code = detectLang(`module("mymodule", package.seeall)
 
   function foo() -- create it as if it's a global function
@@ -389,7 +390,7 @@ test('craete user defined modules', () => {
   require "mymodule"
   mymodule.foo()`);
 
-  assert.equal(code.language, 'Lua');
+  assert.equal(code.language, "Lua");
 });
 
 test.run();
