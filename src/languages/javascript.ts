@@ -45,4 +45,6 @@ export const Javascript: LanguagePattern[] = [
   { pattern: /fun main\((.*)?\) {/, type: 'not' },
   { pattern: /(inline(\s+))?fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+)({|=)/, type: 'not' },
   { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: 'not' },
+  // Avoiding Dart confusion
+  { pattern: /^(void\s)?main()\s{/, type: 'not' },
 ];

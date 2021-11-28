@@ -48,4 +48,6 @@ export const C: LanguagePattern[] = [
   },
   // Avoiding Lua confusion
   { pattern: /local\s(function|\w+)?/, type: 'not' },
+  // Avoiding Dart confusion
+  { pattern: /^(void\s)?main\(\)\s(async\s)?{/, type: 'not' },
 ];

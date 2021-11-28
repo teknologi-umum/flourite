@@ -53,4 +53,6 @@ export const CPP: LanguagePattern[] = [
     type: 'not',
   },
   { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: 'not' },
+  // Avoiding Dart confusion
+  { pattern: /^(void\s)?main\(\)\s(async\s)?{/, type: 'not' },
 ];

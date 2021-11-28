@@ -39,4 +39,6 @@ export const CS: LanguagePattern[] = [
   { pattern: /System\.(in|out)\.\w+/, type: 'not' },
   // Avoiding Ruby confusion
   { pattern: /\bmodule\s\S/, type: 'not' },
+  // Avoiding Dart confusion
+  { pattern: /^import\s("|')dart:\w+("|')/, type: 'not' },
 ];
