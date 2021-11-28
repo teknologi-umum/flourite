@@ -90,7 +90,7 @@ function flourite(
     let points = 0;
     for (let j = 0; j < linesOfCode.length; j++) {
       // fast return if the current line of code is empty or contains only spaces
-      if (linesOfCode[j].match(/^\s*$/)) {
+      if (/^\s*$/.test(linesOfCode[j])) {
         continue;
       }
 
