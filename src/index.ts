@@ -87,23 +87,21 @@ function flourite(
   for (let i = 0; i < pairs.length; i++) {
     const { language, checkers } = pairs[i];
 
-    const pointsList: number[] = [];
+    let points = 0;
     for (let j = 0; j < linesOfCode.length; j++) {
+      // fast return if the current line of code is empty or contains only spaces
+      if (/^\s*$/.test(linesOfCode[j])) {
+        continue;
+      }
+
       if (!nearTop(j, linesOfCode)) {
-        pointsList.push(
-          getPoints(
-            linesOfCode[j],
-            checkers.filter((checker) => !checker.nearTop),
-          ),
+        points += getPoints(
+          linesOfCode[j],
+          checkers.filter((checker) => !checker.nearTop),
         );
       } else {
-        pointsList.push(getPoints(linesOfCode[j], checkers));
+        points += getPoints(linesOfCode[j], checkers);
       }
-    }
-
-    let points = 0;
-    for (let k = 0; k < pointsList.length; k++) {
-      points += pointsList[k];
     }
 
     results.push({ language, points });
