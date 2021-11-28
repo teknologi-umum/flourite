@@ -1,19 +1,19 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src/index';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src/index";
 
-test('hello world', () => {
+test("hello world", () => {
   const code = detectLang('cout << "Hello world" << endl;', {
     shiki: true,
-    heuristic: true,
+    heuristic: true
   });
-  assert.equal(code.language, 'cpp');
+  assert.equal(code.language, "cpp");
   assert.equal(code.statistics, {
     C: 0,
     Clojure: 0,
-    'C++': 5,
+    "C++": 5,
     CSS: 0,
-    'C#': 0,
+    "C#": 0,
     Dockerfile: 0,
     Elixir: 0,
     Go: 0,
@@ -32,12 +32,12 @@ test('hello world', () => {
     Rust: 0,
     SQL: 0,
     Unknown: 1,
-    YAML: 0,
+    YAML: 0
   });
   assert.equal(code.linesOfCode, 1);
 });
 
-test('fizz buzz', () => {
+test("fizz buzz", () => {
   const code = detectLang(`/*
   * fizzbuzz.cpp
   *
@@ -79,10 +79,10 @@ test('fizz buzz', () => {
    FizzBuzz<100> p;
    return 0;
  }`);
-  assert.equal(code.language, 'C++');
+  assert.equal(code.language, "C++");
 });
 
-test('quick sort', () => {
+test("quick sort", () => {
   const code = detectLang(`#include <iterator>
   #include <algorithm> // for std::partition
   #include <functional> // for std::less
@@ -177,10 +177,10 @@ test('quick sort', () => {
   {
     quicksort(first, last, std::less<typename std::iterator_traits<RandomAccessIterator>::value_type>());
   }`);
-  assert.equal(code.language, 'C++');
+  assert.equal(code.language, "C++");
 });
 
-test('bubble sort', () => {
+test("bubble sort", () => {
   const code = detectLang(`#include <algorithm>
   #include <iostream>
   #include <iterator>
@@ -205,10 +205,10 @@ test('bubble sort', () => {
     copy(std::begin(a), std::end(a), std::ostream_iterator<int>(std::cout, " "));
     std::cout << "\n";
   }`);
-  assert.equal(code.language, 'C++');
+  assert.equal(code.language, "C++");
 });
 
-test('heap sort', () => {
+test("heap sort", () => {
   const code = detectLang(`#include <algorithm>
   #include <iterator>
   #include <iostream>
@@ -225,11 +225,11 @@ test('heap sort', () => {
     copy(std::begin(a), std::end(a), std::ostream_iterator<int>(std::cout, " "));
     std::cout << "\n";
   }`);
-  assert.equal(code.language, 'C++');
+  assert.equal(code.language, "C++");
 });
 
 // FIXME: This detected as C.
-test.skip('http server', () => {
+test.skip("http server", () => {
   const code = detectLang(`#include <winsock2.h>
   #include <ws2tcpip.h>
   #include <iostream>
@@ -268,10 +268,10 @@ test.skip('http server', () => {
    
     return 0;
   }`);
-  assert.equal(code.language, 'C++');
+  assert.equal(code.language, "C++");
 });
 
-test('floyd warshall algorithm', () => {
+test("floyd warshall algorithm", () => {
   const code = detectLang(`#include <iostream>
   #include <vector>
   #include <sstream>
@@ -346,10 +346,10 @@ test('floyd warshall algorithm', () => {
     std::cin.get();
     return 0;
   }`);
-  assert.equal(code.language, 'C++');
+  assert.equal(code.language, "C++");
 });
 
-test('ludic numbers', () => {
+test("ludic numbers", () => {
   const code = detectLang(`#include <vector>
   #include <iostream>
   using namespace std;
@@ -431,10 +431,10 @@ test('ludic numbers', () => {
       cout << "\n\n";
       return system( "pause" );
   }`);
-  assert.equal(code.language, 'C++');
+  assert.equal(code.language, "C++");
 });
 
-test('happy numbers', () => {
+test("happy numbers", () => {
   const code = detectLang(`#include <map>
   #include <set>
    
@@ -471,10 +471,10 @@ test('happy numbers', () => {
         std::cout << i << std::endl;
     return 0;
   }`);
-  assert.equal(code.language, 'C++');
+  assert.equal(code.language, "C++");
 });
 
-test('gamma function', () => {
+test("gamma function", () => {
   const code = detectLang(`#include <math.h>
   #include <numbers>
   #include <stdio.h>
@@ -534,10 +534,10 @@ test('gamma function', () => {
       }
   }
    `);
-  assert.equal(code.language, 'C++');
+  assert.equal(code.language, "C++");
 });
 
-test('fivenum', () => {
+test("fivenum", () => {
   const code = detectLang(`#include <algorithm>
   #include <iostream>
   #include <ostream>
@@ -617,10 +617,10 @@ test('fivenum', () => {
    
       return 0;
   }`);
-  assert.equal(code.language, 'C++');
+  assert.equal(code.language, "C++");
 });
 
-test('y combinator', () => {
+test("y combinator", () => {
   const code = detectLang(`#include <iostream>
   #include <functional>
    
@@ -664,7 +664,7 @@ test('y combinator', () => {
     std::cout << "fac(10) = " << fac(10) << std::endl;
     return 0;
   }`);
-  assert.equal(code.language, 'C++');
+  assert.equal(code.language, "C++");
 });
 
 test.run();

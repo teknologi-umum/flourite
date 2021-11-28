@@ -1,19 +1,19 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src";
 
-test('hello world', () => {
+test("hello world", () => {
   const code = detectLang(
     `using System;
   Console.WriteLine("Hello world!");`,
-    { shiki: true, heuristic: true },
+    { shiki: true, heuristic: true }
   );
-  assert.equal(code.language, 'csharp');
+  assert.equal(code.language, "csharp");
   assert.equal(code.statistics, {
     C: -39,
     Clojure: 0,
-    'C++': -40,
-    'C#': 10,
+    "C++": -40,
+    "C#": 10,
     CSS: 0,
     Dockerfile: 0,
     Elixir: 0,
@@ -33,12 +33,12 @@ test('hello world', () => {
     Rust: -40,
     SQL: 0,
     Unknown: 1,
-    YAML: 0,
+    YAML: 0
   });
   assert.equal(code.linesOfCode, 2);
 });
 
-test('fizz buzz', () => {
+test("fizz buzz", () => {
   const code = detectLang(`class Program
   {
       public void FizzBuzzGo()
@@ -72,10 +72,10 @@ test('fizz buzz', () => {
           }
       }
   }`);
-  assert.equal(code.language, 'C#');
+  assert.equal(code.language, "C#");
 });
 
-test('quick sort', () => {
+test("quick sort", () => {
   const code = detectLang(`//
   // The Tripartite conditional enables Bentley-McIlroy 3-way Partitioning.
   // This performs additional compares to isolate islands of keys equal to
@@ -252,10 +252,10 @@ test('quick sort', () => {
     }
     #endregion
   }`);
-  assert.equal(code.language, 'C#');
+  assert.equal(code.language, "C#");
 });
 
-test('heap sort', () => {
+test("heap sort", () => {
   const code = detectLang(`using System;
   using System.Collections.Generic;
   using System.Text;
@@ -332,10 +332,10 @@ test('heap sort', () => {
           HeapSort(s, 0, s.Length, StringComparer.CurrentCultureIgnoreCase);
       }
   }`);
-  assert.equal(code.language, 'C#');
+  assert.equal(code.language, "C#");
 });
 
-test('bubble sort', () => {
+test("bubble sort", () => {
   const code = detectLang(`using System;
   using System.Collections.Generic;
    
@@ -380,10 +380,10 @@ test('bubble sort', () => {
           }
       }
   }`);
-  assert.equal(code.language, 'C#');
+  assert.equal(code.language, "C#");
 });
 
-test('merge sort', () => {
+test("merge sort", () => {
   const code = detectLang(`namespace RosettaCode {
     using System;
    
@@ -509,10 +509,10 @@ test('merge sort', () => {
     }
     #endregion
   }`);
-  assert.equal(code.language, 'C#');
+  assert.equal(code.language, "C#");
 });
 
-test('fibonacci sequence', () => {
+test("fibonacci sequence", () => {
   const code = detectLang(`public static IEnumerable<long> Fibs(uint x) {
       IList<ulong> fibs = new List<ulong>();
   
@@ -528,10 +528,10 @@ test('fibonacci sequence', () => {
       return fibs;
   }
  `);
-  assert.equal(code.language, 'C#');
+  assert.equal(code.language, "C#");
 });
 
-test('happy numbers', () => {
+test("happy numbers", () => {
   const code = detectLang(`using System;
   using System.Collections.Generic;
   using System.Linq;
@@ -581,10 +581,10 @@ test('happy numbers', () => {
           }
       }
   }`);
-  assert.equal(code.language, 'C#');
+  assert.equal(code.language, "C#");
 });
 
-test('gamma function', () => {
+test("gamma function", () => {
   const code = detectLang(`using System;
   using System.Numerics;
    
@@ -613,10 +613,10 @@ test('gamma function', () => {
     }
   }
    `);
-  assert.equal(code.language, 'C#');
+  assert.equal(code.language, "C#");
 });
 
-test('fivenum', () => {
+test("fivenum", () => {
   const code = detectLang(`using System;
   using System.Collections.Generic;
   using System.Linq;
@@ -681,10 +681,10 @@ test('fivenum', () => {
           }
       }
   }`);
-  assert.equal(code.language, 'C#');
+  assert.equal(code.language, "C#");
 });
 
-test('y combinator', () => {
+test("y combinator", () => {
   const code = detectLang(`using System;
  
   static class YCombinator<T, TResult>
@@ -708,10 +708,10 @@ test('y combinator', () => {
       }
   }
    `);
-  assert.equal(code.language, 'C#');
+  assert.equal(code.language, "C#");
 });
 
-test('quick sort example with java conflict', () => {
+test("quick sort example with java conflict", () => {
   const code = detectLang(`namespace ConsoleApplication13
   {
       class Program
@@ -761,7 +761,7 @@ test('quick sort example with java conflict', () => {
           }
       }
   }`);
-  assert.equal(code.language, 'C#');
+  assert.equal(code.language, "C#");
 });
 
 test.run();

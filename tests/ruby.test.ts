@@ -1,13 +1,13 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src/index';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src/index";
 
-test('hello world', () => {
+test("hello world", () => {
   const code = detectLang('puts "Hello world"');
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
-test('fizz buzz', () => {
+test("fizz buzz", () => {
   const code = detectLang(`1.step(100,1) do |i|
   if (i % 5) == 0 && (i % 3) ==0
       puts 'FizzBuzz'
@@ -19,11 +19,11 @@ test('fizz buzz', () => {
       puts i
   end
 end`);
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
 // FIXME: This detects as Java. It should be Ruby.
-test.skip('quick sort', () => {
+test.skip("quick sort", () => {
   const code = detectLang(`class Array
   def quick_sort
     return self if length <= 1
@@ -32,10 +32,10 @@ test.skip('quick sort', () => {
     less.quick_sort + [pivot] + greatereq.quick_sort
   end
 end`);
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
-test('bubble sort', () => {
+test("bubble sort", () => {
   const code = detectLang(`class Array
     def bubblesort1!
       length.times do |j|
@@ -59,11 +59,11 @@ test('bubble sort', () => {
   ary = [3, 78, 4, 23, 6, 8, 6]
   ary.bubblesort1!
   p ary`);
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
 // FIXME: Detected as Python
-test.skip('heap sort', () => {
+test.skip("heap sort", () => {
   const code = detectLang(`class Array
     def heapsort
       self.dup.heapsort!
@@ -98,19 +98,19 @@ test.skip('heap sort', () => {
       end
     end
   end`);
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
 // FIXME: This detected as PHP
-test.skip('http server', () => {
+test.skip("http server", () => {
   const code = detectLang(`require 'fileutils'
   require 'open-uri'
    
   open("http://rosettacode.org/") {|f| FileUtils.copy_stream(f, $stdout)}`);
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
-test('floyd warshall algorithm', () => {
+test("floyd warshall algorithm", () => {
   const code = detectLang(`def floyd_warshall(n, edge)
     dist = Array.new(n){|i| Array.new(n){|j| i==j ? 0 : Float::INFINITY}}
     nxt = Array.new(n){Array.new(n)}
@@ -146,10 +146,10 @@ test('floyd warshall algorithm', () => {
   n = 4
   edge = [[1, 3, -2], [2, 1, 4], [2, 3, 3], [3, 4, 2], [4, 2, -1]]
   floyd_warshall(n, edge)`);
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
-test('ludic numbers', () => {
+test("ludic numbers", () => {
   const code = detectLang(`def ludic(nmax=100000)
     Enumerator.new do |y|
       y << 1
@@ -171,10 +171,10 @@ test('ludic numbers', () => {
   ludics = ludic(250).to_a
   puts "Ludic triples below 250:",
       ludics.select{|x| ludics.include?(x+2) and ludics.include?(x+6)}.map{|x| [x, x+2, x+6]}.to_s`);
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
-test('fivenum', () => {
+test("fivenum", () => {
   const code = detectLang(`def fivenum(array)
   sorted_arr = array.sort
   n = array.size
@@ -202,20 +202,20 @@ test_array = [0.14082834, 0.09748790, 1.73131507, 0.87636009, -1.95059594,
 tukey_array = fivenum(test_array)
 p tukey_array
  `);
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
-test('ruby conflicts with other language', () => {
+test("ruby conflicts with other language", () => {
   const code = detectLang(`module XYZ
   class A
   end
   class B < A
   end
   end`);
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
-test('testing BEGIN and END', () => {
+test("testing BEGIN and END", () => {
   const code = detectLang(`#!/usr/bin/ruby
 
   puts "This is main Ruby Program"
@@ -226,10 +226,10 @@ test('testing BEGIN and END', () => {
   BEGIN {
      puts "Initializing Ruby Program"
   }`);
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
-test('testing BEGIN and END other test case', () => {
+test("testing BEGIN and END other test case", () => {
   const code = detectLang(`# Ruby Program of BEGIN and END Block
 
   # BEGIN block
@@ -260,7 +260,7 @@ test('testing BEGIN and END other test case', () => {
   # Code will execute before END block
   puts "Main Block"
   `);
-  assert.equal(code.language, 'Ruby');
+  assert.equal(code.language, "Ruby");
 });
 
 test.run();

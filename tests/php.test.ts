@@ -1,13 +1,13 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src/index';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src/index";
 
-test('hello world', () => {
+test("hello world", () => {
   const code = detectLang('echo "Hello world";');
-  assert.equal(code.language, 'PHP');
+  assert.equal(code.language, "PHP");
 });
 
-test('fizz buzz', () => {
+test("fizz buzz", () => {
   const code = detectLang(`<?php
 
   for ($i = 1; $i <= 100; $i++) {
@@ -25,10 +25,10 @@ test('fizz buzz', () => {
   
     echo "\n";
   }`);
-  assert.equal(code.language, 'PHP');
+  assert.equal(code.language, "PHP");
 });
 
-test('sql based authentication', () => {
+test("sql based authentication", () => {
   const code =
     detectLang(`function connect_db($database, $db_user, $db_password, $host = 'localhost', $port = NULL, $die = false) {
     // Returns a MySQL link identifier (handle) on success
@@ -99,10 +99,10 @@ test('sql based authentication', () => {
     // Return the record ID
     return $row['userid'];
   }`);
-  assert.equal(code.language, 'PHP');
+  assert.equal(code.language, "PHP");
 });
 
-test('quick sort', () => {
+test("quick sort", () => {
   const code = detectLang(`function quicksort($arr){
     $lte = $gt = array();
     if(count($arr) < 2){
@@ -123,10 +123,10 @@ test('quick sort', () => {
   $arr = array(1, 3, 5, 7, 9, 8, 6, 4, 2);
   $arr = quicksort($arr);
   echo implode(',',$arr);`);
-  assert.equal(code.language, 'PHP');
+  assert.equal(code.language, "PHP");
 });
 
-test('bubble sort', () => {
+test("bubble sort", () => {
   const code = detectLang(`function bubbleSort(array $array){
     foreach($array as $i => &$val){
         foreach($array as $k => &$val2){
@@ -140,10 +140,10 @@ test('bubble sort', () => {
     }
     return $array;
   }`);
-  assert.equal(code.language, 'PHP');
+  assert.equal(code.language, "PHP");
 });
 
-test('merge sort', () => {
+test("merge sort", () => {
   const code = detectLang(`function mergesort($arr){
     if(count($arr) == 1 ) return $arr;
     $mid = count($arr) / 2;
@@ -179,10 +179,10 @@ test('merge sort', () => {
   $arr = array( 1, 5, 2, 7, 3, 9, 4, 6, 8);
   $arr = mergesort($arr);
   echo implode(',',$arr);`);
-  assert.equal(code.language, 'PHP');
+  assert.equal(code.language, "PHP");
 });
 
-test('bogo sort', () => {
+test("bogo sort", () => {
   const code = detectLang(`function bogosort($l) {
       while (!in_order($l))
           shuffle($l);
@@ -195,10 +195,10 @@ test('bogo sort', () => {
               return FALSE;
       return TRUE;
   }`);
-  assert.equal(code.language, 'PHP');
+  assert.equal(code.language, "PHP");
 });
 
-test('floyd warshall algorithm', () => {
+test("floyd warshall algorithm", () => {
   const code = detectLang(`<?php
   $graph = array();
   for ($i = 0; $i < 10; ++$i) {
@@ -222,7 +222,7 @@ test('floyd warshall algorithm', () => {
    
   print_r($graph);
   ?>`);
-  assert.equal(code.language, 'PHP');
+  assert.equal(code.language, "PHP");
 });
 
 test.run();

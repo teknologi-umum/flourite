@@ -1,17 +1,17 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src/index';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src/index";
 
-test('hello world', () => {
+test("hello world", () => {
   const code = detectLang(`program byeworld;
  
   begin
     writeln(StdErr, 'Goodbye, World!');
   end.`);
-  assert.equal(code.language, 'Pascal');
+  assert.equal(code.language, "Pascal");
 });
 
-test('fizz buzz', () => {
+test("fizz buzz", () => {
   const code = detectLang(`program fizzbuzz(output);
   var
     i: integer;
@@ -26,10 +26,10 @@ test('fizz buzz', () => {
       else
         writeln(i);
   end.`);
-  assert.equal(code.language, 'Pascal');
+  assert.equal(code.language, "Pascal");
 });
 
-test('guess the number', () => {
+test("guess the number", () => {
   const code = detectLang(`Program GuessTheNumber(input, output);
  
   var
@@ -50,10 +50,10 @@ test('guess the number', () => {
     writeln ('You made an excellent guess. Thank you and have a nice day.');
   end.
    `);
-  assert.equal(code.language, 'Pascal');
+  assert.equal(code.language, "Pascal");
 });
 
-test('bubble sort', () => {
+test("bubble sort", () => {
   const code = detectLang(`procedure bubble_sort(var list: array of real);
   var
     i, j, n: integer;
@@ -69,10 +69,10 @@ test('bubble sort', () => {
           list[j + 1] := t;
         end;
   end;`);
-  assert.equal(code.language, 'Pascal');
+  assert.equal(code.language, "Pascal");
 });
 
-test('heap sort', () => {
+test("heap sort", () => {
   const code = detectLang(`program HeapSortDemo;
  
   type
@@ -150,10 +150,10 @@ test('heap sort', () => {
     end;
     writeln;
   end.`);
-  assert.equal(code.language, 'Pascal');
+  assert.equal(code.language, "Pascal");
 });
 
-test('merge sort', () => {
+test("merge sort", () => {
   const code = detectLang(`program MergeSortDemo;
  
   {$IFDEF FPC}
@@ -242,10 +242,10 @@ test('merge sort', () => {
     end;
     writeln;
   end.`);
-  assert.equal(code.language, 'Pascal');
+  assert.equal(code.language, "Pascal");
 });
 
-test('quick sort', () => {
+test("quick sort", () => {
   const code = detectLang(`{ X is array of LongInt }
   Procedure QuickSort ( Left, Right : LongInt );
   Var 
@@ -269,10 +269,10 @@ test('quick sort', () => {
     If Left<j Then QuickSort(Left,j);
     If i<Right Then QuickSort(i,Right);
   End;`);
-  assert.equal(code.language, 'Pascal');
+  assert.equal(code.language, "Pascal");
 });
 
-test('palindrome', () => {
+test("palindrome", () => {
   const code = detectLang(`program Palindro;
  
   { RECURSIVE }
@@ -296,10 +296,10 @@ test('palindrome', () => {
      else
         is_palindro := false
   end;`);
-  assert.equal(code.language, 'Pascal');
+  assert.equal(code.language, "Pascal");
 });
 
-test('happy numbers', () => {
+test("happy numbers", () => {
   const code = detectLang(`Program HappyNumbers (output);
  
   uses
@@ -361,10 +361,10 @@ test('happy numbers', () => {
     end;
     writeln;
   end.`);
-  assert.equal(code.language, 'Pascal');
+  assert.equal(code.language, "Pascal");
 });
 
-test('ludic numbers', () => {
+test("ludic numbers", () => {
   const code = detectLang(`program lucid;
   {$IFDEF FPC}
     {$MODE objFPC} // useful for x64
@@ -509,10 +509,10 @@ test('ludic numbers', () => {
     LastLucid(LudicList,maxLudicCnt,5);
     triples(LudicList,250);//all-> (LudicList,LudicList[High(LudicList)].dNum);
   END.`);
-  assert.equal(code.language, 'Pascal');
+  assert.equal(code.language, "Pascal");
 });
 
-test('attractive number', () => {
+test("attractive number", () => {
   const code = detectLang(`program AttractiveNumbers;
   { numbers with count of factors = prime
   * using modified sieve of erathosthes
@@ -723,7 +723,7 @@ test('attractive number', () => {
     writeln('time counting : ',T*86400 :8:3,' s');
     writeln('time total    : ',(now-T0)*86400 :8:3,' s');
   end.`);
-  assert.equal(code.language, 'Pascal');
+  assert.equal(code.language, "Pascal");
 });
 
 test.run();

@@ -1,15 +1,15 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src";
 
-test('hello world', () => {
+test("hello world", () => {
   const code = detectLang(`fun main(args: Array<String>) {
     println("Goodbye, World!")
 }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('fizz buzz', () => {
+test("fizz buzz", () => {
   const code = detectLang(`fun main(args: Array<String>) {
  
     //Read the maximum number, set to 0 if it couldn't be read
@@ -38,10 +38,10 @@ test('fizz buzz', () => {
             println(i)
     }
 }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('guess the number', () => {
+test("guess the number", () => {
   const code = detectLang(`// version 1.0.5-2
  
   fun main(args: Array<String>) {
@@ -50,10 +50,10 @@ test('guess the number', () => {
     do { print(" Your guess : ") } while (n != readLine())
     println("\\nWell guessed!")
   }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('date manipulation', () => {
+test("date manipulation", () => {
   const code = detectLang(`import java.text.SimpleDateFormat
   import java.util.*
    
@@ -71,10 +71,10 @@ test('date manipulation', () => {
       cal.timeZone = TimeZone.getTimeZone("MST")
       println(fmt.format(cal))
   }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('humble numbers', () => {
+test("humble numbers", () => {
   const code = detectLang(`fun isHumble(i: Int): Boolean {
     if (i <= 1) return true
     if (i % 2 == 0) return isHumble(i / 2)
@@ -115,10 +115,10 @@ fun main() {
         }
     }
 }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('attractive number', () => {
+test("attractive number", () => {
   const code = detectLang(`const val MAX = 120
  
   fun isPrime(n: Int) : Boolean {
@@ -171,10 +171,10 @@ test('attractive number', () => {
       }
       println()
   }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('bubble sort', () => {
+test("bubble sort", () => {
   const code = detectLang(`import java.util.Comparator
  
   fun <T> bubbleSort(a: Array<T>, c: Comparator<T>) {
@@ -191,10 +191,10 @@ test('bubble sort', () => {
           }
       } while (changed)
   }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('heap sort', () => {
+test("heap sort", () => {
   const code = detectLang(`fun heapSort(a: IntArray) {
     heapify(a)
     var end = a.size - 1
@@ -241,10 +241,10 @@ fun main(args: Array<String>) {
         println(a.joinToString(", "))
     }
 }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('merge sort', () => {
+test("merge sort", () => {
   const code = detectLang(`fun mergeSort(list: List<Int>): List<Int> {
     if (list.size <= 1) {
         return list
@@ -295,10 +295,10 @@ fun main(args: Array<String>) {
     println("Unsorted: $numbers")
     println("Sorted: \${mergeSort(numbers)}")
 }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('palindrome', () => {
+test("palindrome", () => {
   const code = detectLang(`// version 1.1.2
  
   /* These functions deal automatically with Unicode as all strings are UTF-16 encoded in Kotlin */
@@ -328,10 +328,10 @@ test('palindrome', () => {
           println("'$candidate' is \${if (isInexactPalindrome(candidate)) "an" else "not an"} inexact palindrome")
       }
   }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('floyd warshall', () => {
+test("floyd warshall", () => {
   const code = detectLang(`object FloydWarshall {
     fun doCalcs(weights: Array<IntArray>, nVertices: Int) {
         val dist = Array(nVertices) { DoubleArray(nVertices) { Double.POSITIVE_INFINITY } }
@@ -388,11 +388,12 @@ fun main(args: Array<String>) {
     val nVertices = 4
     FloydWarshall.doCalcs(weights, nVertices)
 }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('most frequent k chair distance', () => {
-  const code = detectLang(`fun mostFreqKHashing(input: String, k: Int): String = 
+test("most frequent k chair distance", () => {
+  const code =
+    detectLang(`fun mostFreqKHashing(input: String, k: Int): String = 
   input.groupBy { it }.map { Pair(it.key, it.value.size) }
                       .sortedByDescending { it.second } // preserves original order when equal
                       .take(k)
@@ -444,10 +445,10 @@ fun main(args: Array<String>) {
   s2 = s1.reversed()
   mostFreqKSDF(s1, s2, 2, 100)
 }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('bankers algorithm', () => {
+test("bankers algorithm", () => {
   const code = detectLang(`fun main(args: Array<String>) {
     print("Enter the number of resources: ")
     val r = readLine()!!.toInt()
@@ -515,10 +516,10 @@ test('bankers algorithm', () => {
         println("\\nAvailable Vector: \${avl.joinToString(" ")}")
     }
 }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('average loop length', () => {
+test("average loop length", () => {
   const code = detectLang(`const val NMAX  = 20
     const val TESTS = 1000000
     val rand = java.util.Random()
@@ -557,11 +558,12 @@ test('average loop length', () => {
             println(String.format("%3d   %6.4f   %10.4f      (%4.2f%%)", n, a, b, Math.abs(a - b) / b * 100.0))
         }
     }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('gamma function', () => {
-  const code = detectLang(`fun gammaStirling(x: Double): Double = Math.sqrt(2.0 * Math.PI / x) * Math.pow(x / Math.E, x)
+test("gamma function", () => {
+  const code =
+    detectLang(`fun gammaStirling(x: Double): Double = Math.sqrt(2.0 * Math.PI / x) * Math.pow(x / Math.E, x)
  
     fun gammaLanczos(x: Double): Double {
         var xx = x
@@ -594,10 +596,10 @@ test('gamma function', () => {
             println("%17.15f".format(gammaLanczos(d)))
         }
     }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('number calculation function', () => {
+test("number calculation function", () => {
   const code = detectLang(`fun main(args: Array<String>) {
 
         var sum: Int = 0
@@ -612,10 +614,10 @@ test('number calculation function', () => {
     
         println("sum = $sum")
     }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('simple while loop implementation', () => {
+test("simple while loop implementation", () => {
   const code = detectLang(`fun main(args: Array) {
         var i: Int = 1
         while(true){
@@ -625,10 +627,10 @@ test('simple while loop implementation', () => {
                 break;
         }
     }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('largest among 3 numbers programme', () => {
+test("largest among 3 numbers programme", () => {
   const code = detectLang(`fun main(args: Array<String>) {
 
         val n1 = 3
@@ -649,10 +651,10 @@ test('largest among 3 numbers programme', () => {
     
         println("max = $max")
     }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
-test('bubble sort function', () => {
+test("bubble sort function", () => {
   const code = detectLang(`import java.util.Comparator
  
     fun <T> bubbleSort(a: Array<T>, c: Comparator<T>) {
@@ -669,7 +671,7 @@ test('bubble sort function', () => {
             }
         } while (changed)
     }`);
-  assert.equal(code.language, 'Kotlin');
+  assert.equal(code.language, "Kotlin");
 });
 
 test.run();
