@@ -1,15 +1,15 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
-import detectLang from "../src";
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src';
 
-test("hello world", () => {
+test('hello world', () => {
   const code = detectLang(`fn main() {
     print!("Hello world!");
  }`);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
-test("fizz buzz", () => {
+test('fizz buzz', () => {
   const code = detectLang(`fn main() {
     for i in 1..=100 {
         match (i % 3, i % 5) {
@@ -20,10 +20,10 @@ test("fizz buzz", () => {
         }
     }
 }`);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
-test("quick sort", () => {
+test('quick sort', () => {
   const code = detectLang(`fn main() {
       println!("Sort numbers in descending order");
       let mut numbers = [4, 65, 2, -31, 0, 99, 2, 83, 782, 1];
@@ -77,10 +77,10 @@ test("quick sort", () => {
       v.swap(store_index, len - 1);
       store_index
   }`);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
-test("http", () => {
+test('http', () => {
   const code = detectLang(`//cargo-deps: hyper="0.6"
   // The above line can be used with cargo-script which makes cargo's dependency handling more convenient for small programs
   extern crate hyper;
@@ -96,10 +96,10 @@ test("http", () => {
       println!("{}", body);
   }
    `);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
-test("fibonacci sequence", () => {
+test('fibonacci sequence', () => {
   const code = detectLang(`fn fib_tail_recursive(nth: usize) -> usize {
     fn fib_tail_iter(n: usize, prev_fib: usize, fib: usize) -> usize {
       match n {
@@ -109,10 +109,10 @@ test("fibonacci sequence", () => {
     }
     fib_tail_iter(nth, 0, 1)
   }`);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
-test("palindrome detection", () => {
+test('palindrome detection', () => {
   const code = detectLang(`fn is_palindrome(string: &str) -> bool {
       let half_len = string.len() / 2;
       string
@@ -138,10 +138,10 @@ test("palindrome detection", () => {
           "The quick brown fox"
       );
   }`);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
-test("file input", () => {
+test('file input', () => {
   const code = detectLang(`use std::fs::File;
   use std::io::{self, Read,  Write};
   use std::path::Path;
@@ -170,10 +170,10 @@ test("file input", () => {
       writeln!(&mut io::stderr(), "ERROR: {}", msg).expect("Could not write to stdout");
       process::exit(code);
   }`);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
-test("bubble sort", () => {
+test('bubble sort', () => {
   const code = detectLang(`fn bubble_sort<T: Ord>(values: &mut[T]) {
       let mut n = values.len();
       let mut swapped = true;
@@ -207,10 +207,10 @@ test("bubble sort", () => {
       bubble_sort(&mut strings);
       println!("After: {:?}", strings);
   }`);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
-test("heap sort", () => {
+test('heap sort', () => {
   const code = detectLang(`fn main() {
       let mut v = [4, 6, 8, 1, 0, 3, 2, 2, 9, 5];
       heap_sort(&mut v, |x, y| x < y);
@@ -254,10 +254,10 @@ test("heap sort", () => {
           }
       }
   }`);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
-test("ludic number", () => {
+test('ludic number', () => {
   const code = detectLang(`const ARRAY_MAX: usize = 25_000;
   const LUDIC_MAX: usize = 2100;
    
@@ -356,10 +356,10 @@ test("ludic number", () => {
       }
   }
    `);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
-test("floyd warshall algorithm", () => {
+test('floyd warshall algorithm', () => {
   const code = detectLang(`pub type Edge = (usize, usize);
  
   #[derive(Clone, Debug, PartialEq, Eq, Hash)]
@@ -573,10 +573,10 @@ test("floyd warshall algorithm", () => {
       // Fixup the vertex name (as we use zero-based indices)
       print_results(&weights, paths.as_ref(), |index| index + 1);
   }`);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
-test("fivenum", () => {
+test('fivenum', () => {
   const code = detectLang(`#[derive(Debug)]
     struct FiveNum {
         minimum: f64,
@@ -649,7 +649,7 @@ test("fivenum", () => {
             println!("  Maximum: {}", result.maximum);
         }
     }`);
-  assert.equal(code.language, "Rust");
+  assert.equal(code.language, 'Rust');
 });
 
 test.run();

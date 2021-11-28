@@ -1,13 +1,13 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
-import detectLang from "../src/index";
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src/index';
 
-test("hello world", () => {
+test('hello world', () => {
   const code = detectLang('print "Hello world!"');
-  assert.equal(code.language, "Python");
+  assert.equal(code.language, 'Python');
 });
 
-test("fizz buzz", () => {
+test('fizz buzz', () => {
   const code = detectLang(`def fizzbuzz(n):
 	if n % 3 == 0 and n % 5 == 0:
 		return 'FizzBuzz'
@@ -22,15 +22,15 @@ test("fizz buzz", () => {
 		return str(n)
  
 print "\n".join(fizzbuzz(n) for n in xrange(0, 100))`);
-  assert.equal(code.language, "Python");
+  assert.equal(code.language, 'Python');
 });
 
-test("variable declaration", () => {
-  const code = detectLang("i = 1");
-  assert.equal(code.language, "Python");
+test('variable declaration', () => {
+  const code = detectLang('i = 1');
+  assert.equal(code.language, 'Python');
 });
 
-test("quick sort", () => {
+test('quick sort', () => {
   const code = detectLang(`def quickSort(arr):
 	less = []
 	pivotList = []
@@ -52,10 +52,10 @@ test("quick sort", () => {
 
 a = [4, 65, 2, -31, 0, 99, 83, 782, 1]
 a = quickSort(a)`);
-  assert.equal(code.language, "Python");
+  assert.equal(code.language, 'Python');
 });
 
-test("bubble sort", () => {
+test('bubble sort', () => {
   const code = detectLang(`def bubble_sort(seq):
 	"""Inefficiently sort the mutable sequence (list) in place.
 		 seq MUST BE A MUTABLE SEQUENCE.
@@ -82,10 +82,10 @@ if __name__ == "__main__":
  assert testcase != testset  # we've shuffled it
  bubble_sort(testcase)
  assert testcase == testset  # we've unshuffled it back into a copy`);
-  assert.equal(code.language, "Python");
+  assert.equal(code.language, 'Python');
 });
 
-test("heap sort", () => {
+test('heap sort', () => {
   const code = detectLang(`def heapsort(lst):
   ''' Heapsort. Note: this function sorts in-place (it mutates the list). '''
  
@@ -110,10 +110,10 @@ def siftdown(lst, start, end):
       root = child
     else:
       break`);
-  assert.equal(code.language, "Python");
+  assert.equal(code.language, 'Python');
 });
 
-test("http server", () => {
+test('http server', () => {
   const code = detectLang(`from http.client import HTTPConnection
 	conn = HTTPConnection("example.com")
 	# If you need to use set_tunnel, do so here.
@@ -121,10 +121,10 @@ test("http server", () => {
 	# Alternatively, you can use connect(), followed by the putrequest, putheader and endheaders functions.
 	result = conn.getresponse()
 	r1 = result.read() # This retrieves the entire contents.  `);
-  assert.equal(code.language, "Python");
+  assert.equal(code.language, 'Python');
 });
 
-test("floyd warshall algorithm", () => {
+test('floyd warshall algorithm', () => {
   const code = detectLang(`from math import inf
 		from itertools import product
 		
@@ -154,10 +154,10 @@ test("floyd warshall algorithm", () => {
 		
 		if __name__ == '__main__':
 				floyd_warshall(4, [[1, 3, -2], [2, 1, 4], [2, 3, 3], [3, 4, 2], [4, 2, -1]])`);
-  assert.equal(code.language, "Python");
+  assert.equal(code.language, 'Python');
 });
 
-test("ludic numbers", () => {
+test('ludic numbers', () => {
   const code = detectLang(`def ludic(nmax=100000):
 		yield 1
 		lst = list(range(2, nmax + 1))
@@ -180,10 +180,10 @@ test("ludic numbers", () => {
 						if x+6 < n and x+2 in ludics and x+6 in ludics]
 	print('\nThere are %i triplets less than %i:\n  %r'
 			% (len(triplets), n, triplets))`);
-  assert.equal(code.language, "Python");
+  assert.equal(code.language, 'Python');
 });
 
-test("gamma function", () => {
+test('gamma function', () => {
   const code = detectLang(`'''Gamma function'''
  
 	from functools import reduce
@@ -266,10 +266,10 @@ test("gamma function", () => {
 	# MAIN ---
 	if __name__ == '__main__':
 			main()`);
-  assert.equal(code.language, "Python");
+  assert.equal(code.language, 'Python');
 });
 
-test("fivenum", () => {
+test('fivenum', () => {
   const code = detectLang(`from __future__ import division
 	import math
 	import sys
@@ -298,7 +298,7 @@ test("fivenum", () => {
 	 
 	y = fivenum(x)
 	print(y)`);
-  assert.equal(code.language, "Python");
+  assert.equal(code.language, 'Python');
 });
 
 test.run();

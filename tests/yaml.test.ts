@@ -1,18 +1,17 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
-import detectLang from "../src/index";
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src/index';
 
-test("simple key value", () => {
+test('simple key value', () => {
   const code = detectLang(`key: value
 another_key: Another value goes here.
 a_number_value: 100
 scientific_notation: 1e+12`);
-  assert.equal(code.language, "YAML");
+  assert.equal(code.language, 'YAML');
 });
 
-test("collection", () => {
-  const code =
-    detectLang(`# Nesting uses indentation. 2 space indent is preferred (but not required).
+test('collection', () => {
+  const code = detectLang(`# Nesting uses indentation. 2 space indent is preferred (but not required).
 a_nested_map:
   key: value
   another_key: Another Value
@@ -21,18 +20,18 @@ a_nested_map:
 
 # Maps don't have to have string keys.
 0.25: a float key`);
-  assert.equal(code.language, "YAML");
+  assert.equal(code.language, 'YAML');
 });
 
-test("complex key", () => {
+test('complex key', () => {
   const code = detectLang(`? |
   This is a key
   that has multiple lines
 : and this is its value`);
-  assert.equal(code.language, "YAML");
+  assert.equal(code.language, 'YAML');
 });
 
-test("merge key", () => {
+test('merge key', () => {
   const code = detectLang(`foo:
   <<: *base
   age: 10
@@ -40,28 +39,28 @@ test("merge key", () => {
 bar:
   <<: *base
   age: 20`);
-  assert.equal(code.language, "YAML");
+  assert.equal(code.language, 'YAML');
 });
 
-test("binary", () => {
+test('binary', () => {
   const code = detectLang(`gif_file: !!binary |
   R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5
   OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+
   +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC
   AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=`);
-  assert.equal(code.language, "YAML");
+  assert.equal(code.language, 'YAML');
 });
 
-test("set types", () => {
+test('set types', () => {
   const code = detectLang(`set:
   ? item1
   ? item2
   ? item3
 or: {item1, item2, item3}`);
-  assert.equal(code.language, "YAML");
+  assert.equal(code.language, 'YAML');
 });
 
-test("docker compose file", () => {
+test('docker compose file', () => {
   const code = detectLang(`version: "3.8"
   services:
     dynamodb-local:
@@ -73,10 +72,10 @@ test("docker compose file", () => {
         - "./docker/dynamodb:/home/dynamodblocal/data"
       working_dir: /home/dynamodblocal
       command: "-jar DynamoDBLocal.jar -sharedDb -optimizeDbBeforeStartup -dbPath ./data"`);
-  assert.equal(code.language, "YAML");
+  assert.equal(code.language, 'YAML');
 });
 
-test("github actions", () => {
+test('github actions', () => {
   const code = detectLang(`n:
   release:
     types: [created]
@@ -110,10 +109,10 @@ jobs:
         app-name: \${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: \${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: \${{ env.AZURE_WEBAPP_PACKAGE_PATH }}`);
-  assert.equal(code.language, "YAML");
+  assert.equal(code.language, 'YAML');
 });
 
-test("circleci config", () => {
+test('circleci config', () => {
   const code = detectLang(`aliases:
   # Cache management
   - &restore_yarn_cache
@@ -210,10 +209,10 @@ workflows:
       - test_prod_node9:
           requires:
             - build_prod`);
-  assert.equal(code.language, "YAML");
+  assert.equal(code.language, 'YAML');
 });
 
-test("eslint config yaml", () => {
+test('eslint config yaml', () => {
   const code = detectLang(`
   root: true
   parser: '@typescript-eslint/parser'
@@ -248,7 +247,7 @@ test("eslint config yaml", () => {
     '@typescript-eslint/no-unused-vars':
       - 2
       - argsIgnorePattern: '^_'`);
-  assert.equal(code.language, "YAML");
+  assert.equal(code.language, 'YAML');
 });
 
 test.run();

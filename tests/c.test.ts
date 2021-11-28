@@ -1,13 +1,13 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
-import detectLang from "../src/index";
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src/index';
 
-test("hello world", () => {
+test('hello world', () => {
   const code = detectLang('printf("Hello world!\\n");', { shiki: true });
-  assert.equal(code.language, "c");
+  assert.equal(code.language, 'c');
 });
 
-test("fizz buzz", () => {
+test('fizz buzz', () => {
   const code = detectLang(`#include <stdio.h>
 
   int main(void)
@@ -30,17 +30,16 @@ test("fizz buzz", () => {
   
     return 0;
   }`);
-  assert.equal(code.language, "C");
+  assert.equal(code.language, 'C');
 });
 
-test("variable declaration", () => {
-  const code = detectLang("int *ptr;");
-  assert.equal(code.language, "C");
+test('variable declaration', () => {
+  const code = detectLang('int *ptr;');
+  assert.equal(code.language, 'C');
 });
 
-test("file", () => {
-  const code =
-    detectLang(`static int IndexEntry__set_mtime__meth(lua_State *L) {
+test('file', () => {
+  const code = detectLang(`static int IndexEntry__set_mtime__meth(lua_State *L) {
     IndexEntry * this_idx1 = obj_type_IndexEntry_check(L,1);
     git_time_t secs_idx2 = luaL_checkinteger(L,2);
     unsigned int nanosecs_idx3 = luaL_checkinteger(L,3);
@@ -49,10 +48,10 @@ test("file", () => {
   
     return 0;
   }`);
-  assert.equal(code.language, "C");
+  assert.equal(code.language, 'C');
 });
 
-test("quick sort", () => {
+test('quick sort', () => {
   const code = detectLang(`#include <stdio.h>
  
   void quicksort(int *A, int len);
@@ -97,10 +96,10 @@ test("quick sort", () => {
     quicksort(A, i);
     quicksort(A + i, len - i);
   }`);
-  assert.equal(code.language, "C");
+  assert.equal(code.language, 'C');
 });
 
-test("http server", () => {
+test('http server', () => {
   const code = detectLang(`#include <stdio.h>
   #include <stdlib.h>
   #include <curl/curl.h>
@@ -123,10 +122,10 @@ test("http server", () => {
           }
           return EXIT_SUCCESS;
   }`);
-  assert.equal(code.language, "C");
+  assert.equal(code.language, 'C');
 });
 
-test("fibonacci sequence", () => {
+test('fibonacci sequence', () => {
   const code = detectLang(`long long int fibb(int n) {
     int fnow = 0, fnext = 1, tempf;
     while(--n>0){
@@ -136,10 +135,10 @@ test("fibonacci sequence", () => {
       }
       return fnext;	
   }`);
-  assert.equal(code.language, "C");
+  assert.equal(code.language, 'C');
 });
 
-test("bubble sort", () => {
+test('bubble sort', () => {
   const code = detectLang(`#include <stdio.h>
  
   void bubble_sort (int *a, int n) {
@@ -169,10 +168,10 @@ test("bubble sort", () => {
           printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
       return 0;
   }`);
-  assert.equal(code.language, "C");
+  assert.equal(code.language, 'C');
 });
 
-test("heap sort", () => {
+test('heap sort', () => {
   const code = detectLang(`#include <stdio.h>
  
   int max (int *a, int n, int i, int j, int k) {
@@ -223,10 +222,10 @@ test("heap sort", () => {
           printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
       return 0;
   }`);
-  assert.equal(code.language, "C");
+  assert.equal(code.language, 'C');
 });
 
-test("tree sort on a linked list", () => {
+test('tree sort on a linked list', () => {
   const code = detectLang(`#include <stdio.h>
   #include <stdlib.h>
   #include <time.h>
@@ -338,10 +337,10 @@ test("tree sort on a linked list", () => {
       list_destroy(&list);
       return 0;
   }`);
-  assert.equal(code.language, "C");
+  assert.equal(code.language, 'C');
 });
 
-test("floyd warshall algorithm", () => {
+test('floyd warshall algorithm', () => {
   const code = detectLang(`#include<limits.h>
   #include<stdlib.h>
   #include<stdio.h>
@@ -417,10 +416,10 @@ test("floyd warshall algorithm", () => {
           floydWarshall(loadGraph(argV[1]));
       return 0;
   }`);
-  assert.equal(code.language, "C");
+  assert.equal(code.language, 'C');
 });
 
-test("ludic numbers", () => {
+test('ludic numbers', () => {
   const code = detectLang(`#include <stdio.h>
   #include <stdlib.h>
    
@@ -492,7 +491,7 @@ test("ludic numbers", () => {
       free(x);
       return 0;
   }`);
-  assert.equal(code.language, "C");
+  assert.equal(code.language, 'C');
 });
 
 test.run();
