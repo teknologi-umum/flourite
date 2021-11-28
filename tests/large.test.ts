@@ -1,8 +1,8 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
-import detectLang from "../src";
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src';
 
-test("large input", () => {
+test('large input', () => {
   // This is the code of argon2
   // https://github.com/P-H-C/phc-winner-argon2/blob/master/src/core.c
   const code = detectLang(
@@ -654,14 +654,14 @@ test("large input", () => {
   
       return ARGON2_OK;
   }`,
-    { heuristic: true }
+    { heuristic: true },
   );
-  assert.equal(code.language, "C++");
+  assert.equal(code.language, 'C++');
   assert.equal(code.statistics, {
     C: 111,
     Clojure: 0,
-    "C++": 160,
-    "C#": 85,
+    'C++': 160,
+    'C#': 85,
     CSS: 0,
     Dockerfile: 0,
     Elixir: 0,
@@ -681,7 +681,7 @@ test("large input", () => {
     Rust: 4,
     SQL: 24,
     Unknown: 1,
-    YAML: 4
+    YAML: 4,
   });
   assert.equal(code.linesOfCode, 356);
 });

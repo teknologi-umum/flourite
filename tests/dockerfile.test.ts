@@ -1,8 +1,8 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
-import detectLang from "../src/index";
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src/index';
 
-test("teknum bot", () => {
+test('teknum bot', () => {
   const code = detectLang(`
 FROM node:16.6-buster
 
@@ -16,10 +16,10 @@ EXPOSE 8080
 
 CMD ["npm", "start"]`);
 
-  assert.equal(code.language, "Dockerfile");
+  assert.equal(code.language, 'Dockerfile');
 });
 
-test("botnet", () => {
+test('botnet', () => {
   const code = detectLang(`
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
@@ -45,10 +45,10 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "BotNet.dll"]`);
 
-  assert.equal(code.language, "Dockerfile");
+  assert.equal(code.language, 'Dockerfile');
 });
 
-test("casperjs dockerfile", () => {
+test('casperjs dockerfile', () => {
   const code = detectLang(`
 #
 # Dockerfile for casperjs
@@ -91,10 +91,10 @@ ENTRYPOINT ["casperjs"]
 CMD ["--help"]
 `);
 
-  assert.equal(code.language, "Dockerfile");
+  assert.equal(code.language, 'Dockerfile');
 });
 
-test("kafka dockerfile", () => {
+test('kafka dockerfile', () => {
   const code = detectLang(`
     FROM azul/zulu-openjdk-alpine:8u292-8.54.0.21
 
@@ -141,7 +141,7 @@ VOLUME ["/kafka"]
 # Use "exec" form so that it runs as PID 1 (useful for graceful shutdown)
 CMD ["start-kafka.sh"]`);
 
-  assert.equal(code.language, "Dockerfile");
+  assert.equal(code.language, 'Dockerfile');
 });
 
 test.run();

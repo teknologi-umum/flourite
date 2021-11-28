@@ -1,13 +1,13 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
-import detectLang from "../src/index";
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src/index';
 
-test("hello world", () => {
+test('hello world', () => {
   const code = detectLang(`SELECT 'Hello world!' text FROM dual;`);
-  assert.equal(code.language, "SQL");
+  assert.equal(code.language, 'SQL');
 });
 
-test("fizz buzz", () => {
+test('fizz buzz', () => {
   const code = detectLang(`-- Load some numbers
   CREATE TABLE numbers(i INTEGER);
   INSERT INTO numbers VALUES(1);
@@ -32,10 +32,10 @@ test("fizz buzz", () => {
   -- Tidy up
   DROP TABLE fizzbuzz;
   DROP TABLE numbers;`);
-  assert.equal(code.language, "SQL");
+  assert.equal(code.language, 'SQL');
 });
 
-test("date manipulation", () => {
+test('date manipulation', () => {
   const code = detectLang(`-- March 7 2009 7:30pm EST
  
   SELECT 
@@ -68,10 +68,10 @@ test("date manipulation", () => {
   INTERVAL '12' HOUR)
   at TIME zone 'US/Arizona' plus_12_nodst
   FROM dual;`);
-  assert.equal(code.language, "SQL");
+  assert.equal(code.language, 'SQL');
 });
 
-test("merge and aggregate", () => {
+test('merge and aggregate', () => {
   const code = detectLang(`-- drop tables
   DROP TABLE IF EXISTS tmp_patients;
   DROP TABLE IF EXISTS tmp_visits;
@@ -131,20 +131,19 @@ test("merge and aggregate", () => {
     p.LASTNAME
   ORDER BY
     p.PATIENT_ID;`);
-  assert.equal(code.language, "SQL");
+  assert.equal(code.language, 'SQL');
 });
 
-test("fibonacci sequence", () => {
+test('fibonacci sequence', () => {
   const code = detectLang(`SELECT round ( EXP ( SUM (ln ( ( 1 + SQRT( 5 ) ) / 2)
   ) OVER ( ORDER BY level ) ) / SQRT( 5 ) ) fibo
 FROM dual
 CONNECT BY level <= 10;`);
-  assert.equal(code.language, "SQL");
+  assert.equal(code.language, 'SQL');
 });
 
-test("integer comparison", () => {
-  const code =
-    detectLang(`SELECT to_char(a)||' is less than '||to_char(b) less_than
+test('integer comparison', () => {
+  const code = detectLang(`SELECT to_char(a)||' is less than '||to_char(b) less_than
   FROM test
   WHERE a < b;
    
@@ -155,7 +154,7 @@ test("integer comparison", () => {
   SELECT to_char(a)||' is greater than '||to_char(b) greater_than
   FROM test
   WHERE a > b;`);
-  assert.equal(code.language, "SQL");
+  assert.equal(code.language, 'SQL');
 });
 
 test.run();

@@ -1,13 +1,13 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
-import detectLang from "../src/index";
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src/index';
 
-test("hello world", () => {
+test('hello world', () => {
   const code = detectLang('console.log("Hello world!");');
-  assert.equal(code.language, "Javascript");
+  assert.equal(code.language, 'Javascript');
 });
 
-test("fizz buzz", () => {
+test('fizz buzz', () => {
   const code = detectLang(`console.log(
     Array.apply(null, { length: 100 })
       .map(Number.call, Number)
@@ -16,10 +16,10 @@ test("fizz buzz", () => {
       }),
   );
   `);
-  assert.equal(code.language, "Javascript");
+  assert.equal(code.language, 'Javascript');
 });
 
-test("quick sort", () => {
+test('quick sort', () => {
   const code = detectLang(`function sort(array, less) {
  
     function swap(i, j) {
@@ -59,10 +59,10 @@ test("quick sort", () => {
    
     return array;
   }`);
-  assert.equal(code.language, "Javascript");
+  assert.equal(code.language, 'Javascript');
 });
 
-test("bubble sort", () => {
+test('bubble sort', () => {
   const code = detectLang(`Array.prototype.bubblesort = function() {
     var done = false;
     while (!done) {
@@ -76,10 +76,10 @@ test("bubble sort", () => {
     }
     return this;
   }`);
-  assert.equal(code.language, "Javascript");
+  assert.equal(code.language, 'Javascript');
 });
 
-test("heap sort", () => {
+test('heap sort', () => {
   const code = detectLang(`function heapSort(arr) {
       heapify(arr)
       let end = arr.length - 1
@@ -120,10 +120,10 @@ test("heap sort", () => {
       heapSort(arr)
       expect(arr).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
   })`);
-  assert.equal(code.language, "Javascript");
+  assert.equal(code.language, 'Javascript');
 });
 
-test("http server", () => {
+test('http server', () => {
   const code = detectLang(`const http = require('http');
  
   http.get('http://rosettacode.org', (resp) => {
@@ -143,10 +143,10 @@ test("http server", () => {
   }).on("error", (err) => {
     console.log("Error: " + err.message);
   });`);
-  assert.equal(code.language, "Javascript");
+  assert.equal(code.language, 'Javascript');
 });
 
-test("ludic numbers", () => {
+test('ludic numbers', () => {
   const code = detectLang(`/**
   * Boilerplate to simply get an array filled between 2 numbers
   * @param {!number} s Start here (inclusive)
@@ -212,10 +212,10 @@ test("ludic numbers", () => {
      console.log([e, e + 2, e + 6].join(', '));
    }
  });`);
-  assert.equal(code.language, "Javascript");
+  assert.equal(code.language, 'Javascript');
 });
 
-test("gamma function", () => {
+test('gamma function', () => {
   const code = detectLang(`function gamma(x) {
     var p = [0.99999999999980993, 676.5203681218851, -1259.1392167224028,
         771.32342877765313, -176.61502916214059, 12.507343278686905,
@@ -236,10 +236,10 @@ test("gamma function", () => {
  
     return Math.sqrt(2 * Math.PI) * Math.pow(t, x + 0.5) * Math.exp(-t) * a;
 }`);
-  assert.equal(code.language, "Javascript");
+  assert.equal(code.language, 'Javascript');
 });
 
-test("fivenum", () => {
+test('fivenum', () => {
   const code = detectLang(`function median(arr) {
     let mid = Math.floor(arr.length / 2);
     return (arr.length % 2 == 0) ? (arr[mid-1] + arr[mid]) / 2 : arr[mid];
@@ -269,15 +269,15 @@ test("fivenum", () => {
            0.63905160,  0.61501527, -0.98983780, -1.00447874, -0.62759469,
            0.66206163,  1.04312009, -0.10305385,  0.75775634,  0.32566578];
   console.log( test.fiveNums() );`);
-  assert.equal(code.language, "Javascript");
+  assert.equal(code.language, 'Javascript');
 });
 
-test("arrow function", () => {
+test('arrow function', () => {
   const code = detectLang(`(argument => {`);
-  assert.equal(code.language, "Javascript");
+  assert.equal(code.language, 'Javascript');
 });
 
-test("Svelte", () => {
+test('Svelte', () => {
   const code = detectLang(`
 	onMount(() => {
 		const onNavigationStart = () => {
@@ -296,7 +296,7 @@ test("Svelte", () => {
 			window.removeEventListener('sveltekit:navigation-end', onNavigationEnd)
 		}
 	})`);
-  assert.equal(code.language, "Javascript");
+  assert.equal(code.language, 'Javascript');
 });
 
 test.run();

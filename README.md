@@ -37,7 +37,7 @@ or via a CDN (unpkg or jsdelivr)
 ## Usage
 
 ```js
-import flourite from "flourite";
+import flourite from 'flourite';
 
 const code = flourite('cout << "Hello world" << endl;');
 
@@ -77,30 +77,27 @@ Or if you want to integrate it with [Shiki](https://github.com/shikijs/shiki), y
 ```js
 flourite('Console.WriteLine("Hello world!");', { shiki: true }).language;
 // => csharp
-flourite("fn partition<T,F>(v: &mut [T], f: &F) -> usize ", { shiki: true })
-  .language;
+flourite('fn partition<T,F>(v: &mut [T], f: &F) -> usize ', { shiki: true }).language;
 // => rust
 ```
 
 If you want to handle `Unknown` value, you could pass:
 
 ```js
-const code = flourite("SELECT 'Hello world!' text FROM dual;", {
-  noUnknown: true
-});
+const code = flourite("SELECT 'Hello world!' text FROM dual;", { noUnknown: true });
 ```
 
 ### With Typescript
 
 ```typescript
-import flourite from "flourite";
-import type { Options } from "flourite";
+import flourite from 'flourite';
+import type { Options } from 'flourite';
 
 const flouriteOptions: Options = {
-  heuristic: true
+  heuristic: true,
 };
 
-const code = flourite("print!({:?}, &v);", flouriteOptions);
+const code = flourite('print!({:?}, &v);', flouriteOptions);
 ```
 
 ### Available Options

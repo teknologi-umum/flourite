@@ -1,55 +1,42 @@
-import type { LanguagePattern } from "../types";
+import type { LanguagePattern } from '../types';
 
 export const CS: LanguagePattern[] = [
-  { pattern: /using\sSystem(\..*)?(;)?/, type: "meta.import" },
-  { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: "keyword.print" },
-  { pattern: /Console\.ReadLine\(\)/, type: "keyword.other" },
-  {
-    pattern: /(public\s)?((partial|static|delegate)\s)?class\s/,
-    type: "keyword"
-  },
+  { pattern: /using\sSystem(\..*)?(;)?/, type: 'meta.import' },
+  { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: 'keyword.print' },
+  { pattern: /Console\.ReadLine\(\)/, type: 'keyword.other' },
+  { pattern: /(public\s)?((partial|static|delegate)\s)?class\s/, type: 'keyword' },
   // Modifiers
-  {
-    pattern: /(extern|override|sealed|readonly|virtual|volatile)/,
-    type: "keyword.other"
-  },
-  { pattern: /namespace\s(.*)(\.(.*))?(\s\{)?/, type: "keyword" },
+  { pattern: /(extern|override|sealed|readonly|virtual|volatile)/, type: 'keyword.other' },
+  { pattern: /namespace\s(.*)(\.(.*))?(\s{)?/, type: 'keyword' },
   // Regions
-  { pattern: /(#region(\s.*)?|#endregion\n)/, type: "section.scope" },
+  { pattern: /(#region(\s.*)?|#endregion\n)/, type: 'section.scope' },
   // Functions
-  {
-    pattern: /(public|private|protected|internal)\s/,
-    type: "keyword.visibility"
-  },
+  { pattern: /(public|private|protected|internal)\s/, type: 'keyword.visibility' },
   // class keyword
-  { pattern: /\bclass\s+\w+/, type: "keyword" },
+  { pattern: /\bclass\s+\w+/, type: 'keyword' },
   // (else )if statement
-  { pattern: /(else )?if\s*\(.+\)/, type: "keyword.control" },
+  { pattern: /(else )?if\s*\(.+\)/, type: 'keyword.control' },
   // while loop
-  { pattern: /\bwhile\s+\(.+\)/, type: "keyword.control" },
+  { pattern: /\bwhile\s+\(.+\)/, type: 'keyword.control' },
   // Variable declaration
   {
     pattern:
       /(const\s)?(sbyte|byte|short|ushort|int|uint|long|ulong|float|double|decimal|bool|char|string)(\[\])?\s(.*)\s=\s(.*);/,
-    type: "constant.type"
+    type: 'constant.type',
   },
   // Lists
   {
     pattern:
       /(new|this\s)?(List|IEnumerable)<(sbyte|byte|short|ushort|int|uint|long|ulong|float|double|decimal|bool|char|string)>/,
-    type: "constant.dictionary"
+    type: 'constant.dictionary',
   },
   // Macro
-  { pattern: /#define\s(.*)/, type: "macro" },
+  { pattern: /#define\s(.*)/, type: 'macro' },
   // Plus point if you're doing PascalCase
-  {
-    pattern:
-      /\s([A-Z]([A-Z\d]*[a-z][a-z\d]*[A-Z]|[a-z\d]*[A-Z][A-Z\d]*[a-z])[A-Za-z\d]*)\s=/,
-    type: "macro"
-  },
+  { pattern: /\s([A-Z]([A-Z0-9]*[a-z][a-z0-9]*[A-Z]|[a-z0-9]*[A-Z][A-Z0-9]*[a-z])[A-Za-z0-9]*)\s=/, type: 'macro' },
   // Avoiding Java confusion
-  { pattern: /(extends|throws|@Attribute)/, type: "not" },
-  { pattern: /System\.(in|out)\.\w+/, type: "not" },
+  { pattern: /(extends|throws|@Attribute)/, type: 'not' },
+  { pattern: /System\.(in|out)\.\w+/, type: 'not' },
   // Avoiding Ruby confusion
-  { pattern: /\bmodule\s\S/, type: "not" }
+  { pattern: /\bmodule\s\S/, type: 'not' },
 ];

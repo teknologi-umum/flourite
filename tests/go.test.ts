@@ -1,13 +1,13 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
-import detectLang from "../src/index";
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import detectLang from '../src/index';
 
-test("hello world", () => {
+test('hello world', () => {
   const code = detectLang('fmt.Println("Hello world")');
-  assert.equal(code.language, "Go");
+  assert.equal(code.language, 'Go');
 });
 
-test("fizz buzz", () => {
+test('fizz buzz', () => {
   const code = detectLang(`package main
  
 	import (
@@ -38,10 +38,10 @@ test("fizz buzz", () => {
 			fmt.Println(i)
 		}
 	}`);
-  assert.equal(code.language, "Go");
+  assert.equal(code.language, 'Go');
 });
 
-test("quick sort", () => {
+test('quick sort', () => {
   const code = detectLang(`package main
  
 	import "fmt"
@@ -135,10 +135,10 @@ test("quick sort", () => {
 			}
 			pex(0, len(a)-1)
 	}`);
-  assert.equal(code.language, "Go");
+  assert.equal(code.language, 'Go');
 });
 
-test("http server", () => {
+test('http server', () => {
   const code = detectLang(`package main
  
 	import (
@@ -155,10 +155,10 @@ test("http server", () => {
 			}
 			io.Copy(os.Stdout, r.Body)
 	}`);
-  assert.equal(code.language, "Go");
+  assert.equal(code.language, 'Go');
 });
 
-test("bubble sort", () => {
+test('bubble sort', () => {
   const code = detectLang(`package main
  
 	import (
@@ -188,10 +188,10 @@ test("bubble sort", () => {
 					}
 			}
 	}`);
-  assert.equal(code.language, "Go");
+  assert.equal(code.language, 'Go');
 });
 
-test("heap sort", () => {
+test('heap sort', () => {
   const code = detectLang(`package main
  
 	import (
@@ -230,10 +230,10 @@ test("heap sort", () => {
 			heapSort(sort.IntSlice(a))
 			fmt.Println("after: ", a)
 	}`);
-  assert.equal(code.language, "Go");
+  assert.equal(code.language, 'Go');
 });
 
-test("floyd warshall algorithm", () => {
+test('floyd warshall algorithm', () => {
   const code = detectLang(`package main
  
 	import (
@@ -347,10 +347,10 @@ test("floyd warshall algorithm", () => {
 			}
 		}
 	}`);
-  assert.equal(code.language, "Go");
+  assert.equal(code.language, 'Go');
 });
 
-test("ludic numbers", () => {
+test('ludic numbers', () => {
   const code = detectLang(`package main
  
 	import "fmt"
@@ -432,10 +432,10 @@ test("ludic numbers", () => {
 		}
 		fmt.Println()
 	}`);
-  assert.equal(code.language, "Go");
+  assert.equal(code.language, 'Go');
 });
 
-test("gamma function", () => {
+test('gamma function', () => {
   const code = detectLang(`package main
  
 	import (
@@ -463,10 +463,10 @@ test("gamma function", () => {
 					1.5056327351493116e-7/(z+7)
 			return math.Sqrt2 * math.SqrtPi * math.Pow(t, z-.5) * math.Exp(-t) * x
 	}`);
-  assert.equal(code.language, "Go");
+  assert.equal(code.language, 'Go');
 });
 
-test("fivenum", () => {
+test('fivenum', () => {
   const code = detectLang(`package main
  
 	import (
@@ -504,10 +504,10 @@ test("fivenum", () => {
 			fmt.Println(fivenum(x2))
 			fmt.Println(fivenum(x3))
 	}`);
-  assert.equal(code.language, "Go");
+  assert.equal(code.language, 'Go');
 });
 
-test("y combinator", () => {
+test('y combinator', () => {
   const code = detectLang(`package main
  
 	import "fmt"
@@ -549,7 +549,7 @@ test("y combinator", () => {
 			return f(x-1)+f(x-2)
 		}
 	}`);
-  assert.equal(code.language, "Go");
+  assert.equal(code.language, 'Go');
 });
 
 test.run();
