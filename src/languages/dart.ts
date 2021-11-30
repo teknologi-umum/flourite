@@ -9,10 +9,10 @@ export const Dart: LanguagePattern[] = [
   },
   { pattern: /\bstdout.write\(.+\);/, type: 'keyword.print' },
   { pattern: /\bprint\(.+\);/, type: 'keyword.print' },
-  { pattern: /^import\s("|')dart:\w+("|')/, type: 'meta.import', nearTop: true },
-  { pattern: /^import\s("|')package:\w+("|')/, type: 'meta.import', nearTop: true },
-  { pattern: /^library\s\w+;/, type: 'meta.module', nearTop: true },
-  { pattern: /^(void\s)?main\(\)\s(async\s)?{/, type: 'keyword.function' },
+  { pattern: /^\s*import\s("|')dart:\w+("|')/, type: 'meta.import', nearTop: true },
+  { pattern: /^\s*import\s("|')package:\w+("|')/, type: 'meta.import', nearTop: true },
+  { pattern: /^\s*library\s\w+;/, type: 'meta.module', nearTop: true },
+  { pattern: /^\s*(void\s)?main\(\)\s(async\s)?{/, type: 'keyword.function' },
   // function with type definition
   {
     pattern:
@@ -37,7 +37,7 @@ export const Dart: LanguagePattern[] = [
   { pattern: /^\s*await\sfor/, type: 'keyword.control' },
   { pattern: /^\s*typedef\s.+\s=/, type: 'keyword.control' },
   // Avoiding confusion with C
-  { pattern: /\blong\b/, type: 'not' },
+  { pattern: /\blong\s/, type: 'not' },
   { pattern: /\s*function\b/, type: 'not' },
   // Avoiding confusion with Java
   { pattern: /\bArrayList/, type: 'not' },
