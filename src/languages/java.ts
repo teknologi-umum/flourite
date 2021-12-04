@@ -32,7 +32,7 @@ export const Java: LanguagePattern[] = [
   // while loop
   { pattern: /while\s+\(.+\)/, type: 'keyword.control' },
   // void keyword
-  { pattern: /void/g, type: 'keyword.other' },
+  { pattern: /void/, type: 'keyword.other' },
   // const
   { pattern: /const\s*\w+/, type: 'not' },
   // pointer
@@ -53,4 +53,6 @@ export const Java: LanguagePattern[] = [
   { pattern: /fun main\((.*)?\) {/, type: 'not' },
   { pattern: /(inline(\s+))?fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+)({|=)/, type: 'not' },
   { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: 'not' },
+  // Avoiding Dart confusion
+  { pattern: /^(void\s)?main\(\)\s{/, type: 'not' },
 ];

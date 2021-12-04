@@ -4,6 +4,7 @@ import { Clojure } from './languages/clojure';
 import { CPP } from './languages/cpp';
 import { CS } from './languages/cs';
 import { CSS } from './languages/css';
+import { Dart } from './languages/dart';
 import { Dockerfile } from './languages/dockerfile';
 import { Elixir } from './languages/elixir';
 import { Go } from './languages/go';
@@ -24,6 +25,7 @@ import { SQL } from './languages/sql';
 import { YAML } from './languages/yaml';
 import { nearTop, getPoints } from './points';
 import { convert } from './shiki';
+import { shebangMap } from './shebang';
 
 const languages: Record<string, LanguagePattern[]> = {
   C,
@@ -31,6 +33,7 @@ const languages: Record<string, LanguagePattern[]> = {
   'C++': CPP,
   'C#': CS,
   CSS,
+  Dart,
   Dockerfile,
   Elixir,
   Go,
@@ -79,6 +82,27 @@ function flourite(
       }
       return index % Math.ceil(linesOfCode.length / 500) === 0;
     });
+  }
+
+  // Shebang check
+  if (linesOfCode[0].startsWith('#!')) {
+    if (linesOfCode[0].startsWith('#!/usr/bin/env')) {
+      let language = linesOfCode[0].split(' ').slice(1).join(' ');
+      language = shebangMap[language] || language.charAt(0).toUpperCase() + language.slice(1);
+      return {
+        language: options.shiki ? convert(language) : language,
+        statistics: {},
+        linesOfCode: linesOfCode.length,
+      };
+    }
+
+    if (linesOfCode[0].startsWith('#!/bin/bash')) {
+      return {
+        language: options.shiki ? 'bash' : 'Bash',
+        statistics: {},
+        linesOfCode: linesOfCode.length,
+      };
+    }
   }
 
   const pairs = Object.keys(languages).map((key) => ({ language: key, checkers: languages[key] }));

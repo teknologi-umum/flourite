@@ -15,6 +15,7 @@ test('hello world', () => {
     'C++': -40,
     'C#': 10,
     CSS: 0,
+    Dart: 0,
     Dockerfile: 0,
     Elixir: 0,
     Go: -39,
@@ -82,17 +83,17 @@ test('quick sort', () => {
   // the pivot value.  Use unless key-equivalent classes are of small size.
   //
   #define Tripartite
-   
+
   namespace RosettaCode {
     using System;
     using System.Diagnostics;
-   
+
     public class QuickSort<T> where T : IComparable {
       #region Constants
       public const UInt32 INSERTION_LIMIT_DEFAULT = 12;
       private const Int32 SAMPLES_MAX = 19;
       #endregion
-   
+
       #region Properties
       public UInt32 InsertionLimit { get; }
       private T[] Samples { get; }
@@ -101,19 +102,19 @@ test('quick sort', () => {
       private Int32 LeftMedian { get; set; }
       private Int32 RightMedian { get; set; }
       #endregion
-   
+
       #region Constructors
       public QuickSort(UInt32 insertionLimit = INSERTION_LIMIT_DEFAULT) {
         this.InsertionLimit = insertionLimit;
         this.Samples = new T[SAMPLES_MAX];
       }
       #endregion
-   
+
       #region Sort Methods
       public void Sort(T[] entries) {
         Sort(entries, 0, entries.Length - 1);
       }
-   
+
       public void Sort(T[] entries, Int32 first, Int32 last) {
         var length = last + 1 - first;
         while (length > 1) {
@@ -121,16 +122,16 @@ test('quick sort', () => {
             InsertionSort<T>.Sort(entries, first, last);
             return;
           }
-   
+
           Left = first;
           Right = last;
           var median = pivot(entries);
           partition(median, entries);
           //[Note]Right < Left
-   
+
           var leftLength = Right + 1 - first;
           var rightLength = last + 1 - Left;
-   
+
           //
           // First recurse over shorter partition, then loop
           // on the longer partition to elide tail recursion.
@@ -147,14 +148,14 @@ test('quick sort', () => {
           }
         }
       }
-   
+
       /// <summary>Return an odd sample size proportional to the log of a large interval size.</summary>
       private static Int32 sampleSize(Int32 length, Int32 max = SAMPLES_MAX) {
         var logLen = (Int32)Math.Log10(length);
         var samples = Math.Min(2 * logLen + 1, max);
         return Math.Min(samples, length);
       }
-   
+
       /// <summary>Estimate the median value of entries[Left:Right]</summary>
       /// <remarks>A sample median is used as an estimate the true median.</remarks>
       private T pivot(T[] entries) {
@@ -166,11 +167,11 @@ test('quick sort', () => {
           var index = (Int64)length * sample / samples + Left;
           Samples[sample] = entries[index];
         }
-   
+
         InsertionSort<T>.Sort(Samples, 0, samples - 1);
         return Samples[samples / 2];
       }
-   
+
       private void partition(T median, T[] entries) {
         var first = Left;
         var last = Right;
@@ -184,48 +185,48 @@ test('quick sort', () => {
           // So, there is no need for Left or Right bound checks
           while (median.CompareTo(entries[Left]) > 0) Left++;
           while (median.CompareTo(entries[Right]) < 0) Right--;
-   
+
           //[Assert]entries[Right] <= median <= entries[Left]
           if (Right <= Left) break;
-   
+
           Swap(entries, Left, Right);
           swapOut(median, entries);
           Left++;
           Right--;
           //[Assert]entries[first:Left - 1] <= median <= entries[Right + 1:last]
         }
-   
+
         if (Left == Right) {
           Left++;
           Right--;
         }
         //[Assert]Right < Left
         swapIn(entries, first, last);
-   
+
         //[Assert]entries[first:Right] <= median <= entries[Left:last]
         //[Assert]entries[Right + 1:Left - 1] == median when non-empty
       }
       #endregion
-   
+
       #region Swap Methods
       [Conditional("Tripartite")]
       private void swapOut(T median, T[] entries) {
         if (median.CompareTo(entries[Left]) == 0) Swap(entries, LeftMedian++, Left);
         if (median.CompareTo(entries[Right]) == 0) Swap(entries, Right, RightMedian--);
       }
-   
+
       [Conditional("Tripartite")]
       private void swapIn(T[] entries, Int32 first, Int32 last) {
         // Restore Median entries
         while (first < LeftMedian) Swap(entries, first++, Right--);
         while (RightMedian < last) Swap(entries, Left++, last--);
       }
-   
+
       /// <summary>Swap entries at the left and right indicies.</summary>
       public void Swap(T[] entries, Int32 left, Int32 right) {
         Swap(ref entries[left], ref entries[right]);
       }
-   
+
       /// <summary>Swap two entities of type T.</summary>
       public static void Swap(ref T e1, ref T e2) {
         var e = e1;
@@ -234,14 +235,14 @@ test('quick sort', () => {
       }
       #endregion
     }
-   
+
     #region Insertion Sort
     static class InsertionSort<T> where T : IComparable {
       public static void Sort(T[] entries, Int32 first, Int32 last) {
         for (var next = first + 1; next <= last; next++)
           insert(entries, first, next);
       }
-   
+
       /// <summary>Bubble next entry up to its sorted location, assuming entries[first:next - 1] are already sorted.</summary>
       private static void insert(T[] entries, Int32 first, Int32 next) {
         var entry = entries[next];
@@ -259,19 +260,19 @@ test('heap sort', () => {
   const code = detectLang(`using System;
   using System.Collections.Generic;
   using System.Text;
-   
+
   public class HeapSortClass
   {
       public static void HeapSort<T>(T[] array)
       {
           HeapSort<T>(array, 0, array.Length, Comparer<T>.Default);
       }
-   
+
       public static void HeapSort<T>(T[] array, int offset, int length, IComparer<T> comparer)
       {
           HeapSort<T>(array, offset, length, comparer.Compare);
       }
-   
+
       public static void HeapSort<T>(T[] array, int offset, int length, Comparison<T> comparison)
       {
           // build binary heap from all items
@@ -279,7 +280,7 @@ test('heap sort', () => {
           {
               int index = i;
               T item = array[offset + i]; // use next item
-   
+
               // and move it on top, if greater than parent
               while (index > 0 &&
                   comparison(array[offset + (index - 1) / 2], item) < 0)
@@ -290,30 +291,30 @@ test('heap sort', () => {
               }
               array[offset + index] = item;
           }
-   
+
           for (int i = length - 1; i > 0; i--)
           {
               // delete max and place it as last
               T last = array[offset + i];
               array[offset + i] = array[offset];
-   
+
               int index = 0;
               // the last one positioned in the heap
               while (index * 2 + 1 < i)
               {
                   int left = index * 2 + 1, right = left + 1;
-   
+
                   if (right < i && comparison(array[offset + left], array[offset + right]) < 0)
                   {
                       if (comparison(last, array[offset + right]) > 0) break;
-   
+
                       array[offset + index] = array[offset + right];
                       index = right;
                   }
                   else
                   {
                       if (comparison(last, array[offset + left]) > 0) break;
-   
+
                       array[offset + index] = array[offset + left];
                       index = left;
                   }
@@ -321,13 +322,13 @@ test('heap sort', () => {
               array[offset + index] = last;
           }
       }
-   
+
       static void Main()
       {
           // usage
           byte[] r = {5, 4, 1, 2};
           HeapSort(r);
-   
+
           string[] s = { "-", "D", "a", "33" };
           HeapSort(s, 0, s.Length, StringComparer.CurrentCultureIgnoreCase);
       }
@@ -338,7 +339,7 @@ test('heap sort', () => {
 test('bubble sort', () => {
   const code = detectLang(`using System;
   using System.Collections.Generic;
-   
+
   namespace RosettaCode.BubbleSort
   {
       public static class BubbleSortMethods
@@ -367,7 +368,7 @@ test('bubble sort', () => {
               } while (madeChanges);
           }
       }
-   
+
       //A short test program to demonstrate the BubbleSort. The compiler will change the
       //call to testList.BubbleSort() into one to BubbleSortMethods.BubbleSort<T>(testList).
       class Program
@@ -386,17 +387,17 @@ test('bubble sort', () => {
 test('merge sort', () => {
   const code = detectLang(`namespace RosettaCode {
     using System;
-   
+
     public class MergeSort<T> where T : IComparable {
       #region Constants
       public const UInt32 INSERTION_LIMIT_DEFAULT = 12;
       public const Int32 MERGES_DEFAULT = 6;
       #endregion
-   
+
       #region Properties
       public UInt32 InsertionLimit { get; }
       protected UInt32[] Positions { get; set; }
-   
+
       private Int32 merges;
       public Int32 Merges {
         get { return merges; }
@@ -406,52 +407,52 @@ test('merge sort', () => {
             merges = value;
           else
             throw new ArgumentOutOfRangeException($"value = {value} must be greater than one", nameof(Merges));
-   
+
           if (Positions == null || Positions.Length != merges)
             Positions = new UInt32[merges];
         }
       }
       #endregion
-   
+
       #region Constructors
       public MergeSort(UInt32 insertionLimit, Int32 merges) {
         InsertionLimit = insertionLimit;
         Merges = merges;
       }
-   
+
       public MergeSort()
         : this(INSERTION_LIMIT_DEFAULT, MERGES_DEFAULT) {
       }
       #endregion
-   
+
       #region Sort Methods
       public void Sort(T[] entries) {
         // Allocate merge buffer
         var entries2 = new T[entries.Length];
         Sort(entries, entries2, 0, entries.Length - 1);
       }
-   
+
       // Top-Down K-way Merge Sort
       public void Sort(T[] entries1, T[] entries2, Int32 first, Int32 last) {
         var length = last + 1 - first;
-        if (length < 2) return;      
+        if (length < 2) return;
         if (length < Merges || length < InsertionLimit) {
           InsertionSort<T>.Sort(entries1, first, last);
           return;
         }
-   
+
         var left = first;
         var size = ceiling(length, Merges);
         for (var remaining = length; remaining > 0; remaining -= size, left += size) {
           var right = left + Math.Min(remaining, size) - 1;
           Sort(entries1, entries2, left, right);
         }
-   
+
         Merge(entries1, entries2, first, last);
         Array.Copy(entries2, first, entries1, first, length);
       }
       #endregion
-   
+
       #region Merge Methods
       public void Merge(T[] entries1, T[] entries2, Int32 first, Int32 last) {
         Array.Clear(Positions, 0, Merges);
@@ -459,12 +460,12 @@ test('merge sort', () => {
         for (var index = first; index <= last; index++)
           entries2[index] = remove(entries1, first, last);
       }
-   
+
       private T remove(T[] entries, Int32 first, Int32 last) {
         T entry = default;
         Int32? found = default;
         var length = last + 1 - first;
-   
+
         var index = 0;
         var left = first;
         var size = ceiling(length, Merges);
@@ -478,27 +479,27 @@ test('merge sort', () => {
             }
           }
         }
-   
+
         // Remove entry
         Positions[found.Value]++;
         return entry;
       }
       #endregion
-   
+
       #region Math Methods
       private static Int32 ceiling(Int32 numerator, Int32 denominator) {
         return (numerator + denominator - 1) / denominator;
       }
       #endregion
     }
-   
+
     #region Insertion Sort
     static class InsertionSort<T> where T : IComparable {
       public static void Sort(T[] entries, Int32 first, Int32 last) {
         for (var next = first + 1; next <= last; next++)
           insert(entries, first, next);
       }
-   
+
       /// <summary>Bubble next entry up to its sorted location, assuming entries[first:next - 1] are already sorted.</summary>
       private static void insert(T[] entries, Int32 first, Int32 next) {
         var entry = entries[next];
@@ -515,7 +516,7 @@ test('merge sort', () => {
 test('fibonacci sequence', () => {
   const code = detectLang(`public static IEnumerable<long> Fibs(uint x) {
       IList<ulong> fibs = new List<ulong>();
-  
+
       ulong prev = -1;
       ulong next = 1;
       for (int i = 0; i < x; i++)
@@ -523,7 +524,7 @@ test('fibonacci sequence', () => {
       long sum = prev + next;
           prev = next;
           next = sum;
-          fibs.Add(sum); 
+          fibs.Add(sum);
       }
       return fibs;
   }
@@ -536,7 +537,7 @@ test('happy numbers', () => {
   using System.Collections.Generic;
   using System.Linq;
   using System.Text;
-   
+
   namespace HappyNums
   {
       class Program
@@ -561,14 +562,14 @@ test('happy numbers', () => {
                   n = sum;
                   sum = 0;
               }
-             return true;            
+             return true;
           }
-   
+
           static void Main(string[] args)
           {
               int num = 1;
               List<int> happynums = new List<int>();
-   
+
               while (happynums.Count < 8)
               {
                   if (ishappy(num))
@@ -587,12 +588,12 @@ test('happy numbers', () => {
 test('gamma function', () => {
   const code = detectLang(`using System;
   using System.Numerics;
-   
+
   static int g = 7;
   static double[] p = {0.99999999999980993, 676.5203681218851, -1259.1392167224028,
          771.32342877765313, -176.61502916214059, 12.507343278686905,
          -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7};
-   
+
   Complex Gamma(Complex z)
   {
       // Reflection formula
@@ -621,7 +622,7 @@ test('fivenum', () => {
   using System.Collections.Generic;
   using System.Linq;
   using System.Text;
-   
+
   namespace Fivenum {
       public static class Helper {
           public static string AsString<T>(this ICollection<T> c, string format = "{0}") {
@@ -636,7 +637,7 @@ test('fivenum', () => {
               return sb.Append("]").ToString();
           }
       }
-   
+
       class Program {
           static double Median(double[] x, int start, int endInclusive) {
               int size = endInclusive - start + 1;
@@ -644,7 +645,7 @@ test('fivenum', () => {
               int m = start + size / 2;
               return (size % 2 == 1) ? x[m] : (x[m - 1] + x[m]) / 2.0;
           }
-   
+
           static double[] Fivenum(double[] x) {
               foreach (var d in x) {
                   if (Double.IsNaN(d)) {
@@ -662,7 +663,7 @@ test('fivenum', () => {
               result[3] = Median(x, m, x.Length - 1);
               return result;
           }
-   
+
           static void Main(string[] args) {
               double[][] x1 = new double[][]{
                   new double[]{ 15.0, 6.0, 42.0, 41.0, 7.0, 36.0, 49.0, 40.0, 39.0, 47.0, 43.0},
@@ -686,23 +687,23 @@ test('fivenum', () => {
 
 test('y combinator', () => {
   const code = detectLang(`using System;
- 
+
   static class YCombinator<T, TResult>
   {
       // RecursiveFunc is not needed to call Fix() and so can be private.
       private delegate Func<T, TResult> RecursiveFunc(RecursiveFunc r);
-   
+
       public static Func<Func<Func<T, TResult>, Func<T, TResult>>, Func<T, TResult>> Fix { get; } =
           f => ((RecursiveFunc)(g => f(x => g(g)(x))))(g => f(x => g(g)(x)));
   }
-   
+
   static class Program
   {
       static void Main()
       {
           var fac = YCombinator<int, int>.Fix(f => x => x < 2 ? 1 : x * f(x - 1));
           var fib = YCombinator<int, int>.Fix(f => x => x < 2 ? x : f(x - 1) + f(x - 2));
-   
+
           Console.WriteLine(fac(10));
           Console.WriteLine(fib(10));
       }
@@ -721,40 +722,40 @@ test('quick sort example with java conflict', () => {
               int[] a = { 5, 3, 6, 4, 2, 9, 1, 8, 7 };
               QuickSort(a);
           }
-  
+
           static void QuickSort(int[] a)
           {
               QuickSort(a, 0, a.Length - 1);
           }
-  
+
           static void QuickSort(int[] a, int start, int end)
           {
               if (start >= end)
               {
                   return;
               }
-  
+
               int num = a[start];
-  
+
               int i = start, j = end;
-  
+
               while (i < j)
               {
                   while (i < j && a[j] > num)
                   {
                       j--;
                   }
-  
+
                   a[i] = a[j];
-  
+
                   while (i < j && a[i] < num)
                   {
                       i++;
                   }
-  
+
                   a[j] = a[i];
               }
-  
+
               a[i] = num;
               QuickSort(a, start, i - 1);
               QuickSort(a, i + 1, end);

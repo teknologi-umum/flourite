@@ -14,6 +14,7 @@ test('hello world', () => {
     'C++': 5,
     CSS: 0,
     'C#': 0,
+    Dart: 0,
     Dockerfile: 0,
     Elixir: 0,
     Go: 0,
@@ -46,22 +47,22 @@ test('fizz buzz', () => {
   *
   *  fizzbuzz solved without looping or conditionals using only template recursion.
   */
-  
+
  #include <iostream>
  #include <string>
-  
+
  template <int r> struct FizzBuzzPrinter {
    static const int fizzBuzzed = 0;
    template <typename T> FizzBuzzPrinter(T t) {}
  };
-  
+
  template <> struct FizzBuzzPrinter<0> {
    static const int fizzBuzzed = 1;
    template <typename T> FizzBuzzPrinter(T t) {
      std::cout << t;
    }
  };
-  
+
  template <int N> struct FizzBuzz: FizzBuzz<N - 1> {
    FizzBuzz() {
      FizzBuzzPrinter<(N % 15)>("FizzBuzz");
@@ -71,11 +72,11 @@ test('fizz buzz', () => {
      std::cout << std::endl;
    }
  };
-  
+
  template <> struct FizzBuzz<0> {};
-  
+
  int main (int argc, char **argv)
- { 
+ {
    FizzBuzz<100> p;
    return 0;
  }`);
@@ -86,7 +87,7 @@ test('quick sort', () => {
   const code = detectLang(`#include <iterator>
   #include <algorithm> // for std::partition
   #include <functional> // for std::less
-   
+
   // helper function for median of three
   template<typename T>
    T median(T t1, T t2, T t3)
@@ -110,7 +111,7 @@ test('quick sort', () => {
         return t2;
     }
   }
-   
+
   // helper object to get <= from <
   template<typename Order> struct non_strict_op:
     public std::binary_function<typename Order::second_argument_type,
@@ -126,12 +127,12 @@ test('quick sort', () => {
   private:
     Order order;
   };
-   
+
   template<typename Order> non_strict_op<Order> non_strict(Order o)
   {
     return non_strict_op<Order>(o);
   }
-   
+
   template<typename RandomAccessIterator,
            typename Order>
    void quicksort(RandomAccessIterator first, RandomAccessIterator last, Order order)
@@ -147,18 +148,18 @@ test('quick sort', () => {
       quicksort(split2, last, order);
     }
   }
-   
+
   template<typename RandomAccessIterator>
    void quicksort(RandomAccessIterator first, RandomAccessIterator last)
   {
     quicksort(first, last, std::less<typename std::iterator_traits<RandomAccessIterator>::value_type>());
   }
   A simpler version of the above that just uses the first element as the pivot and only does one "partition".
-  
+
   #include <iterator>
   #include <algorithm> // for std::partition
   #include <functional> // for std::less
-   
+
   template<typename RandomAccessIterator,
            typename Order>
    void quicksort(RandomAccessIterator first, RandomAccessIterator last, Order order)
@@ -171,7 +172,7 @@ test('quick sort', () => {
       quicksort(split, last, order);
     }
   }
-   
+
   template<typename RandomAccessIterator>
    void quicksort(RandomAccessIterator first, RandomAccessIterator last)
   {
@@ -184,7 +185,7 @@ test('bubble sort', () => {
   const code = detectLang(`#include <algorithm>
   #include <iostream>
   #include <iterator>
-   
+
   template <typename RandomAccessIterator>
   void bubble_sort(RandomAccessIterator begin, RandomAccessIterator end) {
     bool swapped = true;
@@ -198,7 +199,7 @@ test('bubble sort', () => {
       }
     }
   }
-   
+
   int main() {
     int a[] = {100, 2, 56, 200, -52, 3, 99, 33, 177, -199};
     bubble_sort(std::begin(a), std::end(a));
@@ -212,13 +213,13 @@ test('heap sort', () => {
   const code = detectLang(`#include <algorithm>
   #include <iterator>
   #include <iostream>
-   
+
   template<typename RandomAccessIterator>
   void heap_sort(RandomAccessIterator begin, RandomAccessIterator end) {
     std::make_heap(begin, end);
     std::sort_heap(begin, end);
   }
-   
+
   int main() {
     int a[] = {100, 2, 56, 200, -52, 3, 99, 33, 177, -199};
     heap_sort(std::begin(a), std::end(a));
@@ -233,39 +234,39 @@ test.skip('http server', () => {
   const code = detectLang(`#include <winsock2.h>
   #include <ws2tcpip.h>
   #include <iostream>
-   
+
   int main() {
     WSADATA wsaData;
     WSAStartup( MAKEWORD( 2, 2 ), &wsaData );
-   
+
     addrinfo *result = NULL;
     addrinfo hints;
-   
+
     ZeroMemory( &hints, sizeof( hints ) );
     hints.ai_family = AF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_protocol = IPPROTO_TCP;
-   
+
     getaddrinfo( "74.125.45.100", "80", &hints, &result ); // http://www.google.com
-   
+
     SOCKET s = socket( result->ai_family, result->ai_socktype, result->ai_protocol );
-   
+
     connect( s, result->ai_addr, (int)result->ai_addrlen );
-   
+
     freeaddrinfo( result );
-   
+
     send( s, "GET / HTTP/1.0\n\n", 16, 0 );
-   
+
     char buffer[512];
     int bytes;
-   
+
     do {
       bytes = recv( s, buffer, 512, 0 );
-   
+
       if ( bytes > 0 )
         std::cout.write(buffer, bytes);
     } while ( bytes > 0 );
-   
+
     return 0;
   }`);
   assert.equal(code.language, 'C++');
@@ -275,7 +276,7 @@ test('floyd warshall algorithm', () => {
   const code = detectLang(`#include <iostream>
   #include <vector>
   #include <sstream>
-   
+
   void print(std::vector<std::vector<double>> dist, std::vector<std::vector<int>> next) {
     std::cout << "(pair, dist, path)" << std::endl;
     const auto size = std::size(next);
@@ -297,7 +298,7 @@ test('floyd warshall algorithm', () => {
       }
     }
   }
-   
+
   void solve(std::vector<std::vector<int>> w_s, const int num_vertices) {
     std::vector<std::vector<double>> dist(num_vertices);
     for (auto& dim : dist) {
@@ -331,7 +332,7 @@ test('floyd warshall algorithm', () => {
     }
     print(dist, next);
   }
-   
+
   int main() {
     std::vector<std::vector<int>> w = {
       { 1, 3, -2 },
@@ -353,24 +354,24 @@ test('ludic numbers', () => {
   const code = detectLang(`#include <vector>
   #include <iostream>
   using namespace std;
-   
+
   class ludic
   {
   public:
       void ludicList()
       {
           _list.push_back( 1 );
-   
+
           vector<int> v;
           for( int x = 2; x < 22000; x++ )
               v.push_back( x );
-   
+
           while( true )
           {
               vector<int>::iterator i = v.begin();
               int z = *i;
               _list.push_back( z );
-   
+
               while( true )
               {
                   i = v.erase( i );
@@ -380,13 +381,13 @@ test('ludic numbers', () => {
               if( v.size() < 1 ) return;
           }
       }
-   
+
       void show( int s, int e )
       {
           for( int x = s; x < e; x++ )
               cout << _list[x] << " ";
       }
-   
+
       void findTriplets( int e )
       {
           int lu, x = 0;
@@ -398,14 +399,14 @@ test('ludic numbers', () => {
               x++;
           }
       }
-   
+
       int count( int e )
       {
           int x = 0, c = 0;
           while( _list[x++] <= 1000 ) c++;
           return c;
       }
-   
+
   private:
       bool inList( int lu )
       {
@@ -413,10 +414,10 @@ test('ludic numbers', () => {
               if( _list[x] == lu ) return true;
           return false;
       }
-   
+
       vector<int> _list;
   };
-   
+
   int main( int argc, char* argv[] )
   {
       ludic l;
@@ -437,10 +438,10 @@ test('ludic numbers', () => {
 test('happy numbers', () => {
   const code = detectLang(`#include <map>
   #include <set>
-   
+
   bool happy(int number) {
     static std::map<int, bool> cache;
-   
+
     std::set<int> cycle;
     while (number != 1 && !cycle.count(number)) {
       if (cache.count(number)) {
@@ -462,9 +463,9 @@ test('happy numbers', () => {
       cache[*it] = happiness;
     return happiness;
   }
-   
+
   #include <iostream>
-   
+
   int main() {
     for (int i = 1; i < 50; i++)
       if (happy(i))
@@ -479,7 +480,7 @@ test('gamma function', () => {
   #include <numbers>
   #include <stdio.h>
   #include <vector>
-   
+
   // Calculate the coefficients used by Spouge's approximation (based on the C
   // implemetation)
   std::vector<double> CalculateCoefficients(int numCoeff)
@@ -494,7 +495,7 @@ test('gamma function', () => {
       }
       return c;
   }
-   
+
   // The Spouge approximation
   double Gamma(const std::vector<double>& coeffs, double x)
   {
@@ -507,29 +508,29 @@ test('gamma function', () => {
           accm *= exp(-(x+numCoeff)) * pow(x+numCoeff, x+0.5);
           return accm/x;
   }
-   
+
   int main()
   {
       // estimate the gamma function with 1, 4, and 10 coefficients
       const auto coeff1 = CalculateCoefficients(1);
       const auto coeff4 = CalculateCoefficients(4);
       const auto coeff10 = CalculateCoefficients(10);
-   
+
       const auto inputs = std::vector<double>{
           0.001, 0.01, 0.1, 0.5, 1.0,
           1.461632145, // minimum of the gamma function
-          2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 50, 100, 
+          2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 50, 100,
           150 // causes overflow for this implemetation
           };
-   
+
       printf("%16s%16s%16s%16s%16s\n", "gamma( x ) =", "Spouge 1", "Spouge 4", "Spouge 10", "built-in");
-      for(auto x : inputs) 
+      for(auto x : inputs)
       {
-          printf("gamma(%7.3f) = %16.10g %16.10g %16.10g %16.10g\n", 
+          printf("gamma(%7.3f) = %16.10g %16.10g %16.10g %16.10g\n",
               x,
               Gamma(coeff1, x),
-              Gamma(coeff4, x), 
-              Gamma(coeff10, x), 
+              Gamma(coeff4, x),
+              Gamma(coeff10, x),
               std::tgamma(x)); // built-in gamma function
       }
   }
@@ -542,33 +543,33 @@ test('fivenum', () => {
   #include <iostream>
   #include <ostream>
   #include <vector>
-   
+
   /////////////////////////////////////////////////////////////////////////////
   // The following is taken from https://cpplove.blogspot.com/2012/07/printing-tuples.html
-   
-  // Define a type which holds an unsigned integer value 
+
+  // Define a type which holds an unsigned integer value
   template<std::size_t> struct int_ {};
-   
+
   template <class Tuple, size_t Pos>
   std::ostream& print_tuple(std::ostream& out, const Tuple& t, int_<Pos>) {
       out << std::get< std::tuple_size<Tuple>::value - Pos >(t) << ", ";
       return print_tuple(out, t, int_<Pos - 1>());
   }
-   
+
   template <class Tuple>
   std::ostream& print_tuple(std::ostream& out, const Tuple& t, int_<1>) {
       return out << std::get<std::tuple_size<Tuple>::value - 1>(t);
   }
-   
+
   template <class... Args>
   std::ostream& operator<<(std::ostream& out, const std::tuple<Args...>& t) {
       out << '(';
       print_tuple(out, t, int_<sizeof...(Args)>());
       return out << ')';
   }
-   
+
   /////////////////////////////////////////////////////////////////////////////
-   
+
   template <class RI>
   double median(RI beg, RI end) {
       if (beg == end) throw std::runtime_error("Range cannot be empty");
@@ -577,27 +578,27 @@ test('fivenum', () => {
       if (len % 2 == 1) {
           return *(beg + m);
       }
-   
+
       return (beg[m - 1] + beg[m]) / 2.0;
   }
-   
+
   template <class C>
   auto fivenum(C& c) {
       std::sort(c.begin(), c.end());
-   
+
       auto cbeg = c.cbegin();
       auto cend = c.cend();
-   
+
       auto len = cend - cbeg;
       auto m = len / 2;
       auto lower = (len % 2 == 1) ? m : m - 1;
       double r2 = median(cbeg, cbeg + lower + 1);
       double r3 = median(cbeg, cend);
       double r4 = median(cbeg + lower + 1, cend);
-   
+
       return std::make_tuple(*cbeg, r2, r3, r4, *(cend - 1));
   }
-   
+
   int main() {
       using namespace std;
       vector<vector<double>> cs = {
@@ -610,11 +611,11 @@ test('fivenum', () => {
               0.75775634,  0.32566578
           }
       };
-   
+
       for (auto & c : cs) {
           cout << fivenum(c) << endl;
       }
-   
+
       return 0;
   }`);
   assert.equal(code.language, 'C++');
@@ -623,12 +624,12 @@ test('fivenum', () => {
 test('y combinator', () => {
   const code = detectLang(`#include <iostream>
   #include <functional>
-   
+
   template <typename F>
   struct RecursiveFunc {
     std::function<F(RecursiveFunc)> o;
   };
-   
+
   template <typename A, typename B>
   std::function<B(A)> Y (std::function<std::function<B(A)>(std::function<B(A)>)> f) {
     RecursiveFunc<std::function<B(A)>> r = {
@@ -640,7 +641,7 @@ test('y combinator', () => {
     };
     return r.o(r);
   }
-   
+
   typedef std::function<int(int)> Func;
   typedef std::function<Func(Func)> FuncFunc;
   FuncFunc almost_fac = [](Func f) {
@@ -649,14 +650,14 @@ test('y combinator', () => {
       return n * f(n - 1);
     });
   };
-   
+
   FuncFunc almost_fib = [](Func f) {
     return Func([f](int n) {
        if (n <= 2) return 1;
       return  f(n - 1) + f(n - 2);
     });
   };
-   
+
   int main() {
     auto fib = Y(almost_fib);
     auto fac = Y(almost_fac);
