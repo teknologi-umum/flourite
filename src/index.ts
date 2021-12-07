@@ -1,37 +1,37 @@
-import type { LanguagePattern, LanguagePoints, Options, DetectedLanguage } from './types';
-import { C } from './languages/c';
-import { Clojure } from './languages/clojure';
-import { CPP } from './languages/cpp';
-import { CS } from './languages/cs';
-import { CSS } from './languages/css';
-import { Dart } from './languages/dart';
-import { Dockerfile } from './languages/dockerfile';
-import { Elixir } from './languages/elixir';
-import { Go } from './languages/go';
-import { HTML } from './languages/html';
-import { Java } from './languages/java';
-import { Javascript } from './languages/javascript';
-import { Julia } from './languages/julia';
-import { JSON } from './languages/json';
-import { Kotlin } from './languages/kotlin';
-import { Lua } from './languages/lua';
-import { Markdown } from './languages/markdown';
-import { Pascal } from './languages/pascal';
-import { PHP } from './languages/php';
-import { Python } from './languages/python';
-import { Ruby } from './languages/ruby';
-import { Rust } from './languages/rust';
-import { SQL } from './languages/sql';
-import { YAML } from './languages/yaml';
-import { nearTop, getPoints } from './points';
-import { convert } from './shiki';
-import { shebangMap } from './shebang';
+import type { LanguagePattern, LanguagePoints, Options, DetectedLanguage } from "./types";
+import { C } from "./languages/c";
+import { Clojure } from "./languages/clojure";
+import { CPP } from "./languages/cpp";
+import { CS } from "./languages/cs";
+import { CSS } from "./languages/css";
+import { Dart } from "./languages/dart";
+import { Dockerfile } from "./languages/dockerfile";
+import { Elixir } from "./languages/elixir";
+import { Go } from "./languages/go";
+import { HTML } from "./languages/html";
+import { Java } from "./languages/java";
+import { Javascript } from "./languages/javascript";
+import { Julia } from "./languages/julia";
+import { JSON } from "./languages/json";
+import { Kotlin } from "./languages/kotlin";
+import { Lua } from "./languages/lua";
+import { Markdown } from "./languages/markdown";
+import { Pascal } from "./languages/pascal";
+import { PHP } from "./languages/php";
+import { Python } from "./languages/python";
+import { Ruby } from "./languages/ruby";
+import { Rust } from "./languages/rust";
+import { SQL } from "./languages/sql";
+import { YAML } from "./languages/yaml";
+import { nearTop, getPoints } from "./points";
+import { convert } from "./shiki";
+import { shebangMap } from "./shebang";
 
 const languages: Record<string, LanguagePattern[]> = {
   C,
   Clojure,
-  'C++': CPP,
-  'C#': CS,
+  "C++": CPP,
+  "C#": CS,
   CSS,
   Dart,
   Dockerfile,
@@ -51,7 +51,7 @@ const languages: Record<string, LanguagePattern[]> = {
   Ruby,
   Rust,
   SQL,
-  YAML,
+  YAML
 };
 
 /**
@@ -68,12 +68,12 @@ const languages: Record<string, LanguagePattern[]> = {
  */
 function flourite(
   snippet: string,
-  options: Options = { heuristic: true, shiki: false, noUnknown: false },
+  options: Options = { heuristic: true, shiki: false, noUnknown: false }
 ): DetectedLanguage {
   let linesOfCode = snippet
-    .replace(/\r\n?/g, '\n')
-    .replace(/\n{2,}/g, '\n')
-    .split('\n');
+    .replace(/\r\n?/g, "\n")
+    .replace(/\n{2,}/g, "\n")
+    .split("\n");
 
   if (options.heuristic && linesOfCode.length > 500) {
     linesOfCode = linesOfCode.filter((_, index) => {
@@ -85,22 +85,22 @@ function flourite(
   }
 
   // Shebang check
-  if (linesOfCode[0].startsWith('#!')) {
-    if (linesOfCode[0].startsWith('#!/usr/bin/env')) {
-      let language = linesOfCode[0].split(' ').slice(1).join(' ');
+  if (linesOfCode[0].startsWith("#!")) {
+    if (linesOfCode[0].startsWith("#!/usr/bin/env")) {
+      let language = linesOfCode[0].split(" ").slice(1).join(" ");
       language = shebangMap[language] || language.charAt(0).toUpperCase() + language.slice(1);
       return {
         language: options.shiki ? convert(language) : language,
         statistics: {},
-        linesOfCode: linesOfCode.length,
+        linesOfCode: linesOfCode.length
       };
     }
 
-    if (linesOfCode[0].startsWith('#!/bin/bash')) {
+    if (linesOfCode[0].startsWith("#!/bin/bash")) {
       return {
-        language: options.shiki ? 'bash' : 'Bash',
+        language: options.shiki ? "bash" : "Bash",
         statistics: {},
-        linesOfCode: linesOfCode.length,
+        linesOfCode: linesOfCode.length
       };
     }
   }
@@ -121,7 +121,7 @@ function flourite(
       if (!nearTop(j, linesOfCode)) {
         points += getPoints(
           linesOfCode[j],
-          checkers.filter((checker) => !checker.nearTop),
+          checkers.filter((checker) => !checker.nearTop)
         );
       } else {
         points += getPoints(linesOfCode[j], checkers);
@@ -132,10 +132,10 @@ function flourite(
   }
 
   if (!options.noUnknown) {
-    results.push({ language: 'Unknown', points: 1 });
+    results.push({ language: "Unknown", points: 1 });
   }
 
-  const bestResult = results.reduce((a, b) => (a.points >= b.points ? a : b), { points: 0, language: '' });
+  const bestResult = results.reduce((a, b) => a.points >= b.points ? a : b, { points: 0, language: "" });
   const statistics: Record<string, number> = {};
 
   for (let i = 0; i < results.length; i++) {
@@ -145,7 +145,7 @@ function flourite(
   return {
     language: options.shiki ? convert(bestResult.language) : bestResult.language,
     statistics,
-    linesOfCode: linesOfCode.length,
+    linesOfCode: linesOfCode.length
   };
 }
 

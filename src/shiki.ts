@@ -6,7 +6,7 @@
  * @returns {String} Shiki acceptable language
  */
 export function convert(language: string): string {
-  if (language === 'C++') return 'cpp';
-  if (language === 'C#') return 'csharp';
+  if (language === "C++") return "cpp";
+  if (language === "C#") return "csharp";
   return language.toLowerCase();
 }

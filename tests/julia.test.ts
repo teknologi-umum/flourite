@@ -1,13 +1,13 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src/index';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src/index";
 
-test('hello world', () => {
-  const code = detectLang(`println("Hello world!")`);
-  assert.equal(code.language, 'Julia');
+test("hello world", () => {
+  const code = detectLang("println(\"Hello world!\")");
+  assert.equal(code.language, "Julia");
 });
 
-test('fizz buzz', () => {
+test("fizz buzz", () => {
   const code = detectLang(`for i in 1:100
     if i % 15 == 0
         println("FizzBuzz")
@@ -19,28 +19,28 @@ test('fizz buzz', () => {
         println(i)
     end
   end`);
-  assert.equal(code.language, 'Julia');
+  assert.equal(code.language, "Julia");
 });
 
-test('fibonacci sequence', () => {
+test("fibonacci sequence", () => {
   const code = detectLang(`function fib(n)
     x,y = (0,1)
     for i = 1:n x,y = (y, x+y) end
     x
   end`);
-  assert.equal(code.language, 'Julia');
+  assert.equal(code.language, "Julia");
 });
 
-test('http server', () => {
+test("http server", () => {
   const code = detectLang(`using HttpServer
   server = Server() do req, res
       "Goodbye, World!"
   end
   run(server, 8080)`);
-  assert.equal(code.language, 'Julia');
+  assert.equal(code.language, "Julia");
 });
 
-test('palindrome detection', () => {
+test("palindrome detection", () => {
   const code = detectLang(`function palindrome(s)
     len = length(s)
     if(len==0 || len==1)
@@ -51,10 +51,10 @@ test('palindrome detection', () => {
     end
     return false
   end`);
-  assert.equal(code.language, 'Julia');
+  assert.equal(code.language, "Julia");
 });
 
-test('quick sort', () => {
+test("quick sort", () => {
   const code = detectLang(`function quicksort!(A,i=1,j=length(A))
     if j > i
         pivot = A[rand(i:j)] # random element of A
@@ -77,10 +77,10 @@ test('quick sort', () => {
     end
     return A
   end`);
-  assert.equal(code.language, 'Julia');
+  assert.equal(code.language, "Julia");
 });
 
-test('bubble sort', () => {
+test("bubble sort", () => {
   const code = detectLang(`function bubblesort!(arr::AbstractVector)
     for _ in 2:length(arr), j in 1:length(arr)-1
         if arr[j] > arr[j+1]
@@ -92,10 +92,10 @@ test('bubble sort', () => {
 
   v = rand(-10:10, 10)
   println("# unordered: $v\n -> ordered: ", bubblesort!(v))`);
-  assert.equal(code.language, 'Julia');
+  assert.equal(code.language, "Julia");
 });
 
-test('heap sort', () => {
+test("heap sort", () => {
   const code = detectLang(`function swap(a, i, j)
     a[i], a[j] = a[j], a[i] 
   end
@@ -138,10 +138,10 @@ test('heap sort', () => {
   a = shuffle(collect(1:12))
   println("Unsorted: $a")
   println("Heap sorted: ", heapsort!(a))`);
-  assert.equal(code.language, 'Julia');
+  assert.equal(code.language, "Julia");
 });
 
-test('tree sort on a linked list', () => {
+test("tree sort on a linked list", () => {
   const code = detectLang(`mutable struct BTree{T}
     data::T
     left::Union{BTree, Nothing}
@@ -185,10 +185,10 @@ test('tree sort on a linked list', () => {
   end
 
   testtreesort(rand(1:99, 12))`);
-  assert.equal(code.language, 'Julia');
+  assert.equal(code.language, "Julia");
 });
 
-test('ludic numbers', () => {
+test("ludic numbers", () => {
   const code = detectLang(`function ludic_filter{T<:Integer}(n::T)
     0 < n || throw(DomainError())
     slud = trues(n)
@@ -251,10 +251,10 @@ test('ludic numbers', () => {
     println("    ", i, ", ", j, ", ", k)
   end
   `);
-  assert.equal(code.language, 'Julia');
+  assert.equal(code.language, "Julia");
 });
 
-test('floyd warshall algorithm', () => {
+test("floyd warshall algorithm", () => {
   const code = detectLang(`# Floyd-Warshall algorithm: https://rosettacode.org/wiki/Floyd-Warshall_algorithm
   # v0.6
    
@@ -293,10 +293,10 @@ test('floyd warshall algorithm', () => {
   end
    
   floydwarshall([1 3 -2; 2 1 4; 2 3 3; 3 4 2; 4 2 -1], 4)`);
-  assert.equal(code.language, 'Julia');
+  assert.equal(code.language, "Julia");
 });
 
-test('fivenum', () => {
+test("fivenum", () => {
   const code = detectLang(`function mediansorted(x::AbstractVector{T}, i::Integer, l::Integer)::T where T
   len = l - i + 1
   len > zero(len) || throw(ArgumentError("Array slice cannot be empty."))
@@ -325,7 +325,7 @@ for v in ([15.0, 6.0, 42.0, 41.0, 7.0, 36.0, 49.0, 40.0, 39.0, 47.0, 43.0],
          0.75775634,  0.32566578])
   println("# ", v, "\n -> ", fivenum(v))
 end`);
-  assert.equal(code.language, 'Julia');
+  assert.equal(code.language, "Julia");
 });
 
 test.run();

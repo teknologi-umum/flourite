@@ -1,13 +1,13 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src/index';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src/index";
 
-test('hello world', () => {
-  const code = detectLang('<h1>Hello world</h1>');
-  assert.equal(code.language, 'HTML');
+test("hello world", () => {
+  const code = detectLang("<h1>Hello world</h1>");
+  assert.equal(code.language, "HTML");
 });
 
-test('page', () => {
+test("page", () => {
   const code = detectLang(`<!DOCTYPE html>
   <html>
     <head>
@@ -19,10 +19,10 @@ test('page', () => {
     </body>
   </html>
   `);
-  assert.equal(code.language, 'HTML');
+  assert.equal(code.language, "HTML");
 });
 
-test('animation - html+js', () => {
+test("animation - html+js", () => {
   const code = detectLang(`<html> <head>
     <title>RC: Basic Animation</title>
     <script type="text/javascript">
@@ -47,10 +47,10 @@ test('animation - html+js', () => {
   </head> <body onload="animate('target')">
     <pre id="target">Hello World! </pre>
   </body> </html>`);
-  assert.equal(code.language, 'HTML');
+  assert.equal(code.language, "HTML");
 });
 
-test('quine - html+css', () => {
+test("quine - html+css", () => {
   const code = detectLang(`<!DOCTYPE html>
   <html>
   <head>
@@ -80,12 +80,12 @@ test('quine - html+css', () => {
   </head>
   <body></body>
   </html>`);
-  assert.equal(code.language, 'HTML');
+  assert.equal(code.language, "HTML");
 });
 
-test('comments', () => {
-  const code = detectLang(`<!-- a comment -->`);
-  assert.equal(code.language, 'HTML');
+test("comments", () => {
+  const code = detectLang("<!-- a comment -->");
+  assert.equal(code.language, "HTML");
 });
 
 test.run();

@@ -4,20 +4,10 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "extends": ["@teknologi-umum/eslint-config-typescript"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 12,
+    "ecmaVersion": "latest",
     "sourceType": "module"
-  },
-  "plugins": ["@typescript-eslint"],
-  "rules": {
-    "no-console": "warn",
-    "no-empty-function": "error",
-    "no-implicit-coercion": "error",
-    "no-var": "error",
-    "template-curly-spacing": ["error", "never"],
-    "prefer-spread": "warn",
-    "prefer-const": "error"
   }
 }

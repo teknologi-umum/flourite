@@ -1,13 +1,13 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src/index';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src/index";
 
-test('hello world', () => {
-  const code = detectLang('System.out.println("Hello world!");');
-  assert.equal(code.language, 'Java');
+test("hello world", () => {
+  const code = detectLang("System.out.println(\"Hello world!\");");
+  assert.equal(code.language, "Java");
 });
 
-test('fizz buzz', () => {
+test("fizz buzz", () => {
   const code = detectLang(`public class FizzBuzz {
     public static void main(String[] args) {
       for(int i = 1; i <= 100; i++) {
@@ -21,20 +21,20 @@ test('fizz buzz', () => {
       System.out.println();
     }
   }`);
-  assert.equal(code.language, 'Java');
+  assert.equal(code.language, "Java");
 });
 
-test('getter/setter', () => {
-  const code = detectLang('Person person = people.get(0);');
-  assert.equal(code.language, 'Java');
+test("getter/setter", () => {
+  const code = detectLang("Person person = people.get(0);");
+  assert.equal(code.language, "Java");
 });
 
-test('List/ArrayList', () => {
-  const code = detectLang('List<String> things = new ArrayList<>();');
-  assert.equal(code.language, 'Java');
+test("List/ArrayList", () => {
+  const code = detectLang("List<String> things = new ArrayList<>();");
+  assert.equal(code.language, "Java");
 });
 
-test('quick sort', () => {
+test("quick sort", () => {
   const code = detectLang(`public static <E extends Comparable<? super E>> List<E> quickSort(List<E> arr) {
     if (arr.isEmpty())
         return arr;
@@ -66,10 +66,10 @@ test('quick sort', () => {
     }
   }
   `);
-  assert.equal(code.language, 'Java');
+  assert.equal(code.language, "Java");
 });
 
-test('bubble sort', () => {
+test("bubble sort", () => {
   const code = detectLang(`public static <E extends Comparable<? super E>> void bubbleSort(E[] comparable) {
     boolean changed = false;
     do {
@@ -84,10 +84,10 @@ test('bubble sort', () => {
         }
     } while (changed);
   }`);
-  assert.equal(code.language, 'Java');
+  assert.equal(code.language, "Java");
 });
 
-test('http server', () => {
+test("http server", () => {
   const code = detectLang(`import java.net.URI;
   import java.net.http.HttpClient;
   import java.net.http.HttpRequest;
@@ -107,10 +107,10 @@ test('http server', () => {
                   .join();
       }
   }`);
-  assert.equal(code.language, 'Java');
+  assert.equal(code.language, "Java");
 });
 
-test('floyd warshall algorithm', () => {
+test("floyd warshall algorithm", () => {
   const code = detectLang(`import static java.lang.String.format;
   import java.util.Arrays;
    
@@ -169,10 +169,10 @@ test('floyd warshall algorithm', () => {
           }
       }
   }`);
-  assert.equal(code.language, 'Java');
+  assert.equal(code.language, "Java");
 });
 
-test('ludic numbers', () => {
+test("ludic numbers", () => {
   const code = detectLang(`import java.util.ArrayList;
   import java.util.List;
    
@@ -218,10 +218,10 @@ test('ludic numbers', () => {
       System.out.println("Triplets up to 250: " + getTriplets(ludicUpTo(250)));
     }
   }`);
-  assert.equal(code.language, 'Java');
+  assert.equal(code.language, "Java");
 });
 
-test('fivenum', () => {
+test("fivenum", () => {
   const code = detectLang(`import java.util.Arrays;
  
   public class Fivenum {
@@ -264,7 +264,7 @@ test('fivenum', () => {
           for (double[] x : xl) System.out.printf("%s\n\n", Arrays.toString(fivenum(x)));
       }
   }`);
-  assert.equal(code.language, 'Java');
+  assert.equal(code.language, "Java");
 });
 
 test.run();

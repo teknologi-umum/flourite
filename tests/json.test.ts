@@ -1,8 +1,8 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src/index';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src/index";
 
-test('1', () => {
+test("1", () => {
   const code = detectLang(`{
   "key": "value",
 
@@ -50,10 +50,10 @@ test('1', () => {
 
   "that was short": "And done. You now know everything JSON has to offer."
 }`);
-  assert.equal(code.language, 'JSON');
+  assert.equal(code.language, "JSON");
 });
 
-test('2', () => {
+test("2", () => {
   const code = detectLang(`{
     "name": "John Doe",
     "age": 43,
@@ -66,10 +66,10 @@ test('2', () => {
         "+44 2345678"
     ]
 }`);
-  assert.equal(code.language, 'JSON');
+  assert.equal(code.language, "JSON");
 });
 
-test('3', () => {
+test("3", () => {
   const code = detectLang(`{
   "keywords": [
     "JSON",
@@ -88,19 +88,19 @@ test('3', () => {
     "sandbox"
   ]
 }`);
-  assert.equal(code.language, 'JSON');
+  assert.equal(code.language, "JSON");
 });
 
-test('4', () => {
+test("4", () => {
   const code = detectLang(`{
     "/api/": "/",
     "/blog/:resource/:id/show": "/:resource/:id",
     "/blog/:category": "/posts?category=:category"
   }`);
-  assert.equal(code.language, 'JSON');
+  assert.equal(code.language, "JSON");
 });
 
-test('5', () => {
+test("5", () => {
   const code = detectLang(`{
     "posts": [
       { "id": 1, "title": "json-server", "author": "typicode" }
@@ -110,14 +110,14 @@ test('5', () => {
     ],
     "profile": { "name": "typicode" }
   }`);
-  assert.equal(code.language, 'JSON');
+  assert.equal(code.language, "JSON");
 });
 
-test('6', () => {
+test("6", () => {
   const code = detectLang(`{
     "middlewares": ["./fixtures/middlewares/en", "./fixtures/middlewares/jp"]
   }`);
-  assert.equal(code.language, 'JSON');
+  assert.equal(code.language, "JSON");
 });
 
 test.run();

@@ -1,31 +1,31 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src/index';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src/index";
 
-test('hello world', () => {
+test("hello world", () => {
   const code = detectLang(`main() {
     var bye = 'Hello world!';
     print("$bye");
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('async', () => {
+test("async", () => {
   const code = detectLang(`Future<void> main() async {
   checkVersion();
   print('In main: version is \${await lookUpVersion()}');
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('async loop', () => {
+test("async loop", () => {
   const code = detectLang(`await for (final request in requestServer) {
   handleRequest(request);
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('typedef', () => {
+test("typedef", () => {
   const code = detectLang(`typedef Compare<T> = int Function(T a, T b);
 
 int sort(int a, int b) => a - b;
@@ -33,10 +33,10 @@ int sort(int a, int b) => a - b;
 void main() {
   assert(sort is Compare<int>); // True!
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('happy numbers', () => {
+test("happy numbers", () => {
   const code = detectLang(`main() {
   HashMap<int,bool> happy = new HashMap<int,bool>();
   happy[1] = true;
@@ -72,10 +72,10 @@ test('happy numbers', () => {
     i++;
   }
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('fizz buzz', () => {
+test("fizz buzz", () => {
   const code = detectLang(`void main() {
   for (int i = 1; i <= 100; i++) {
     List<String> out = [];
@@ -86,10 +86,10 @@ test('fizz buzz', () => {
     print(out.length > 0 ? out.join("") : i);
   }
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('guess the number', () => {
+test("guess the number", () => {
   const code = detectLang(`import 'dart:math';
 import 'dart:io';
 
@@ -99,10 +99,10 @@ main() {
   do { stdout.write(" Your guess : "); } while (n != stdin.readLineSync());
   print("\nWell guessed!");
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('bubble sort', () => {
+test("bubble sort", () => {
   const code = detectLang(`List<num> bubbleSort(List<num> list) {
   var retList = new List<num>.from(list);
   var tmp;
@@ -121,10 +121,10 @@ test('bubble sort', () => {
 
   return retList;
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('merge sort', () => {
+test("merge sort", () => {
   const code = detectLang(`void main() {
   MergeSortInDart sampleSort = MergeSortInDart();
 
@@ -241,10 +241,10 @@ class MergeSortInDart {
     sortedList = sortThisList;
   }
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('heap sort', () => {
+test("heap sort", () => {
   const code = detectLang(`void heapSort(List a) {
 int count = a.length;
 
@@ -314,10 +314,10 @@ heapSort(arr);
 print("After sort");
 arr.forEach((var i)=>print("$i"));
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('quick sort', () => {
+test("quick sort", () => {
   const code = detectLang(`quickSort(List a) {
   if (a.length <= 1) {
     return a;
@@ -357,10 +357,10 @@ void main() {
   print("After sort");
   arr.forEach((var i)=>print("$i"));
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('regular expression', () => {
+test("regular expression", () => {
   const code = detectLang(`RegExp regexp = new RegExp(r'\\w+\\!');
 
 String capitalize(Match m) => '\${m[0].substring(0, m[0].length-1).toUpperCase()}';
@@ -371,10 +371,10 @@ void main(){
   print(hello);
   print(hellomodified);
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('pascal triangle', () => {
+test("pascal triangle", () => {
   const code = detectLang(`
 import 'dart:io';
 
@@ -415,10 +415,10 @@ void main() {
   pascal(3);
   pascal(6);
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('perfect numbers', () => {
+test("perfect numbers", () => {
   const code = detectLang(`/*
 * Function to test if a number is a perfect number
 * A number is a perfect number if it is equal to the sum of all its divisors
@@ -442,10 +442,10 @@ bool isPerfect(int n){
     // We return the test if n is equal to sumOfDivisors
     return n == sumOfDivisors;
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('http server', () => {
+test("http server", () => {
   const code = detectLang(`// Copyright (c) 2013-2014, the Dart project authors.  Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
@@ -489,10 +489,10 @@ main() async {
     ..serve(postUrl, method: 'GET').listen(servePost)
     ..defaultStream.listen(serveNotFound);
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('some api', () => {
+test("some api", () => {
   const code = detectLang(`// Copyright (c) 2019, the Dart project authors. Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
@@ -529,10 +529,10 @@ class Person {
 
   const Person(this.name, this.dayOfBirth);
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
-test('finding a type of a filesystem object', () => {
+test("finding a type of a filesystem object", () => {
   const code = detectLang(`// Copyright (c) 2013, the Dart project authors.  Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
@@ -569,7 +569,7 @@ main() async {
     print('$label: \${entity.path}');
   }
 }`);
-  assert.equal(code.language, 'Dart');
+  assert.equal(code.language, "Dart");
 });
 
 test.run();

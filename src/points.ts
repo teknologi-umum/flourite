@@ -1,4 +1,39 @@
-import type { LanguagePattern, Type } from './types';
+import type { LanguagePattern, Type } from "./types";
+
+function parsePoint(type: Type) {
+  switch (type) {
+    case "keyword.print":
+    case "meta.import":
+    case "meta.module":
+      return 5;
+    case "keyword.function":
+    case "constant.null":
+      return 4;
+    case "constant.type":
+    case "constant.string":
+    case "constant.numeric":
+    case "constant.boolean":
+    case "constant.dictionary":
+    case "constant.array":
+    case "keyword.variable":
+      return 3;
+    case "section.scope":
+    case "keyword.other":
+    case "keyword.operator":
+    case "keyword.control":
+    case "keyword.visibility":
+    case "keyword":
+      return 2;
+    case "comment.block":
+    case "comment.line":
+    case "comment.documentation":
+    case "macro":
+      return 1;
+    case "not":
+    default:
+      return -20;
+  }
+}
 
 /**
  * Get points from a language using regular expressions.
@@ -26,39 +61,4 @@ export function nearTop(index: number, linesOfCode: string[]): boolean {
     return true;
   }
   return index < linesOfCode.length / 10;
-}
-
-function parsePoint(type: Type) {
-  switch (type) {
-    case 'keyword.print':
-    case 'meta.import':
-    case 'meta.module':
-      return 5;
-    case 'keyword.function':
-    case 'constant.null':
-      return 4;
-    case 'constant.type':
-    case 'constant.string':
-    case 'constant.numeric':
-    case 'constant.boolean':
-    case 'constant.dictionary':
-    case 'constant.array':
-    case 'keyword.variable':
-      return 3;
-    case 'section.scope':
-    case 'keyword.other':
-    case 'keyword.operator':
-    case 'keyword.control':
-    case 'keyword.visibility':
-    case 'keyword':
-      return 2;
-    case 'comment.block':
-    case 'comment.line':
-    case 'comment.documentation':
-    case 'macro':
-      return 1;
-    case 'not':
-    default:
-      return -20;
-  }
 }
