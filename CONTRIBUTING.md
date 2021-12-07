@@ -48,7 +48,7 @@ Please make sure that the issue you're creating is in as much detail as possible
 
 You will need a few things to get things working:
 
-1. Node.js current version (as of now, we're using v16.6.x as defined in the `.nvmrc` file). You can install it through the [official Node.js download page](https://nodejs.org/en/download/), but we recommend using [nvm](https://github.com/nvm-sh/nvm) or [fnm](https://github.com/Schniz/fnm). Here's a simple installation/setup guide, but you should really refer directly to the corresponding repository's README.
+1. Node.js current version (as of now, we're using v16.13.x as defined in the `.nvmrc` file). You can install it through the [official Node.js download page](https://nodejs.org/en/download/), but we recommend using [nvm](https://github.com/nvm-sh/nvm) or [fnm](https://github.com/Schniz/fnm). Here's a simple installation/setup guide, but you should really refer directly to the corresponding repository's README.
 
 ```sh
 # If you want to install fnm
@@ -113,7 +113,6 @@ Please run ESLint and Prettier with these commands so you're good on the CI proc
 
 ```sh
 $ npm run lint
-$ npm run format
 ```
 
 And you're set!

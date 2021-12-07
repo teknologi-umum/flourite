@@ -1,74 +1,74 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import detectLang from '../src/index';
+import { test } from "uvu";
+import * as assert from "uvu/assert";
+import detectLang from "../src/index";
 
-test('heading 2', () => {
-  const code = detectLang('## Heading level 2');
-  assert.equal(code.language, 'Markdown');
+test("heading 2", () => {
+  const code = detectLang("## Heading level 2");
+  assert.equal(code.language, "Markdown");
 });
 
-test('heading 3', () => {
-  const code = detectLang('### Heading level 3');
-  assert.equal(code.language, 'Markdown');
+test("heading 3", () => {
+  const code = detectLang("### Heading level 3");
+  assert.equal(code.language, "Markdown");
 });
 
-test('heading 4', () => {
-  const code = detectLang('#### Heading level 4');
-  assert.equal(code.language, 'Markdown');
+test("heading 4", () => {
+  const code = detectLang("#### Heading level 4");
+  assert.equal(code.language, "Markdown");
 });
 
-test('heading 5', () => {
-  const code = detectLang('##### Heading level 5');
-  assert.equal(code.language, 'Markdown');
+test("heading 5", () => {
+  const code = detectLang("##### Heading level 5");
+  assert.equal(code.language, "Markdown");
 });
 
-test('heading 6', () => {
-  const code = detectLang('###### Heading level 6');
-  assert.equal(code.language, 'Markdown');
+test("heading 6", () => {
+  const code = detectLang("###### Heading level 6");
+  assert.equal(code.language, "Markdown");
 });
 
-test('heading 1 alternate syntax', () => {
-  const code = detectLang('Heading level 1\n============');
-  assert.equal(code.language, 'Markdown');
+test("heading 1 alternate syntax", () => {
+  const code = detectLang("Heading level 1\n============");
+  assert.equal(code.language, "Markdown");
 });
 
-test('heading 2 alternate syntax', () => {
-  const code = detectLang('Heading level 1\n------------');
-  assert.equal(code.language, 'Markdown');
+test("heading 2 alternate syntax", () => {
+  const code = detectLang("Heading level 1\n------------");
+  assert.equal(code.language, "Markdown");
 });
 
-test('images', () => {
-  const code = detectLang(`![GitHub Logo](/images/logo.png)`);
-  assert.equal(code.language, 'Markdown');
+test("images", () => {
+  const code = detectLang("![GitHub Logo](/images/logo.png)");
+  assert.equal(code.language, "Markdown");
 });
 
-test('links', () => {
-  const code = detectLang(`[GitHub](http://github.com)`);
-  assert.equal(code.language, 'Markdown');
+test("links", () => {
+  const code = detectLang("[GitHub](http://github.com)");
+  assert.equal(code.language, "Markdown");
 });
 
-test('links 2', () => {
-  const code = detectLang(`[GitHub][http://github.com]`);
-  assert.equal(code.language, 'Markdown');
+test("links 2", () => {
+  const code = detectLang("[GitHub][http://github.com]");
+  assert.equal(code.language, "Markdown");
 });
 
-test('links 3', () => {
-  const code = detectLang(`[1]: https://en.wikipedia.org/wiki/Hobbit#Lifestyle`);
-  assert.equal(code.language, 'Markdown');
+test("links 3", () => {
+  const code = detectLang("[1]: https://en.wikipedia.org/wiki/Hobbit#Lifestyle");
+  assert.equal(code.language, "Markdown");
 });
 
-test('links 4', () => {
-  const code = detectLang(`[1]: <https://en.wikipedia.org/wiki/Hobbit#Lifestyle> "Hobbit lifestyles"`);
-  assert.equal(code.language, 'Markdown');
+test("links 4", () => {
+  const code = detectLang("[1]: <https://en.wikipedia.org/wiki/Hobbit#Lifestyle> \"Hobbit lifestyles\"");
+  assert.equal(code.language, "Markdown");
 });
 
-test('blockquotes', () => {
+test("blockquotes", () => {
   const code = detectLang(`> We're living the future so
   > the present is our past.`);
-  assert.equal(code.language, 'Markdown');
+  assert.equal(code.language, "Markdown");
 });
 
-test('example 1', () => {
+test("example 1", () => {
   const code = detectLang(`# Changelog
 
 All notable changes to this project will be documented in this file.
@@ -154,10 +154,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [12.0.2]: https://github.com/markdown-it/markdown-it/compare/12.0.1...12.0.2
 [12.0.1]: https://github.com/markdown-it/markdown-it/compare/12.0.0...12.0.1
 [12.0.0]: https://github.com/markdown-it/markdown-it/compare/11.0.1...12.0.0`);
-  assert.equal(code.language, 'Markdown');
+  assert.equal(code.language, "Markdown");
 });
 
-test('example 2', () => {
+test("example 2", () => {
   const code = detectLang(`---
 draft: false
 title: Why I use Linux instead of other OS
@@ -223,10 +223,10 @@ So, why do I use Linux then? Well, let me give you a quick list of why Linux is 
 At first, I'm afraid that I can't install Windows on my new laptop. Who would've thought that in the end, I use Archlinux which some people say that it's difficult to install. I think it's not that hard, follow the wiki and you're set (said someone who had failed to install Archlinux 3 times lmao).
 
 Alright, this post will end right here. I might post why I use VIM/Window Managers next time. See ya in the next post everyone, have a good day!`);
-  assert.equal(code.language, 'Markdown');
+  assert.equal(code.language, "Markdown");
 });
 
-test('example 3', () => {
+test("example 3", () => {
   const code = detectLang(`---
 name: 'blog-using-vue-nuxt-markdown'
 title: Website with blog and portfolio using Vue.js + Nuxt + Markdown
@@ -386,10 +386,10 @@ To translate the web in English and Spanish I use [nuxt-i18n](https://github.com
 I thought about publishing a starter about it but being realist, I wouldn't have enough time to maintain it. I think this post explains how to do it very well, but if you have any doubt left, you can always contact me at my email: [marina@marinaaisa](mailto:marina@marinaaisa.com).
 
 Since I don't have a comments section on each post, I would love to continue the conversation on [Twitter](https://twitter.com/MarinaAisa). All feedback is welcome! If you think there is something that it can be improved, you would help me a lot.`);
-  assert.equal(code.language, 'Markdown');
+  assert.equal(code.language, "Markdown");
 });
 
-test('example 4', () => {
+test("example 4", () => {
   const code = detectLang(`# Visual Studio Code - Open Source ("Code - OSS")
 [![Feature Requests](https://img.shields.io/github/issues/microsoft/vscode/feature-request.svg)](https://github.com/microsoft/vscode/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request+sort%3Areactions-%2B1-desc)
 [![Bugs](https://img.shields.io/github/issues/microsoft/vscode/bug.svg)](https://github.com/microsoft/vscode/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
@@ -465,7 +465,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 Copyright (c) Microsoft Corporation. All rights reserved.
 
 Licensed under the [MIT](LICENSE.txt) license.`);
-  assert.equal(code.language, 'Markdown');
+  assert.equal(code.language, "Markdown");
 });
 
 test.run();
