@@ -21,5 +21,5 @@
     "allowSyntheticDefaultImports": true,
     "newLine": "lf"
   },
-  "exclude": ["tests", "dist", "benchmark", "**/*.json"]
+  "exclude": ["tests", "dist", "benchmark"]
 }
