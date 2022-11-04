@@ -27,16 +27,6 @@ test("heading 6", () => {
   assert.equal(code.language, "Markdown");
 });
 
-test("heading 1 alternate syntax", () => {
-  const code = detectLang("Heading level 1\n============");
-  assert.equal(code.language, "Markdown");
-});
-
-test("heading 2 alternate syntax", () => {
-  const code = detectLang("Heading level 1\n------------");
-  assert.equal(code.language, "Markdown");
-});
-
 test("images", () => {
   const code = detectLang("![GitHub Logo](/images/logo.png)");
   assert.equal(code.language, "Markdown");
@@ -75,7 +65,6 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
 
 ## [12.2.0] - 2021-08-02
 ### Added
