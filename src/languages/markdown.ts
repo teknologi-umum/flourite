@@ -4,7 +4,7 @@ export const Markdown: LanguagePattern[] = [
   // headings
   { pattern: /^(#){2,6}\s.+/, type: "keyword" },
   // headings alternate syntax
-  { pattern: /^(?!!)(=|-){2,}(?<!>)$/, type: "meta.module" },
+  { pattern: /^(?!!)(?:=|-){2,}(?:>(?!$)|$)/, type: "meta.module" },
   // images
   { pattern: /(!)?\[.+\]\(.+\)/, type: "keyword" },
   // links 2
