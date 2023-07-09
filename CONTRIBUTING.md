@@ -93,7 +93,7 @@ $ npm run test
 ├── package-lock.json
 ├── package.json
 ├── README.md
-├── rollup.config.js      - Build configuration
+├── rollup.config.mjs      - Build configuration
 ├── src                   - Source directory
 │  ├── languages          - Regular expressions of supported languages
 │  │
