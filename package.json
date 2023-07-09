@@ -66,6 +66,9 @@
     "lib": "./src",
     "test": "./tests"
   },
+  "engines": {
+    "node": ">=16"
+  },
   "devDependencies": {
     "@aldy505/kruonis": "^0.0.1",
     "@rollup/plugin-terser": "^0.4.3",
