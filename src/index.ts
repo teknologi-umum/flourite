@@ -23,6 +23,7 @@ import { Ruby } from "./languages/ruby";
 import { Rust } from "./languages/rust";
 import { SQL } from "./languages/sql";
 import { YAML } from "./languages/yaml";
+import { Typescript } from "./languages/typescript";
 import { nearTop, getPoints } from "./points";
 import { convert } from "./shiki";
 import { shebangMap } from "./shebang";
@@ -51,7 +52,8 @@ const languages: Record<string, LanguagePattern[]> = {
   Ruby,
   Rust,
   SQL,
-  YAML
+  YAML,
+  Typescript
 };
 
 /**
