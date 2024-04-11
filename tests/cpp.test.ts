@@ -33,7 +33,8 @@ test("hello world", () => {
     Rust: 0,
     SQL: 0,
     Unknown: 1,
-    YAML: 0
+    YAML: 0,
+    Typescript: 0
   });
   assert.equal(code.linesOfCode, 1);
 });

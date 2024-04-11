@@ -682,7 +682,8 @@ test("large input", () => {
     Rust: 4,
     SQL: 22,
     Unknown: 1,
-    YAML: 4
+    YAML: 4,
+    Typescript: 2
   });
   assert.equal(code.linesOfCode, 299);
 });
