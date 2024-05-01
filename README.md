@@ -16,13 +16,13 @@ Detects a programming language from a given string.
 
 ## Detectable languages
 
-| Languages |            |            |        |      |
-| --------- | ---------- | ---------- | ------ | ---- |
-| C         | Dockerfile | Javascript | Pascal | SQL  |
-| C++       | Elixir     | Julia      | PHP    | YAML |
-| C#        | Go         | Kotlin     | Python |      |
-| Clojure   | HTML       | Lua        | Ruby   |      |
-| CSS       | Java       | Markdown   | Rust   |      |
+| Languages |            |            |        |            |
+| --------- | ---------- | ---------- | ------ | ---------- |
+| C         | Dockerfile | Javascript | Pascal | SQL        |
+| C++       | Elixir     | Julia      | PHP    | YAML       |
+| C#        | Go         | Kotlin     | Python | Typescript |
+| Clojure   | HTML       | Lua        | Ruby   |            |
+| CSS       | Java       | Markdown   | Rust   |            |
 
 ## Install
 
@@ -33,8 +33,8 @@ $ npm install flourite
 or via a CDN (unpkg or jsdelivr)
 
 ```html
-<script src="https://unpkg.com/flourite@1.2.1"></script>
-<script src="https://cdn.jsdelivr.net/npm/flourite@1.2.1/dist/index.iife.js"></script>
+<script src="https://unpkg.com/flourite@1.3.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/flourite@1.3.0/dist/index.iife.js"></script>
 ```
 
 ## Usage

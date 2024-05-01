@@ -18,6 +18,18 @@ export default {
       format: "iife",
       name: "flourite",
       plugins: [terser()]
+    },
+    {
+      file: "dist/index.amd.js",
+      format: "amd",
+      name: "flourite",
+      plugins: [terser()]
+    },
+    {
+      file: "dist/index.umd.js",
+      format: "umd",
+      name: "flourite",
+      plugins: [terser()]
     }
   ],
   plugins: [ts({ tsconfig: "./tsconfig.json" })]

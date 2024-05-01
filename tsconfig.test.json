@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./dist",
+    "target": "es2015",
+    "module": "ESNext",
+    "declaration": true,
+    "declarationDir": ".",
+    "types": ["node"],
+    "preserveSymlinks": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "newLine": "lf"
+  },
+  "exclude": ["dist"]
+}
